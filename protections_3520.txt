@@ -1,0 +1,71 @@
+45751            Rem Start/Stop       Emergency Stop
+45752            RFan M1-M2 On        RFanM1-M2Fault
+45753            RFan M3-M4 On        RFanM3-M4Fault
+45754            RFan M5-M6 On        Fire Alarm    
+45755            CO/CH4Lev1           CO/CH4Lev2    
+45756            RFanM5-M6Fault       RFan M7-M8 On 
+45757            RFanM7-M8Fault       RFan M9-M10 On
+45758            RFanM9-10Fault       QF 278-281 OFF
+45763            GCB Feedback         Reserve       
+45764            GCB Alarm            FaultResButton
+45765            SA102Auto Mode       SA102Test Mode
+45766            AC Pump Auto         AC Pump Manual
+45775            CDVR Alarm           CDVR Sd       
+45776            In LoversOpen        InLoversClosed
+45777            Out LoversOpen       OutLoversClose
+45778            GCB Trip             Diff Protect  
+45779            Engine SD            Engine Alarm  
+45780            BRMZ Alarm           JW Level High 
+45781            JW Level Low         AC Level High 
+45782            AC Level Low         Reserve       
+45784            Prelube Auto         Prelube Manual
+45785            JW Pump Run          AC Pump Run   
+45786            QS201OFF             Prelube Run   
+45787            Crankcase Fan        QF242 OFF     
+45788            QF243 OFF            QF245 OFF     
+45789            QF246 OFF            QF244 OFF     
+45790            GCB Grounded         Line Grounded 
+45791            OutLouversAuto       OutLouversMan 
+45792            ER Heater Auto       ER Heater Man 
+45793            Gen HeaterAuto       Gen Heater Man
+45794            LouvHeaterAuto       LouvHeaterMan 
+45795            BrHeater Auto        BrHeater Man  
+45796            JW Heater Auto       JW Heater Man 
+45797            MCB f/b AUX          Crankcase Pr  
+45798            JW Pump Auto         JW Pump Manual
+45799            U Mains Enable        KM 201 ON    
+45800            KM 202 ON            QF 250 OFF    
+45801            Inlet Fans Run       Inlet FanFault
+45802            QF247-248 OFF        QF276 OFF     
+45803            QF277 OFF            SA201         
+45804            SA202 Genset         SA202 Mains   
+45805            Rad Fan Auto         Rad Fan Manual
+45806            In LouversAuto       In LouversMan 
+45823            MCB feedback         VPIO-1 2      
+45971            JW pressure          AC pressure   
+45972            Gas Pressure         Reserve       
+45973                                 Oil Pressure  
+45974            Oil Temp             Coolant Press 
+45975            Coolant Temp                       
+45976            Detonation                         
+45977            Manifold Temp        Manifold Press
+45978            Cyl Temp 17          Cyl Temp 18   
+45979            Cyl Temp 19          Cyl Temp 20   
+45981            Cyl Temp 1           Cyl Temp 2    
+45982            Cyl Temp 3           Cyl Temp 4    
+45983            Cyl Temp 5           Cyl Temp 6    
+45984            Cyl Temp 7           Cyl Temp 8    
+45985            Cyl Temp 9           Cyl Temp 10   
+45986            Cyl Temp 11          Cyl Temp 12   
+45987            Cyl Temp 13          Cyl Temp 14   
+45988            Cyl Temp 15          Cyl Temp 16   
+45989            Temp ER 1            Temp ER 2     
+45990            Temp Outside         Gas Temp      
+45991            Gen WindA            Gen WindB     
+45992            Gen WindC            Gen Bearing1  
+45993            AC 3Way Open         Reserve       
+45994            Gen Bearing2         AC Rad OutTemp
+45995            JW Rad OutTemp       AC InTemp     
+45996            AC OutTemp           JW InTemp     
+45997            Actual Timing        FValvePosition
+45998            ThrActPosition       Gas Fuel Flow 

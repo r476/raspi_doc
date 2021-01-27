@@ -1,0 +1,132 @@
+45751            RemStart/Stop        Emergency stop
+45752            GCB Closed           GCB Open      
+45753            GCB Fail             GenMess QF2SHS
+45754            BusMess QF3SHS       FireAlarm     
+45755            CO/CH4Lev1           CO/CH4Lev2    
+45756            RFan M1-M3 On        RFan M1 Fault 
+45757            RFan M2 Fault        QF17,18,19 OFF
+45758            not used             RFan M3 Fault 
+45759            RFan M4 Fault        QS1 OFF       
+45760            RFan M4-M6 On        RFan M5 Fault 
+45761            RFan M6 Fault        QF20,21,22 OFF
+45762            QF43,44,45,46        U Mains Enable
+45763            1KM On SHSN          2KM On SHSN   
+45764            QF37 OFF             Inlet Fans ON 
+45765            Out Fans ON          Inlet FanFault
+45766            Out Fans Fault       QF32,33,34 OFF
+45767            QF35,36 OFF          QF47,48 OFF   
+45768            QF49,50 OFF          Service       
+45769            Mains SupllyOn       Gen Suplly On 
+45770            Rad Fan Auto         Rad Fan Manual
+45771            In LouversAuto       In LouversMan 
+45772            OutLouversAuto       OutLouversMan 
+45774            BIN-4 7              MCB f/b aux   
+45775            ER Heater Auto       ER Heater Man 
+45776            Gen HeaterAuto       Gen Heater Man
+45777            LouvHeaterAuto       LouvHeaterMan 
+45778            BrHeater Auto        BrHeater Man  
+45779            JW Heater Auto       JW Heater Man 
+45780            JW Level High        JW Level Low  
+45781            AC Level High        AC Level Low  
+45782            FaultResButton       CDVR Alarm    
+45783            CDVR Sd              A8 Open       
+45785            A9 Closed            Out LoversOpen
+45786            OutLoversClose       Engine SD     
+45787            Engine Alarm         Auto Mode     
+45788            Test Mode            Water Flow    
+45807            MCB feedback         VPIO-1 2      
+45865            Engine Temp          Oil Pressure  
+45866            Oil Temp             Manifold Temp 
+45867            Manifold Press       Actual Timing 
+45868            Desired Timing       Detonation    
+45869            Cylinder 1           Cylinder 2    
+45870            Cylinder 3           Cylinder 4    
+45871            Cylinder 5           Cylinder 6    
+45872            Cylinder 7           Cylinder 8    
+45873            Cylinder 9           Cylinder 10   
+45874            Cylinder 11          Cylinder 12   
+45875            Cylinder 13          Cylinder 14   
+45876            Cylinder 15          Cylinder 16   
+45877            JW Flap Real         AIN-4 2       
+45878            AC InTemp            AC OutTemp    
+45879            Gen Bearing          JW InTemp     
+45880            Gas Temp             ManifoldPress 
+45881            Temp ER 1            Temp ER 2     
+45882            Temp Outside         Gas Pressure  
+45883            Gen WindA            Gen WindB     
+45884            Gen WindC            TempJWOutEng  
+45949            SHAinCfgErr          PLC Message 1 
+45950            PLC State 2          PLC State 3   
+45951            PLC State 4          ActCall Fail  
+45952            ECUDiagBlocked       Wrong config  
+45953            RTCbatteryFlat       System error  
+45954            UnauthorizCopy       Low Temp ER   
+45955            Batt volt            Bus V over    
+45956            Gen V unbal          Gen I unbal   
+45957            Bus V unbal          Bus V under   
+45963            Emergency stop       RPM           
+45965            Sd Stop fail         Overspeed     
+45966            Underspeed           Pickup fail   
+45967            Sd ExtBattFlat       WrnServiceT1+2
+45968            WrnServiceT3+4       Not lubricated
+45969            Start fail           Start blocking
+45970            Wrn CylTemp1         Wrn CylTemp2  
+45971            Wrn CylTemp3         Wrn CylTemp4  
+45972            Wrn CylTemp5         Wrn CylTemp6  
+45973            Wrn CylTemp7         Wrn CylTemp8  
+45974            Wrn CylTemp9         Wrn CylTemp10 
+45975            Wrn CylTemp11        Wrn CylTemp12 
+45976            Wrn CylTemp13        Wrn CylTemp14 
+45977            Wrn CylTemp15        Wrn CylTemp16 
+45978            Wrn CylTemp17        Wrn CylTemp18 
+45979            Wrn CylTemp19        Wrn CylTemp20 
+45980            Wrn CylTemp21        Wrn CylTemp22 
+45981            Wrn CylTemp23        Wrn CylTemp24 
+45982            Wrn CylTemp25        Wrn CylTemp26 
+45983            Wrn CylTemp27        Wrn CylTemp28 
+45984            Wrn CylTemp29        Wrn CylTemp30 
+45985            Wrn CylTemp31        Wrn CylTemp32 
+45986            Wrn MCB fail         Stp GCB fail  
+45987            Sd Oil press B       Wrn RSync fail
+45988            Stp Sync fail        BOC L1 under  
+45989            BOC L2 under         BOC L3 under  
+45990            BOC L1 over          BOC L2 over   
+45991            BOC L3 over          Sd L1 over    
+45992            Sd L2 over           Sd L3 over    
+45993            BOC L12 under        BOC L23 under 
+45994            BOC L31 under        BOC L12 over  
+45995            BOC L23 over         BOC L31 over  
+45996            Sd L12 over          Sd L23 over   
+45997            Sd L31 over          Gen V L1-N    
+45998            Gen V L2-N           Gen V L3-N    
+45999            Gen V L1-L2          Gen V L2-L3   
+46000            Gen V L3-L1          Gen freq      
+46201            BOC fgen under       BOC fgen over 
+46202            BOC ReversePwr       MP L1 under   
+46203            MP L2 under          MP L3 under   
+46204            MP L1 over           MP L2 over    
+46205            MP L3 over           MP L12 under  
+46206            MP L23 under         MP L31 under  
+46207            MP L12 over          MP L23 over   
+46208            MP L31 over          MP fmns under 
+46209            MP fmns over         MainsAvg>V    
+46210            Bus V L1-N           Bus V L2-N    
+46211            Bus V L3-N           Bus V L1-L2   
+46212            Bus V L2-L3          Bus V L3-L1   
+46213            Bus freq             Bus meas error
+46214            OperConflict         BOC IDMT      
+46215            BOC ShortCurr        BOC Overload  
+46216            BOC NCB fail         Wrn BadPwrCfg 
+46217            Wrn Addr error       Manual Restore
+46218            WrnTstOnLdFail       Wrn SpdRegLim 
+46219            Wrn VoltRegLim       G L neg       
+46220            G ph+L neg           G ph opposed  
+46221            M L neg              M ph+L neg    
+46222            M ph opposed         Wrn FuelTheft 
+46223            PassInsertBlck       Cleaning      
+46224            BOC ExctLoss         BOC Ieth IDMT 
+46225            Incom. periph.       NoBankCUdetect
+46248            Wrn SUSminPwr        SUS seq blck  
+46249            BOC LossEngPwr       Sd Engine fail
+46250            Wrn DPF Lamp         Wrn HEST Lamp 
+46251            Wrn MalfnctLmp       WrnDEFLwLvlLmp

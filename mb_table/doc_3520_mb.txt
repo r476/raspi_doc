@@ -1,0 +1,2234 @@
+Register(s)      Com.Obj. Name           Dim  Type       Len Dec   Min    Max Group
+============================================================================================
+40006            8235     BIN                 Binary#1    2   -      -      - Bin inputs CU 
+40008            9108     BIN-2               Binary#2    1   -      -      - Binary Inputs 
+40011            9111     BIN-5               Binary#3    1   -      -      - Binary Inputs 
+40012            9112     BIN-6               Binary#4    1   -      -      - Binary Inputs 
+40013            9113     BIN-7               Binary#5    1   -      -      - Binary Inputs 
+40014            9114     BIN-8               Binary#6    1   -      -      - Binary Inputs 
+40015            9115     BIN-9               Binary#7    1   -      -      - Binary Inputs 
+40016            9116     BIN-10              Binary#8    1   -      -      - Binary Inputs 
+40017            9117     BIN-11              Binary#9    1   -      -      - Binary Inputs 
+40018            9118     BIN-12              Binary#10   1   -      -      - Binary Inputs 
+40021            8239     BOUT                Binary#11   2   -      -      - Bin outputs CU
+40022            8213     Ubat           V    Integer     2   1      0    360 Analog CU     
+40024            10603    D+             V    Integer     2   1      0    360 Analog CU     
+40025            9155     JW pressure    kPa  Integer     2   0      0   1000 Analog CU     
+40026            9156     AC pressure    kPa  Integer     2   0      0   1000 Analog CU     
+40027            9157     Gas Pressure   kPa  Integer     2   0      0     60 Analog CU     
+40028            9158     Reserve             Integer     2   0      0    200 Analog CU     
+40033            9163                         Integer     2   0      0      0 AnalogInputs 1
+40034            9164     Oil Pressure   kPa  Integer     2   0      0   1000 AnalogInputs 1
+40035            9165     Oil Temp       °C   Integer     2   0      0    200 AnalogInputs 1
+40036            9166     Coolant Press  kPa  Integer     2   0      0     10 AnalogInputs 1
+40037            9167     Coolant Temp   °C   Integer     2   0      0    150 AnalogInputs 1
+40038            9168                         Integer     2   0      0      0 AnalogInputs 1
+40039            9169     Detonation     -    Integer     2   0      0     10 AnalogInputs 1
+40040            9170                         Integer     2   0      0      0 AnalogInputs 1
+40041            9171     Manifold Temp  °C   Integer     2   0      0    150 AnalogInputs 2
+40042            9172     Manifold Press kPa  Integer     2   0      0    400 AnalogInputs 2
+40043            9173     Cyl Temp 17    °C   Integer     2   0      0    800 AnalogInputs 2
+40044            9174     Cyl Temp 18    °C   Integer     2   0      0    800 AnalogInputs 2
+40045            9175     Cyl Temp 19    °C   Integer     2   0      0    800 AnalogInputs 2
+40046            9176     Cyl Temp 20    °C   Integer     2   0      0    800 AnalogInputs 2
+40047            9177                         Integer     2   0      0      0 AnalogInputs 2
+40048            9178                         Integer     2   0      0      0 AnalogInputs 2
+40049            9179     Cyl Temp 1     °C   Integer     2   0      0    800 AnalogInputs 3
+40050            9180     Cyl Temp 2     °C   Integer     2   0      0    800 AnalogInputs 3
+40051            9181     Cyl Temp 3     °C   Integer     2   0      0    800 AnalogInputs 3
+40052            9182     Cyl Temp 4     °C   Integer     2   0      0    800 AnalogInputs 3
+40053            9183     Cyl Temp 5     °C   Integer     2   0      0    800 AnalogInputs 3
+40054            9184     Cyl Temp 6     °C   Integer     2   0      0    800 AnalogInputs 3
+40055            9185     Cyl Temp 7     °C   Integer     2   0      0    800 AnalogInputs 3
+40056            9186     Cyl Temp 8     °C   Integer     2   0      0    800 AnalogInputs 3
+40057            9187     Cyl Temp 9     °C   Integer     2   0      0    800 AnalogInputs 4
+40058            9188     Cyl Temp 10    °C   Integer     2   0      0    800 AnalogInputs 4
+40059            9189     Cyl Temp 11    °C   Integer     2   0      0    800 AnalogInputs 4
+40060            9190     Cyl Temp 12    °C   Integer     2   0      0    800 AnalogInputs 4
+40061            9191     Cyl Temp 13    °C   Integer     2   0      0    800 AnalogInputs 4
+40062            9192     Cyl Temp 14    °C   Integer     2   0      0    800 AnalogInputs 4
+40063            9193     Cyl Temp 15    °C   Integer     2   0      0    800 AnalogInputs 4
+40064            9194     Cyl Temp 16    °C   Integer     2   0      0    800 AnalogInputs 4
+40065            9195     Temp ER 1      °C   Integer     2   1   -200   1000 AnalogInputs 5
+40066            9196     Temp ER 2      °C   Integer     2   1   -200   1000 AnalogInputs 5
+40067            9197     Temp Outside   °C   Integer     2   1   -500    500 AnalogInputs 5
+40068            9198     Gas Temp       °C   Integer     2   1   -200   1500 AnalogInputs 5
+40069            9199     Gen WindA      °C   Integer     2   1      0   2000 AnalogInputs 5
+40070            9200     Gen WindB      °C   Integer     2   1      0   2000 AnalogInputs 5
+40071            9201     Gen WindC      °C   Integer     2   1      0   2000 AnalogInputs 5
+40072            9202     Gen Bearing1   °C   Integer     2   1      0   2000 AnalogInputs 5
+40073            9203     AC 3Way Open   %    Integer     2   0      0    100 AnalogInputs 6
+40074            9204     Reserve        -    Integer     2   0      0    200 AnalogInputs 6
+40075            9205     Gen Bearing2   °C   Integer     2   1      0   2000 AnalogInputs 6
+40076            9206     AC Rad OutTemp °C   Integer     2   1   -200   1500 AnalogInputs 6
+40077            9207     JW Rad OutTemp °C   Integer     2   1   -200   1500 AnalogInputs 6
+40078            9208     AC InTemp      °C   Integer     2   1   -200   1500 AnalogInputs 6
+40079            9209     AC OutTemp     °C   Integer     2   1      0   2000 AnalogInputs 6
+40080            9210     JW InTemp      °C   Integer     2   1      0   2000 AnalogInputs 6
+40081            9211     Actual Timing  °    Integer     2   0      0     40 AnalogInputs 7
+40082            9212     FValvePosition %    Integer     2   0      0    100 AnalogInputs 7
+40083            9213     ThrActPosition %    Integer     2   0      0    100 AnalogInputs 7
+40084            9214     Gas Fuel Flow  m3/h Integer     2   0      0   1000 AnalogInputs 7
+40085            9215                         Integer     2   0      0      0 AnalogInputs 7
+40086            9216                         Integer     2   0      0      0 AnalogInputs 7
+40087            9217     AIN-7 7        -    Integer     2   0      0    200 AnalogInputs 7
+40088            9218     AIN-7 8        -    Integer     2   0      0    200 AnalogInputs 7
+40214            11833    ReqEngineSpeed RPM  Integer     2   0      0   3000 Sync/Load ctrl
+40215-40216 ( 2) 12482    DPF status          Binary      4   -      -      - Invisible     
+40217            10226    ECU DiagSource      List#1      1   -   1258   1262 Info          
+40222            9143     LogBout 1           Binary#12   2   -      -      - Log Bout      
+40223            9144     LogBout 2           Binary#13   2   -      -      - Log Bout      
+40224            9145     LogBout 3           Binary#14   2   -      -      - Log Bout      
+40225            9146     LogBout 4           Binary#15   2   -      -      - Log Bout      
+40226            9147     LogBout 5           Binary#16   2   -      -      - Log Bout      
+40227            9148     LogBout 6           Binary#17   2   -      -      - Log Bout      
+40228            9149     LogBout 7           Binary#18   2   -      -      - Log Bout      
+40229            9150     LogBout 8           Binary#19   2   -      -      - Log Bout      
+40230            11896    LogBout 9           Binary#20   2   -      -      - Log Bout      
+40231            10580    VPIO BOUT1          Binary#21   1   -      -      - VPIO          
+40274-40289 (16) 10011    iCB string          String0    32   -      -      - I-CB info     
+40290            10627    RemoteControl       Binary#22   2   -      -      - Log Bout      
+40291            8393     SW version          Unsigned    1   1      0    255 Invisible     
+40292            8707     SW branch           Unsigned    1   0      0    255 Info          
+40293            8480     Application         Unsigned    1   0      0    255 Info          
+40294-40295 ( 2) 9090     PasswordDecode      Unsigned    4   0      -      - Info          
+40296            9244     Engine state        List#2      1   -   1179   1202 Info          
+40297            9245     Breaker state       List#3      1   -   1203   1216 Info          
+40298            9589     Breaker timer  s    Unsigned    2   1      0  36000 Invisible     
+40301            9574     ControllerMode      List#4      1   -   1175   1178 Info          
+40302            9887     ControllerMode      List#4      1   -   1175   1178 Invisible     
+40303            8546     CAN16               Binary      2   -      -      - Info          
+40304            8827     CAN32               Binary      2   -      -      - Info          
+40305            11081    Reg16               Binary      2   -      -      - Info          
+40306            11082    Reg32               Binary      2   -      -      - Info          
+40307            10196    GL16                Binary      2   -      -      - Info          
+40308            10197    GL32                Binary      2   -      -      - Info          
+40309            8449     Status              Binary#23   2   -      -      - Invisible     
+40310-40311 ( 2) 11388    StatusDW            Binary#24   4   -      -      - Invisible     
+40312            10040    Timer text          List#5      1   -   1221   1257 Info          
+40313            8955     Timer val      s    Unsigned    2   0      0  65535 Info          
+40314            13267    ModbusSw1           Binary#25   2   -      -      - Log Bout      
+40315            13268    ModbusSw2           Binary#26   2   -      -      - Log Bout      
+40316            8451     UgOverLimit    V    Unsigned    2   0      0  65535 Invisible     
+40317            8452     UgUnderLimit   V    Unsigned    2   0      0  65535 Invisible     
+40318            8453     UmOverLimit    V    Unsigned    2   0      0  65535 Invisible     
+40319            8454     UmUnderLimit   V    Unsigned    2   0      0  65535 Invisible     
+40321            11004    ExtValue1      X    Integer     2   0 11012* 11016* Force value   
+40322            11005    ExtValue2      X    Integer     2   0 11013* 11017* Force value   
+40325-40326 ( 2) 10927    NextTime1-4         Time        3   -      -      - Info          
+40327-40328 ( 2) 10928    NextTime5-8         Time        3   -      -      - Info          
+40329-40330 ( 2) 10929    NextTime9-12        Time        3   -      -      - Info          
+40331-40332 ( 2) 10930    NextTime13-16       Time        3   -      -      - Info          
+40333-40334 ( 2) 10931    NextDate1-4         Date        3   -      -      - Info          
+40335-40336 ( 2) 10932    NextDate5-8         Date        3   -      -      - Info          
+40337-40338 ( 2) 10933    NextDate9-12        Date        3   -      -      - Info          
+40339-40340 ( 2) 10934    NextDate13-16       Date        3   -      -      - Info          
+40341            10424    PLC-BOUT 1          Binary#27   1   -      -      - PLC values    
+40342            10425    PLC-BOUT 2          Binary#28   1   -      -      - PLC values    
+40343            10426    PLC-BOUT 3          Binary#29   1   -      -      - PLC values    
+40344            10427    PLC-BOUT 4          Binary#30   1   -      -      - PLC values    
+40345            10428    PLC-BOUT 5          Binary#31   1   -      -      - PLC values    
+40346            10429    PLC-BOUT 6          Binary#32   1   -      -      - PLC values    
+40347            10430    PLC-BOUT 7          Binary#33   1   -      -      - PLC values    
+40348            10431    PLC-BOUT 8          Binary#34   1   -      -      - PLC values    
+40349            10432    PLC-BOUT 9          Binary#35   1   -      -      - PLC values    
+40350            10433    PLC-BOUT 10         Binary#36   1   -      -      - PLC values    
+40351            10434    PLC-BOUT 11         Binary#37   1   -      -      - PLC values    
+40357            10360    PLC-AOUT 1     °C   Integer     2   1 -32768  32767 PLC values    
+40358            10361    PLC-AOUT 2     °C   Integer     2   1 -32768  32767 PLC values    
+40359            10362    PLC-AOUT 3     °C   Integer     2   1 -32768  32767 PLC values    
+40360            10363    Max ER Temp    °C   Integer     2   1 -32768  32767 PLC values    
+40361            10364    AC 3Way AOut   -    Integer     2   0 -32768  32767 PLC values    
+40362            10365    AC 3Way Desire %    Integer     2   0 -32768  32767 PLC values    
+40363            10366    PLC-AOUT 7     °C   Integer     2   1 -32768  32767 PLC values    
+40364            10367    Vent Speed     -    Integer     2   0 -32768  32767 PLC values    
+40365            10368    Vent Speed 2   -    Integer     2   0 -32768  32767 PLC values    
+40366            10369    Vent Speed 3   -    Integer     2   0 -32768  32767 PLC values    
+40367            10370    VentSpeed OUT  -    Integer     2   0 -32768  32767 PLC values    
+40368            10371    MO Vent Speed  Hz   Integer     2   1 -32768  32767 PLC values    
+40449            8192     Gen V L1-N     V    Unsigned    2   0      0  8277* Gener values  
+40450            8193     Gen V L2-N     V    Unsigned    2   0      0  8277* Gener values  
+40451            8194     Gen V L3-N     V    Unsigned    2   0      0  8277* Gener values  
+40452            10645    Gen V          V    Unsigned    2   0      0  8277* Gener values  
+40453            9628     Gen V L1-L2    V    Unsigned    2   0      0  9673* Gener values  
+40454            9629     Gen V L2-L3    V    Unsigned    2   0      0  9673* Gener values  
+40455            9630     Gen V L3-L1    V    Unsigned    2   0      0  9673* Gener values  
+40456            8210     Gen freq       Hz   Unsigned    2   1    400    700 Gener values  
+40458            8198     Gen curr L1    A    Unsigned    2   0      0  8275* Gener values  
+40459            8199     Gen curr L2    A    Unsigned    2   0      0  8275* Gener values  
+40460            8200     Gen curr L3    A    Unsigned    2   0      0  8275* Gener values  
+40461            8204     Pwr factor          Integer     1   2   -100    100 Gener values  
+40462            8395     Load char           Char        1   -      -      - Gener values  
+40464            8202     Act power      kW   Integer     2   0      0  8276* Gener values  
+40465            9678     Act power filt kW   Integer     2   0      0  8276* Gener values  
+40466            10641    Act pwr rel    %    Integer     2   2      0  10000 Gener values  
+40467            8524     Act pwr L1     kW   Integer     2   0      0  8276* Gener values  
+40468            8525     Act pwr L2     kW   Integer     2   0      0  8276* Gener values  
+40469            8526     Act pwr L3     kW   Integer     2   0      0  8276* Gener values  
+40470            8203     React power    kVAr Integer     2   0 -32768  32767 Gener values  
+40472            8527     React pwr L1   kVAr Integer     2   0 -32768  32767 Gener values  
+40473            8528     React pwr L2   kVAr Integer     2   0 -32768  32767 Gener values  
+40474            8529     React pwr L3   kVAr Integer     2   0 -32768  32767 Gener values  
+40475            8565     Appar pwr      kVA  Integer     2   0 -32768  32767 Gener values  
+40476            8530     Appar pwr L1   kVA  Integer     2   0 -32768  32767 Gener values  
+40477            8531     Appar pwr L2   kVA  Integer     2   0 -32768  32767 Gener values  
+40478            8532     Appar pwr L3   kVA  Integer     2   0 -32768  32767 Gener values  
+40479            8533     Pwr factor L1       Integer     1   2   -100    100 Gener values  
+40480            8534     Pwr factor L2       Integer     1   2   -100    100 Gener values  
+40481            8535     Pwr factor L3       Integer     1   2   -100    100 Gener values  
+40482            10548    Gen V unbal    %    Unsigned    2   0      0    200 Gener values  
+40483            10550    Gen I unbal    %    Unsigned    2   0      0    200 Gener values  
+40484            8445     WiringCheck         Unsigned    2   0      0  65535 Invisible     
+40486            8626     Load char L1        Char        1   -      -      - Gener values  
+40487            8627     Load char L2        Char        1   -      -      - Gener values  
+40488            8628     Load char L3        Char        1   -      -      - Gener values  
+40489            8195     Bus V L1-N     V    Unsigned    2   0      0  9888* Bus values    
+40490            8196     Bus V L2-N     V    Unsigned    2   0      0  9888* Bus values    
+40491            8197     Bus V L3-N     V    Unsigned    2   0      0  9888* Bus values    
+40492            10666    Bus V          V    Unsigned    2   0      0  9888* Bus values    
+40493            9631     Bus V L1-L2    V    Unsigned    2   0      0  9907* Bus values    
+40494            9632     Bus V L2-L3    V    Unsigned    2   0      0  9907* Bus values    
+40495            9633     Bus V L3-L1    V    Unsigned    2   0      0  9907* Bus values    
+40499            8208     EarthFC        A    Unsigned    2   0      0  8566* Bus values    
+40500            8211     Bus freq       Hz   Unsigned    2   1    400    700 Bus values    
+40501            10602    Bus freq 2 dec Hz   Unsigned    2   2   4000   7000 Bus values    
+40506            10549    Bus V unbal    %    Unsigned    2   0      0    200 Bus values    
+40507            8224     Slip freq      Hz   Integer     2   2 -10000  10000 Gener values  
+40508            8225     Angle          °    Integer     2   1  -1800   1800 Gener values  
+40516            9889     Volt match 123      Binary      1   -      -      - Invisible     
+40519            10123    RPM            RPM  Integer     2   0      0  8253* Engine values 
+40520            9620     T Cyl aver     °C   Integer     2   0      0    800 Engine values 
+40521            10526    T Cyl max      °C   Integer     2   0      0    800 Engine values 
+40522            10527    T Cyl min      °C   Integer     2   0      0    800 Engine values 
+40523            9588     Engine timer   s    Unsigned    2   1      0  36000 Invisible     
+40524            9591     StatLdShed          List#6      1   -   1217   1220 Load shedding 
+40529            8663     ActPwrReq      kW   Integer     2   0      0  8276* Sync/Load ctrl
+40531            10137    Speed request  %    Integer     2   1      0   1000 Sync/Load ctrl
+40532            9052     SpdRegOut      V    Integer     2   3 -10000  10000 Sync/Load ctrl
+40533            10006    SpeedReq RPM   RPM  Unsigned    2   0      0   3000 Sync/Load ctrl
+40534            9053     VoltRegOut     %    Integer     2   1      0   1000 Volt/PF ctrl  
+40535            10792    SystLoadCtrl        List#7      1   -   1159   1164 Sync/Load ctrl
+40536            10793    SystPfCtrl          List#8      1   -   1165   1174 Volt/PF ctrl  
+40537            10007    IE Pwr visual  kW   Integer     2   0      0  8276* Invisible     
+40540-40541 ( 2) 10656    TotRunPact Q   kVAr Integer     4   0      -      - Sync/Load ctrl
+40542-40543 ( 2) 10657    TotRunPact P   kW   Integer     4   0      -      - Sync/Load ctrl
+40544-40545 ( 2) 10658    netPgnomPh     kW   Integer     4   0      -      - Sync/Load ctrl
+40560            8624     EnginePriority      Unsigned    1   0      0    255 Pwr management
+40561            8625     Act Reserve    kX   Integer     2   0 -32768  32767 Pwr management
+40562            8622     Reserve        kX   Integer     2   0 -32768  32767 Pwr management
+40563            8623     Reserve Stp    kX   Integer     2   0 -32768  32767 Pwr management
+40564            10788    ActRes rel     %    Integer     2   0 -32768  32767 Pwr management
+40565            10786    Res rel        %    Integer     2   0 -32768  32767 Pwr management
+40566            10787    ResStp rel     %    Integer     2   0 -32768  32767 Pwr management
+40567            10012    MinR PWR       kW   Unsigned    2   0      0  65535 Pwr management
+40570-40571 ( 2) 8974     Act Pwr Band        Binary      4   -      -      - Pwr management
+40572-40573 ( 2) 8975     Next Pwr Band       Binary      4   -      -      - Pwr management
+40574-40581 ( 8) 11678    Latitude            String0    16   -      -      - Info          
+40582-40589 ( 8) 11679    Longitude           String0    16   -      -      - Info          
+40592            11897    LogBout 10          Binary#38   2   -      -      - Log Bout      
+40593            11898    LogBout 11          Binary#39   2   -      -      - Log Bout      
+40594            11899    LogBout 12          Binary#40   2   -      -      - Log Bout      
+40595            11900    LogBout 13          Binary#41   2   -      -      - Log Bout      
+40603            13024    Bus freq filt  Hz   Unsigned    2   2   4000   7000 Bus values    
+40733            14592    SpeedReqRPMx8  RPM8 Unsigned    2   0      0   3000 Sync/Load ctrl
+40747            9126     BOUT-2              Binary#42   1   -      -      - Binary Outputs
+40748            9127     BOUT-3              Binary#43   1   -      -      - Binary Outputs
+40750            9129     BOUT-5              Binary#44   1   -      -      - Binary Outputs
+40751            9130     BOUT-6              Binary#45   1   -      -      - Binary Outputs
+40778            15118    Run minutes    min  Unsigned    1   0      0     59 Statistics    
+40779            15135    P Reduct A     kW   Unsigned    2   0      0  65535 Sync/Load ctrl
+40780            15143    P Reduct B     kW   Unsigned    2   0      0  65535 Sync/Load ctrl
+40781            15151    P Reduct C     kW   Unsigned    2   0      0  65535 Sync/Load ctrl
+40786            15536    SysNominFreq   Hz   Unsigned    2   2   4800   6200 Sync/Load ctrl
+40835            14997    VoltReq        %    Integer     2   1      0   1000 Volt/PF ctrl  
+40879            15723    P RedMem A     kW   Unsigned    2   0      0  65535 Sync/Load ctrl
+40880            15724    P RedMem B     kW   Unsigned    2   0      0  65535 Sync/Load ctrl
+40881            15725    P RedMem C     kW   Unsigned    2   0      0  65535 Sync/Load ctrl
+40885            15743    Q lim min      kVAr Integer     2   0 -32768  32767 Invisible     
+40886            15744    Q lim max      kVAr Integer     2   0 -32768  32767 Invisible     
+40887            15745    S lim max      kVA  Unsigned    2   0      0  65535 Invisible     
+41044            15553    ECUFaultReset       Unsigned    2   0      0      6 Invisible     
+41045            15573    AirGate status      Unsigned    1   0      0    255 Info          
+43062-43069 ( 8) 8637     Gen-set name        String0    16   -      -      - Comms settings
+43070            8276     Nomin power    kW   Unsigned    2   0      1  32000 Basic settings
+43071            8275     Nomin current  A    Unsigned    2   0      1  10000 Basic settings
+43072            8274     CT ratio prim  A    Unsigned    2   0      1  15000 Basic settings
+43073            10556    CT ratio sec        List#9      1   -   1007   1008 Basic settings
+43074            8566     EarthFltCurCTp A    Unsigned    2   0      1  15000 Basic settings
+43075            10557    EarthFltCurCTs      List#9      1   -   1007   1008 Basic settings
+43076            9579     VT ratio       V/V  Unsigned    2   2     10  50000 Basic settings
+43077            10662    Vg InpRangeSel      List#10     1   -   1009   1010 Basic settings
+43078            9580     Vb VT ratio    V/V  Unsigned    2   2     10  50000 Basic settings
+43079            10663    Vb InpRangeSel      List#10     1   -   1009   1010 Basic settings
+43080            8277     GenNomV        V    Unsigned    2   0     10  34641 Basic settings
+43081            9673     GenNomVph-ph   V    Unsigned    2   0     17  60000 Basic settings
+43082            9888     BusNomV        V    Unsigned    2   0     10  34641 Basic settings
+43083            9907     BusNomVph-ph   V    Unsigned    2   0     17  60000 Basic settings
+43084            10647    FixVoltProtSel      List#11     1   -   1011   1014 Basic settings
+43086            13220    Nominal freq        List#12     1   -   1015   1016 Basic settings
+43087            13221    Nom frq offset Hz   Integer     2   2   -200    200 Basic settings
+43088            8252     Gear teeth          Unsigned    2   0      0    500 Basic settings
+43089            8253     Nominal RPM    RPM  Unsigned    2   0    100   4000 Basic settings
+43090            8315     ControllerMode      List#4      1   -   1175   1178 Basic settings
+43091            9983     FltRes GoToMAN      List#13     1   -   1017   1018 Basic settings
+43092            10588    Local buttons       List#14     1   -   1019   1021 Basic settings
+43093            10121    DispBaklightTO min  Unsigned    1   0      0    241 Basic settings
+43094            9921     CAN2emptDetect      List#13     1   -   1017   1018 Comms settings
+43095            11327    LB/UART Log         List#13     1   -   1017   1018 Comms settings
+43096            11394    Acall+SMS lang      Unsigned    1   0      1      7 Act. calls/SMS
+43097            14020    UserBtn pulse  s    Unsigned    1   1      2    100 Basic settings
+43098            11024    SHxOcol Detect      List#13     1   -   1017   1018 Comms settings
+43099            11002    DispBklStrtOff      List#13     1   -   1017   1018 Basic settings
+43101            9095     Starting RPM   RPM  Unsigned    2   0      0   1500 Engine params 
+43102            14685    Underspeed     RPM  Unsigned    2   0      3  9095* Engine params 
+43103            9681     Starting POil  -    Integer     2   0 -32768  32767 Engine params 
+43104            8394     Prestart time  s    Unsigned    2   0      0   3600 Engine params 
+43105            8780     PrelubrTime    s    Unsigned    2   0      0   3600 Engine params 
+43106            8781     PrelubrPause   min  Unsigned    2   0      1   3000 Engine params 
+43107            8256     MaxCrank time  s    Unsigned    1   0      1    240 Engine params 
+43108            8257     CrnkFail pause s    Unsigned    1   0      5     60 Engine params 
+43109            8255     Crank attempts      Unsigned    1   0      1     10 Engine params 
+43110            9097     Idle time      s    Unsigned    2   0      0   3600 Engine params 
+43111            8259     Min stab time  s    Unsigned    2   0      1  8313* Engine params 
+43112            8313     Max stab time  s    Unsigned    2   0  8259*   3600 Engine params 
+43113            9243     Warming load   %    Integer     2   0      0    100 Engine params 
+43114            9258     Warming temp   -    Integer     2   0 -32768  32767 Engine params 
+43115            8562     Max warm time  s    Unsigned    2   0      0   3600 Engine params 
+43116            10046    Cooling speed       List#15     1   -   1086   1087 Engine params 
+43117            8258     Cooling time   s    Unsigned    2   0      0   3600 Engine params 
+43118            10661    Cooldown optim      List#13     1   -   1017   1018 Engine params 
+43119            8662     AfterCoolTime  s    Unsigned    2   0      0   3600 Engine params 
+43120            9815     Stop time      s    Unsigned    2   0      0    240 Engine params 
+43121            9695     SDVentil time  s    Unsigned    2   0      0     60 Engine params 
+43123            10525    FuelSol offset s    Integer     2   1      0     50 Engine params 
+43124            9683     D+ function         List#16     1   -   1092   1094 Engine params 
+43125            11000    CoolDnAfterBOC      List#17     1   -   1088   1089 Engine params 
+43126            10204    GasVTest            List#18     1   -   1090   1091 Engine params 
+43127            10205    GasVTest del   s    Unsigned    2   0      0    300 Engine params 
+43128            8264     Horn timeout   s    Unsigned    2   0      0   3601 Engine protect
+43129            8263     Overspeed      %    Unsigned    2   0      0    200 Engine protect
+43130            9622     Max+CylDifPmin °C   Integer     2   0      0    800 Engine protect
+43131            9623     Max-CylDifPmin °C   Integer     2   0      0    800 Engine protect
+43132            9624     Max+CylDifPnom °C   Integer     2   0      0    800 Engine protect
+43133            9625     Max-CylDifPnom °C   Integer     2   0      0    800 Engine protect
+43134            9626     PminCylDifEval kW   Integer     2   0      0  8276* Engine protect
+43135            9627     CylDifEvalDel  s    Unsigned    2   0      0    600 Engine protect
+43140            9046     Derating1 strt x    Integer     2   0 -32000  32000 ProcessControl
+43141            9047     Derating1 end  x    Integer     2   0 -32000  32000 ProcessControl
+43142            9048     Derating1 pwr  %    Unsigned    2   0      0    100 ProcessControl
+43143            10189    Derating2 strt x    Integer     2   0 -32000  32000 ProcessControl
+43144            10190    Derating2 end  x    Integer     2   0 -32000  32000 ProcessControl
+43145            10191    Derating2 pwr  %    Unsigned    2   0      0    100 ProcessControl
+43163            9235     Synchro enable      List#19     1   -   1077   1078 ProcessControl
+43165            10118    LocalBaseload  kW   Unsigned    2   0      0  8276* ProcessControl
+43166            10339    SysBaseLdMode       List#20     1   -   1075   1076 ProcessControl
+43167            11003    SysBasePFMode       List#20     1   -   1075   1076 ProcessControl
+43168            11719    WatchedContr        Unsigned    1   0      0     16 ProcessControl
+43169            8280     OverldStrtEval %    Unsigned    2   0    100    200 Gener protect 
+43170            8281     2POvrldStEvDel s    Unsigned    2   1      0   6000 Gener protect 
+43171            9241     Min power PtM  %    Unsigned    2   0      0    100 Gener protect 
+43172            8282     Ishort         %    Unsigned    2   0    100    500 Gener protect 
+43173            9991     Ishort del     s    Unsigned    2   2      0   1000 Gener protect 
+43174            8283     2Inom del      s    Unsigned    2   1      0   6000 Gener protect 
+43175            8291     Gen >V BOC     %    Unsigned    2   0  8293*    150 Gener protect 
+43176            10013    Gen >V Sd      %    Unsigned    2   0     50    150 Gener protect 
+43177            8293     Gen <V BOC     %    Unsigned    2   0     20  8291* Gener protect 
+43178            9103     Gen V del      s    Unsigned    2   2      0  60000 Gener protect 
+43179            10558    BusMeasError        List#13     1   -   1017   1018 Gener protect 
+43180            8296     Gen >f         Hz   Unsigned    2   1      0     50 Gener protect 
+43182            8297     Gen f del      s    Unsigned    2   2      0  60000 Gener protect 
+43183            12486    ExcitationLoss %    Integer     2   0      0    150 Gener protect 
+43184            12487    ExctLoss del   s    Unsigned    2   1      0   6000 Gener protect 
+43185            13290    Nom EthFltCurr A    Unsigned    2   0      0  10000 Gener protect 
+43186            13291    2EthFltCur del s    Unsigned    2   1      0   6000 Gener protect 
+43187            8486     Reverse power  %    Unsigned    1   0      0     50 Gener protect 
+43188            8552     ReversePwr del s    Unsigned    2   1      0   6000 Gener protect 
+43231            9054     SpeedRegChar        List#21     1   -   1113   1114 Sync/Load ctrl
+43232            8650     Voltage window %    Unsigned    2   1      0   1000 Sync/Load ctrl
+43233            9578     GtoM AngleReq  °    Integer     2   0   -120    120 Sync/Load ctrl
+43234            8652     Phase window   °    Unsigned    2   0      0     90 Sync/Load ctrl
+43235            8653     Dwell time     s    Unsigned    2   1      0    250 Sync/Load ctrl
+43236            8715     Freq gain      %    Integer     2   1      0   2000 Sync/Load ctrl
+43237            8716     Freq int       %    Integer     2   0      0    100 Sync/Load ctrl
+43238            9891     Freq reg loop       List#22     1   -   1115   1116 Sync/Load ctrl
+43239            8718     Angle gain     %    Integer     2   1      0   2000 Sync/Load ctrl
+43240            8656     Speed gov bias V    Integer     2   2 10115* 10559* Sync/Load ctrl
+43241            10115    SpeedGovLowLim V    Integer     2   2  -1000 10559* Sync/Load ctrl
+43242            10559    SpeedGovHiLim  V    Integer     2   2 10115*   1000 Sync/Load ctrl
+43243            8658     Load ramp      s    Unsigned    2   0      0  8548* Sync/Load ctrl
+43244            8659     Load gain      %    Integer     2   1      0   2000 Sync/Load ctrl
+43245            8713     Load int       %    Integer     2   0      0    100 Sync/Load ctrl
+43246            8547     GCB open level %    Unsigned    2   0      0    100 Sync/Load ctrl
+43247            8548     GCB open del   s    Unsigned    2   0  8658*   1800 Sync/Load ctrl
+43248            8657     Sync timeout   s    Unsigned    2   0      1   1801 Sync/Load ctrl
+43249            8725     LS gain        %    Integer     2   1      0   2000 Sync/Load ctrl
+43250            9035     LS int         %    Integer     2   0      0    100 Sync/Load ctrl
+43251            10784    TauSpeedActuat s    Unsigned    2   1     10   3000 Sync/Load ctrl
+43252            10912    RampStartLevel %    Unsigned    1   0      0    100 Sync/Load ctrl
+43253            10911    SpdGovPWM rate Hz   Unsigned    2   0    500   3000 Sync/Load ctrl
+43254            12894    Sync attempts       Unsigned    1   0      1     10 Sync/Load ctrl
+43255            9055     AVRRegChar          List#21     1   -   1113   1114 Volt/PF ctrl  
+43256            8501     Voltage gain   %    Integer     2   1      0   2000 Volt/PF ctrl  
+43257            8720     Voltage int    %    Integer     2   0      0    100 Volt/PF ctrl  
+43258            8503     PF gain        %    Integer     2   1      0   2000 Volt/PF ctrl  
+43259            8721     PF int         %    Integer     2   0      0    100 Volt/PF ctrl  
+43260            8500     AVR DCout bias %    Integer     2   1      0   1000 Volt/PF ctrl  
+43261            8777     VS gain        %    Integer     2   1      0   2000 Volt/PF ctrl  
+43262            9036     VS int         %    Integer     2   0      0    100 Volt/PF ctrl  
+43263            10785    TauVoltActuat  s    Unsigned    2   1     10   3000 Volt/PF ctrl  
+43264            9649     AutoLd recon        List#13     1   -   1017   1018 Load shedding 
+43265            8893     Ld recon delay s    Unsigned    2   0      0    600 Load shedding 
+43266            8884     Ld shed level  %    Integer     2   0  8890*    200 Load shedding 
+43267            8887     Ld shed delay  s    Unsigned    2   1      0   6000 Load shedding 
+43268            8890     Ld recon level %    Integer     2   0      0  8884* Load shedding 
+43269            11001    Ld shed active      List#23     1   -   1125   1128 Load shedding 
+43270            10110    SUS sequence        List#13     1   -   1017   1018 SUS control   
+43271            10193    RPM window     %    Unsigned    2   1      0   1000 SUS control   
+43272            10194    RPM win TO     s    Unsigned    2   1     20  60000 SUS control   
+43273            10056    ExcitationCtrl      List#24     1   -   1084   1085 SUS control   
+43274            9594     AcallCH1-Type       List#25     1   -   1129   1137 Act. calls/SMS
+43275            9595     AcallCH2-Type       List#25     1   -   1129   1137 Act. calls/SMS
+43276            9596     AcallCH3-Type       List#25     1   -   1129   1137 Act. calls/SMS
+43277-43292 (16) 9597     AcallCH1-Addr       String0    32   -      -      - Act. calls/SMS
+43293-43308 (16) 9598     AcallCH2-Addr       String0    32   -      -      - Act. calls/SMS
+43309-43324 (16) 9599     AcallCH3-Addr       String0    32   -      -      - Act. calls/SMS
+43325-43340 (16) 13276    AcallCH4-Addr       String0    32   -      -      - Act. calls/SMS
+43341-43356 (16) 13277    AcallCH5-Addr       String0    32   -      -      - Act. calls/SMS
+43357            13274    AcallCH4-Type       List#25     1   -   1129   1137 Act. calls/SMS
+43358            13275    AcallCH5-Type       List#25     1   -   1129   1137 Act. calls/SMS
+43359            8482     Warning             List#13     1   -   1017   1018 Act. calls/SMS
+43360            8484     Shutdown            List#13     1   -   1017   1018 Act. calls/SMS
+43361            11413    ShutdownOvr         List#13     1   -   1017   1018 Act. calls/SMS
+43362            8485     Slow stop           List#13     1   -   1017   1018 Act. calls/SMS
+43363            8483     Off load            List#13     1   -   1017   1018 Act. calls/SMS
+43364            10117    Mains protect       List#13     1   -   1017   1018 Act. calls/SMS
+43365            10566    BrkOpen&CoolDn      List#13     1   -   1017   1018 Act. calls/SMS
+43366            10567    Alarm only          List#13     1   -   1017   1018 Act. calls/SMS
+43367            10568    History record      List#13     1   -   1017   1018 Act. calls/SMS
+43368            10353    ECU Diag            List#13     1   -   1017   1018 Comms settings
+43369            10623    Bin selector 1      List#26     1   -   1095   1096 Engine params 
+43370            10624    Bin selector 2      List#26     1   -   1095   1096 Engine params 
+43371            10625    Bin selector 3      List#26     1   -   1095   1096 Engine params 
+43372            10626    Bin selector 4      List#26     1   -   1095   1096 Engine params 
+43373            10665    ResetActAlarms      List#13     1   -   1017   1018 Engine protect
+43374-43375 ( 2) 10667    Force value 1       Integer     4   0      -      - Force value   
+43376-43377 ( 2) 10668    Force value 2       Integer     4   0      -      - Force value   
+43378-43379 ( 2) 10669    Force value 3       Integer     4   0      -      - Force value   
+43380-43381 ( 2) 10670    Force value 4       Integer     4   0      -      - Force value   
+43382-43383 ( 2) 10671    Force value 5       Integer     4   0      -      - Force value   
+43384-43385 ( 2) 10672    Force value 6       Integer     4   0      -      - Force value   
+43386-43387 ( 2) 10673    Force value 7       Integer     4   0      -      - Force value   
+43388-43389 ( 2) 10674    Force value 8       Integer     4   0      -      - Force value   
+43390-43391 ( 2) 10675    Force value 9       Integer     4   0      -      - Force value   
+43392-43393 ( 2) 10676    Force value 10      Integer     4   0      -      - Force value   
+43394-43395 ( 2) 10677    Force value 11      Integer     4   0      -      - Force value   
+43396-43397 ( 2) 10678    Force value 12      Integer     4   0      -      - Force value   
+43398-43399 ( 2) 10679    Force value 13      Integer     4   0      -      - Force value   
+43400-43401 ( 2) 10680    Force value 14      Integer     4   0      -      - Force value   
+43402-43403 ( 2) 10681    Force value 15      Integer     4   0      -      - Force value   
+43404-43405 ( 2) 10682    Force value 16      Integer     4   0      -      - Force value   
+43413            10569    ForceBlock1Del s    Unsigned    2   1      0    600 Engine protect
+43414            10570    ForceBlock2Del s    Unsigned    2   1      0    600 Engine protect
+43415            10571    ForceBlock3Del s    Unsigned    2   1      0    600 Engine protect
+43416            10023    RunOnlyBlkDel1 s    Unsigned    2   1      0  30000 Engine protect
+43417            10024    RunOnlyBlkDel2 s    Unsigned    2   1      0  30000 Engine protect
+43418            10025    RunOnlyBlkDel3 s    Unsigned    2   1      0  30000 Engine protect
+43419            10131    BinInp delay 1 s    Unsigned    2   1      0   6000 Engine protect
+43420            10132    BinInp delay 2 s    Unsigned    2   1      0   6000 Engine protect
+43421            10133    BinInp delay 3 s    Unsigned    2   1      0   6000 Engine protect
+43422            9259     GasPress Yel   kPa  Integer     2   0      0     60 Analog protect
+43423            9262     Batt >V        V    Integer     2   1     80    400 Analog protect
+43424            9265     Batt <V        V    Integer     2   1     80    400 Analog protect
+43425            9268     Gen V unbal    %    Integer     2   0      0    200 Gener protect 
+43426            9271     Gen I unbal    %    Integer     2   0      0    200 Gener protect 
+43427            9274     Bus V unbal    %    Integer     2   0      0    200 Analog protect
+43428            9277     JW pressur Yel kPa  Integer     2   0      0   1000 Analog protect
+43429            9280     AC pressur Yel kPa  Integer     2   0      0   1000 Analog protect
+43430            9283     Temp ER 1 Yel  °C   Integer     2   1   -200   1000 Analog protect
+43431            9286     Temp ER 2 Yel  °C   Integer     2   1   -200   1000 Analog protect
+43432            9289     Gas Temp Yel   °C   Integer     2   1   -200   1500 Analog protect
+43433            9292     Gen WindA Yel  °C   Integer     2   1      0   2000 Analog protect
+43434            9295     Gen WindA Red  °C   Integer     2   1      0   2000 Analog protect
+43435            9298     Gen WindB Yel  °C   Integer     2   1      0   2000 Analog protect
+43436            9301     Gen WindB Red  °C   Integer     2   1      0   2000 Analog protect
+43437            9304     Gen WindC Yel  °C   Integer     2   1      0   2000 Analog protect
+43438            9307     Gen WindC Red  °C   Integer     2   1      0   2000 Analog protect
+43439            9310     Gen Bearin1Yel °C   Integer     2   1      0   2000 Analog protect
+43440            9313     Gen Bearin1Red °C   Integer     2   1      0   2000 Analog protect
+43441            9316     Gen Bearin2Yel °C   Integer     2   1      0   2000 Analog protect
+43442            9319     Gen Bearin2Red °C   Integer     2   1      0   2000 Analog protect
+43443            9322     AC Rad Out Yel °C   Integer     2   1   -200   1500 Analog protect
+43444            9325     JW Rad Out Yel °C   Integer     2   1   -200   1500 Analog protect
+43445            9328     AC InTemp Yel  °C   Integer     2   1   -200   1500 Analog protect
+43446            9331     AC InTemp Red  °C   Integer     2   1   -200   1500 Analog protect
+43447            9334     AC OutTemp Yel °C   Integer     2   1      0   2000 Analog protect
+43448            9337     AC OutTemp Red °C   Integer     2   1      0   2000 Analog protect
+43449            9340     JW InTemp Yel  °C   Integer     2   1      0   2000 Analog protect
+43450            9343     JW InTemp Red  °C   Integer     2   1      0   2000 Analog protect
+43451            9346     Oil Pressu Yel kPa  Integer     2   0      0   1000 Analog protect
+43452            9349     Oil Pressu Red kPa  Integer     2   0      0   1000 Analog protect
+43453            9352     Oil Temp Yel   °C   Integer     2   0      0    200 Analog protect
+43454            9355     Cyl Temp17 Yel °C   Integer     2   0      0    800 Analog protect
+43455            9358     Cyl Temp17 Red °C   Integer     2   0      0    800 Analog protect
+43456            9361     Cyl Temp18 Yel °C   Integer     2   0      0    800 Analog protect
+43457            9364     Cyl Temp18 Red °C   Integer     2   0      0    800 Analog protect
+43458            9367     Cyl Temp19 Yel °C   Integer     2   0      0    800 Analog protect
+43459            9370     Cyl Temp19 Red °C   Integer     2   0      0    800 Analog protect
+43460            9373     Cyl Temp20 Yel °C   Integer     2   0      0    800 Analog protect
+43461            9376     Cyl Temp20 Red °C   Integer     2   0      0    800 Analog protect
+43462            9379     Cyl Temp 1 Yel °C   Integer     2   0      0    800 Analog protect
+43463            9382     Cyl Temp 1 Red °C   Integer     2   0      0    800 Analog protect
+43464            9385     Cyl Temp 2 Yel °C   Integer     2   0      0    800 Analog protect
+43465            9388     Cyl Temp 2 Red °C   Integer     2   0      0    800 Analog protect
+43466            9391     Cyl Temp 3 Yel °C   Integer     2   0      0    800 Analog protect
+43467            9394     Cyl Temp 3 Red °C   Integer     2   0      0    800 Analog protect
+43468            9397     Cyl Temp 4 Yel °C   Integer     2   0      0    800 Analog protect
+43469            9400     Cyl Temp 4 Red °C   Integer     2   0      0    800 Analog protect
+43470            9403     Cyl Temp 5 Yel °C   Integer     2   0      0    800 Analog protect
+43471            9406     Cyl Temp 5 Red °C   Integer     2   0      0    800 Analog protect
+43472            9409     Cyl Temp 6 Yel °C   Integer     2   0      0    800 Analog protect
+43473            9412     Cyl Temp 6 Red °C   Integer     2   0      0    800 Analog protect
+43474            9415     Cyl Temp 7 Yel °C   Integer     2   0      0    800 Analog protect
+43475            9418     Cyl Temp 7 Red °C   Integer     2   0      0    800 Analog protect
+43476            9421     Cyl Temp 8 Yel °C   Integer     2   0      0    800 Analog protect
+43477            9424     Cyl Temp 8 Red °C   Integer     2   0      0    800 Analog protect
+43478            9427     Cyl Temp 9 Yel °C   Integer     2   0      0    800 Analog protect
+43479            9430     Cyl Temp 9 Red °C   Integer     2   0      0    800 Analog protect
+43480            9433     Cyl Temp10 Yel °C   Integer     2   0      0    800 Analog protect
+43481            9436     Cyl Temp10 Red °C   Integer     2   0      0    800 Analog protect
+43482            9439     Cyl Temp11 Yel °C   Integer     2   0      0    800 Analog protect
+43483            9442     Cyl Temp11 Red °C   Integer     2   0      0    800 Analog protect
+43484            9445     Cyl Temp12 Yel °C   Integer     2   0      0    800 Analog protect
+43485            9448     Cyl Temp12 Red °C   Integer     2   0      0    800 Analog protect
+43486            9451     Cyl Temp13 Yel °C   Integer     2   0      0    800 Analog protect
+43487            9454     Cyl Temp13 Red °C   Integer     2   0      0    800 Analog protect
+43488            9457     Cyl Temp14 Yel °C   Integer     2   0      0    800 Analog protect
+43489            9460     Cyl Temp14 Red °C   Integer     2   0      0    800 Analog protect
+43490            9463     Cyl Temp15 Yel °C   Integer     2   0      0    800 Analog protect
+43491            9466     Cyl Temp15 Red °C   Integer     2   0      0    800 Analog protect
+43492            9469     Cyl Temp16 Yel °C   Integer     2   0      0    800 Analog protect
+43493            9472     Cyl Temp16 Red °C   Integer     2   0      0    800 Analog protect
+43496            9481     Detonation Yel -    Integer     2   0      0     10 Analog protect
+43582            9261     GasPress Del   s    Unsigned    2   1      0   6000 Analog protect
+43583            9264     Batt volt del  s    Unsigned    2   1      0   6000 Analog protect
+43584            9267     Gen V unb del  s    Unsigned    2   1      0   6000 Gener protect 
+43585            9270     Gen I unb del  s    Unsigned    2   1      0   6000 Gener protect 
+43586            9273     JW pressur Del s    Unsigned    2   1      0   6000 Analog protect
+43587            9276     Bus V unba Del s    Unsigned    2   1      0   6000 Analog protect
+43588            9279     AC pressur Del s    Unsigned    2   1      0   6000 Analog protect
+43589            9282     Temp ER 1 Del  s    Unsigned    2   1      0   6000 Analog protect
+43590            9285     Temp ER 2 Del  s    Unsigned    2   1      0   6000 Analog protect
+43591            9288     Gas Temp Del   s    Unsigned    2   1      0   6000 Analog protect
+43592            9291     Gen WindA Del  s    Unsigned    2   1      0   6000 Analog protect
+43593            9294     Gen WindB Del  s    Unsigned    2   1      0   6000 Analog protect
+43594            9297     Gen WindC Del  s    Unsigned    2   1      0   6000 Analog protect
+43595            9300     Gen Bearin1Del s    Unsigned    2   1      0   6000 Analog protect
+43596            9303     Gen Bearin2Del s    Unsigned    2   1      0   6000 Analog protect
+43597            9306     AC Rad Out Del s    Unsigned    2   1      0   6000 Analog protect
+43598            9309     JW Rad Out Del s    Unsigned    2   1      0   6000 Analog protect
+43599            9312     AC InTemp Del  s    Unsigned    2   1      0   6000 Analog protect
+43600            9315     AC OutTemp Del s    Unsigned    2   1      0   6000 Analog protect
+43601            9318     JW InTemp Del  s    Unsigned    2   1      0   6000 Analog protect
+43602            9321     Oil Pressu Del s    Unsigned    2   1      0   6000 Analog protect
+43603            9324     Oil Temp Del   s    Unsigned    2   1      0   6000 Analog protect
+43604            9327     Cyl Temp17 Del s    Unsigned    2   1      0   6000 Analog protect
+43605            9330     Cyl Temp18 Del s    Unsigned    2   1      0   6000 Analog protect
+43606            9333     Cyl Temp19 Del s    Unsigned    2   1      0   6000 Analog protect
+43607            9336     Cyl Temp20 Del s    Unsigned    2   1      0   6000 Analog protect
+43608            9339     Cyl Temp 1 Del s    Unsigned    2   1      0   6000 Analog protect
+43609            9342     Cyl Temp 2 Del s    Unsigned    2   1      0   6000 Analog protect
+43610            9345     Cyl Temp 3 Del s    Unsigned    2   1      0   6000 Analog protect
+43611            9348     Cyl Temp 4 Del s    Unsigned    2   1      0   6000 Analog protect
+43612            9351     Cyl Temp 5 Del s    Unsigned    2   1      0   6000 Analog protect
+43613            9354     Cyl Temp 6 Del s    Unsigned    2   1      0   6000 Analog protect
+43614            9357     Cyl Temp 7 Del s    Unsigned    2   1      0   6000 Analog protect
+43615            9360     Cyl Temp 8 Del s    Unsigned    2   1      0   6000 Analog protect
+43616            9363     Cyl Temp 9 Del s    Unsigned    2   1      0   6000 Analog protect
+43617            9366     Cyl Temp10 Del s    Unsigned    2   1      0   6000 Analog protect
+43618            9369     Cyl Temp11 Del s    Unsigned    2   1      0   6000 Analog protect
+43619            9372     Cyl Temp12 Del s    Unsigned    2   1      0   6000 Analog protect
+43620            9375     Cyl Temp13 Del s    Unsigned    2   1      0   6000 Analog protect
+43621            9378     Cyl Temp14 Del s    Unsigned    2   1      0   6000 Analog protect
+43622            9381     Cyl Temp15 Del s    Unsigned    2   1      0   6000 Analog protect
+43623            9384     Cyl Temp16 Del s    Unsigned    2   1      0   6000 Analog protect
+43626            9393     Detonation Del s    Unsigned    2   1      0   6000 Analog protect
+43662            11008    ExtValue1deflt X    Integer     2   0 11012* 11016* Force value   
+43663            11009    ExtValue2deflt X    Integer     2   0 11013* 11017* Force value   
+43666            11012    ExtValue1LoLim X    Integer     2   0 -32000 11016* Force value   
+43667            11013    ExtValue2LoLim X    Integer     2   0 -32000 11017* Force value   
+43670            11016    ExtValue1HiLim X    Integer     2   0 11012*  32000 Force value   
+43671            11017    ExtValue2HiLim X    Integer     2   0 11013*  32000 Force value   
+43674            11020    ExtValue1 rate X/s  Integer     2   0      1  10000 Force value   
+43675            11021    ExtValue2 rate X/s  Integer     2   0      1  10000 Force value   
+43678            10440    ER Heat Start  °C   Integer     2   1  -1000   1000 PLC           
+43679            10441    ER Heat Stop   °C   Integer     2   1  -1000   1000 PLC           
+43680            10442    L&B Heat Stop  °C   Integer     2   1  -1000   1000 PLC           
+43681            10443    L&B Heat Start °C   Integer     2   1   -100    100 PLC           
+43682            10444    JWRad1-2 Start °C   Integer     2   1  -1000   1500 PLC           
+43683            10445    JWRad1-2 Stop  °C   Integer     2   1  -1000   1500 PLC           
+43684            10446    ACRad1-2 Start °C   Integer     2   1  -1000   1500 PLC           
+43685            10447    ACRad1-2 Stop  °C   Integer     2   1  -1000   1500 PLC           
+43686            10448    JWRad3-4 Start °C   Integer     2   1  -1000   1500 PLC           
+43687            10449    JWRad3-4 Stop  °C   Integer     2   1  -1000   1500 PLC           
+43688            10450    ACRad3-4 Start °C   Integer     2   1  -1000   1500 PLC           
+43689            10451    ACRad3-4 Stop  °C   Integer     2   1  -1000   1500 PLC           
+43690            10452    JWRad5-6 Start °C   Integer     2   1  -1000   1500 PLC           
+43691            10453    JWRad5-6 Stop  °C   Integer     2   1  -1000   1500 PLC           
+43692            10454    ACRad5-6 Start °C   Integer     2   1  -1000   1500 PLC           
+43693            10455    ACRad5-6 Stop  °C   Integer     2   1  -1000   1500 PLC           
+43694            10456    ACRad7-8 Start °C   Integer     2   1  -1000   1500 PLC           
+43695            10457    ACRad7-8 Stop  °C   Integer     2   1  -1000   1500 PLC           
+43696            10458    ACRad9-10Start °C   Integer     2   1  -1000   1500 PLC           
+43697            10459    ACRad9-10 Stop °C   Integer     2   1  -1000   1500 PLC           
+43698            10460    Louvers Open   °C   Integer     2   1  -1000   1500 PLC           
+43699            10461    Louvers Closed °C   Integer     2   1  -1000   1500 PLC           
+43701            10463    AC 3Way Temp   °C   Integer     2   1      0   1500 PLC           
+43702            10464    AC 3Way Gain   %    Integer     2   2 -10000  10000 PLC           
+43703            10465    AC 3Way Int    %    Integer     2   2      0    100 PLC           
+43704            10466    Prestart delay s    Integer     2   1      0   3000 PLC           
+43705            10467    ER T Request   °C   Integer     2   1   -500   1000 PLC           
+43706            10468    Vent Man Speed -    Integer     2   0 -10000  10000 PLC           
+43707            10469    Vent Prestart  -    Integer     2   0 -10000  10000 PLC           
+43708            10470    JW Heater Off  °C   Integer     2   0   -100    100 PLC           
+43709            10471    JW Heater On   °C   Integer     2   0   -100    100 PLC           
+43710            10472    3 Way MAN      -    Integer     2   0 -10000  10000 PLC           
+43711            10473    AC 3Way period s    Integer     2   1      0    600 PLC           
+43712            10474    ER t gain      %    Integer     2   2      0  10000 PLC           
+43713            10475    ER t int       %    Integer     2   2      0  10000 PLC           
+43714            10476    ER t period    s    Integer     2   1      0    600 PLC           
+43742            10532    Time stamp act      List#27     1   -   1138   1140 Date/Time     
+43743            8979     Time stamp per min  Unsigned    1   0      1    240 Date/Time     
+43744-43747 ( 4) 10969    TimerChannel 1      Timer-L#28   8   -   1151   1158 Timer settings
+43748-43751 ( 4) 10970    TimerChannel 2      Timer-L#28   8   -   1151   1158 Timer settings
+43752-43755 ( 4) 10971    TimerChannel 3      Timer-L#28   8   -   1151   1158 Timer settings
+43756-43759 ( 4) 10973    TimerChannel 4      Timer-L#28   8   -   1151   1158 Timer settings
+43760-43763 ( 4) 10974    TimerChannel 5      Timer-L#28   8   -   1151   1158 Timer settings
+43764-43767 ( 4) 10975    TimerChannel 6      Timer-L#28   8   -   1151   1158 Timer settings
+43768-43771 ( 4) 10976    TimerChannel 7      Timer-L#28   8   -   1151   1158 Timer settings
+43772-43775 ( 4) 10977    TimerChannel 8      Timer-L#28   8   -   1151   1158 Timer settings
+43776-43779 ( 4) 10978    TimerChannel 9      Timer-L#28   8   -   1151   1158 Timer settings
+43780-43783 ( 4) 10979    TimerChannel10      Timer-L#28   8   -   1151   1158 Timer settings
+43784-43787 ( 4) 10980    TimerChannel11      Timer-L#28   8   -   1151   1158 Timer settings
+43788-43791 ( 4) 10981    TimerChannel12      Timer-L#28   8   -   1151   1158 Timer settings
+43792-43795 ( 4) 10982    TimerChannel13      Timer-L#28   8   -   1151   1158 Timer settings
+43796-43799 ( 4) 10983    TimerChannel14      Timer-L#28   8   -   1151   1158 Timer settings
+43800-43803 ( 4) 10984    TimerChannel15      Timer-L#28   8   -   1151   1158 Timer settings
+43804-43807 ( 4) 10985    TimerChannel16      Timer-L#28   8   -   1151   1158 Timer settings
+43808            10994    ConvCoefPulse1 /X   Unsigned    2   0      1  65000 Basic settings
+43809            10995    ConvCoefPulse2 /X   Unsigned    2   0      1  65000 Basic settings
+43810            10996    ConvCoefPulse3 /X   Unsigned    2   0      1  65000 Basic settings
+43811            10997    ConvCoefPulse4 /X   Unsigned    2   0      1  65000 Basic settings
+43812            8551     Pwr management      List#13     1   -   1017   1018 Pwr management
+43813            8488     Priority            Unsigned    1   0      0     32 Pwr management
+43814            10592    Priority ctrl       List#29     1   -   1104   1105 Pwr management
+43815-43816 ( 2) 10600    RunHoursBase   h    Unsigned    4   0      -      - Pwr management
+43817            10589    Control group       Unsigned    1   0      1     32 Pwr management
+43818            10590    GroupLinkLeft       Unsigned    1   0      1     32 Pwr management
+43819            10591    GroupLinkRight      Unsigned    1   0      1     32 Pwr management
+43822-43823 ( 2) 8206     Run hours      h    Integer     4   0      -      - Statistics    
+43824            8207     Num starts          Unsigned    2   0      0  65535 Statistics    
+43825            10149    NumUnscStarts       Unsigned    2   0      0  65535 Statistics    
+43826            10560    TotalDownTime  h    Unsigned    2   0      0  65535 Statistics    
+43827            10564    DnTimeReqToRun h    Unsigned    2   0      0  65535 Statistics    
+43830-43831 ( 2) 8205     kWhours             Integer     4   0      -      - Statistics    
+43834-43835 ( 2) 8539     kVArhours           Integer     4   0      -      - Statistics    
+43836-43837 ( 2) 10986    PulseCounter 1      Unsigned    4   0      -      - Statistics    
+43838-43839 ( 2) 10987    PulseCounter 2      Unsigned    4   0      -      - Statistics    
+43840-43841 ( 2) 10988    PulseCounter 3      Unsigned    4   0      -      - Statistics    
+43842-43843 ( 2) 10989    PulseCounter 4      Unsigned    4   0      -      - Statistics    
+43866            8727     #SummerTimeMod      List#30     1   -   1141   1145 Date/Time     
+43867            8774     #SysLdCtrl PtM      List#31     1   -   1071   1072 ProcessControl
+43868            8779     #SysPFCtrl PtM      List#32     1   -   1073   1074 ProcessControl
+43869            8775     #SysBaseLoad   kW   Unsigned    2   0      0  65000 ProcessControl
+43870            8776     #SysPwrFactor       Integer     2   2     60    120 ProcessControl
+43871            9890     #Neutral cont       List#33     1   -   1079   1080 ProcessControl
+43872            9874     #Pwr mgmt mode      List#34     1   -   1097   1099 Pwr management
+43873            10593    #PriorAutoSwap      List#35     1   -   1100   1103 Pwr management
+43874            8549     #SysAMFstrtDel s    Unsigned    2   0      0    600 Pwr management
+43875            8550     #SysAMFstopDel s    Unsigned    2   0      0    600 Pwr management
+43876            8489     #LoadResStrt 1 kX   Integer     2   0 -32000  8491* Pwr management
+43877            8490     #LoadResStrt 2 kX   Integer     2   0 -32000  8633* Pwr management
+43878            8831     #LoadResStrt 3 kX   Integer     2   0 -32000  8833* Pwr management
+43879            8832     #LoadResStrt 4 kX   Integer     2   0 -32000  8834* Pwr management
+43880            8491     #LoadResStop 1 kX   Integer     2   0  8489*  32000 Pwr management
+43881            8633     #LoadResStop 2 kX   Integer     2   0  8490*  32000 Pwr management
+43882            8833     #LoadResStop 3 kX   Integer     2   0  8831*  32000 Pwr management
+43883            8834     #LoadResStop 4 kX   Integer     2   0  8832*  32000 Pwr management
+43884            10648    #%LdResStrt 1  %    Unsigned    1   0      0 10652* Pwr management
+43885            10649    #%LdResStrt 2  %    Unsigned    1   0      0 10653* Pwr management
+43886            10650    #%LdResStrt 3  %    Unsigned    1   0      0 10654* Pwr management
+43887            10651    #%LdResStrt 4  %    Unsigned    1   0      0 10655* Pwr management
+43888            10652    #%LdResStop 1  %    Unsigned    1   0 10648*    110 Pwr management
+43889            10653    #%LdResStop 2  %    Unsigned    1   0 10649*    110 Pwr management
+43890            10654    #%LdResStop 3  %    Unsigned    1   0 10650*    110 Pwr management
+43891            10655    #%LdResStop 4  %    Unsigned    1   0 10651*    110 Pwr management
+43892            8492     #NextStrt del  s    Unsigned    2   0      0   3600 Pwr management
+43893            8493     #OverldNextDel s    Unsigned    2   0      0   3600 Pwr management
+43894            8494     #NextStopDel   s    Unsigned    2   0      0   3600 Pwr management
+43895            8495     #SlowStopDel   s    Unsigned    2   0      0    600 Pwr management
+43896            9584     #MinRunPower 1 kW   Unsigned    2   0      0  65000 Pwr management
+43897            9585     #MinRunPower 2 kW   Unsigned    2   0      0  65000 Pwr management
+43898            9586     #MinRunPower 3 kW   Unsigned    2   0      0  65000 Pwr management
+43899            9919     #RunHrsMaxDiff h    Unsigned    2   0      0  65000 Pwr management
+43900            10594    #PwrBandContr1      List#36     1   -   1106   1112 Pwr management
+43901            10595    #PwrBandContr2      List#36     1   -   1106   1112 Pwr management
+43902            10596    #PwrBandContr3      List#36     1   -   1106   1112 Pwr management
+43903            10597    #PwrBandContr4      List#36     1   -   1106   1112 Pwr management
+43904            8896     #PwrBnChngDlUp s    Unsigned    2   0      0   3600 Pwr management
+43905            10795    #PwrBnChngDlDn s    Unsigned    2   0      0   3600 Pwr management
+43906            14013    #SUS min power kW   Unsigned    2   0      1  65000 SUS control   
+43907            14104    #ExcitationDel s    Unsigned    2   0      0    601 SUS control   
+43951            14588    Gen <f         Hz   Integer     2   1    -50      0 Gener protect 
+44124-44125 ( 2) 15616    Force value 17      Integer     4   0      -      - Force value   
+44126-44127 ( 2) 15617    Force value 18      Integer     4   0      -      - Force value   
+44128-44129 ( 2) 15618    Force value 19      Integer     4   0      -      - Force value   
+44130-44131 ( 2) 15619    Force value 20      Integer     4   0      -      - Force value   
+44132-44133 ( 2) 15620    Force value 21      Integer     4   0      -      - Force value   
+44134-44135 ( 2) 15621    Force value 22      Integer     4   0      -      - Force value   
+44136-44137 ( 2) 15622    Force value 23      Integer     4   0      -      - Force value   
+44138-44139 ( 2) 15623    Force value 24      Integer     4   0      -      - Force value   
+44140-44141 ( 2) 15624    Force value 25      Integer     4   0      -      - Force value   
+44142-44143 ( 2) 15625    Force value 26      Integer     4   0      -      - Force value   
+44144-44145 ( 2) 15626    Force value 27      Integer     4   0      -      - Force value   
+44146-44147 ( 2) 15627    Force value 28      Integer     4   0      -      - Force value   
+44148-44149 ( 2) 15628    Force value 29      Integer     4   0      -      - Force value   
+44150-44151 ( 2) 15629    Force value 30      Integer     4   0      -      - Force value   
+44152-44153 ( 2) 15630    Force value 31      Integer     4   0      -      - Force value   
+44154-44155 ( 2) 15631    Force value 32      Integer     4   0      -      - Force value   
+44156            15128    PwrReduction1A %    Unsigned    2   0  9241*    100 Pwr Reduction 
+44157            15129    PwrReduction2A %    Unsigned    2   0      0    100 Pwr Reduction 
+44158            15130    PwrReduction3A %    Unsigned    2   0      0    100 Pwr Reduction 
+44159            15131    InputValue1A        Integer     2   0 -32000 15132* Pwr Reduction 
+44160            15132    InputValue2A        Integer     2   0 15131* 15133* Pwr Reduction 
+44161            15133    InputValue3A        Integer     2   0 15132*  32000 Pwr Reduction 
+44162            15134    InputValueChA       List#37     1   -   1119   1120 Pwr Reduction 
+44163            15136    PwrReduction1B %    Unsigned    2   0  9241*    100 Pwr Reduction 
+44164            15137    PwrReduction2B %    Unsigned    2   0      0    100 Pwr Reduction 
+44165            15138    PwrReduction3B %    Unsigned    2   0      0    100 Pwr Reduction 
+44166            15139    InputValue1B        Integer     2   0 -32000 15140* Pwr Reduction 
+44167            15140    InputValue2B        Integer     2   0 15139* 15141* Pwr Reduction 
+44168            15141    InputValue3B        Integer     2   0 15140*  32000 Pwr Reduction 
+44169            15142    InputValueChB       List#38     1   -   1121   1122 Pwr Reduction 
+44170            15144    PwrReduction1C %    Unsigned    2   0  9241*    100 Pwr Reduction 
+44171            15145    PwrReduction2C %    Unsigned    2   0      0    100 Pwr Reduction 
+44172            15146    PwrReduction3C %    Unsigned    2   0      0    100 Pwr Reduction 
+44173            15147    InputValue1C        Integer     2   0 -32000 15148* Pwr Reduction 
+44174            15148    InputValue2C        Integer     2   0 15147* 15149* Pwr Reduction 
+44175            15149    InputValue3C        Integer     2   0 15148*  32000 Pwr Reduction 
+44176            15150    InputValueChC       List#39     1   -   1123   1124 Pwr Reduction 
+44183-44184 ( 2) 15338    PulseCounter 5      Unsigned    4   0      -      - Statistics    
+44185-44186 ( 2) 15339    PulseCounter 6      Unsigned    4   0      -      - Statistics    
+44187-44188 ( 2) 15340    PulseCounter 7      Unsigned    4   0      -      - Statistics    
+44189-44190 ( 2) 15341    PulseCounter 8      Unsigned    4   0      -      - Statistics    
+44199            15346    ConvCoefPulse5 /X   Unsigned    2   0      1  65000 Basic settings
+44200            15347    ConvCoefPulse6 /X   Unsigned    2   0      1  65000 Basic settings
+44201            15348    ConvCoefPulse7 /X   Unsigned    2   0      1  65000 Basic settings
+44202            15349    ConvCoefPulse8 /X   Unsigned    2   0      1  65000 Basic settings
+44203            14397    Service time 1 h    Integer     2   0 -32767  32767 Statistics    
+44204            14398    Service time 2 h    Integer     2   0 -32767  32767 Statistics    
+44205-44206 ( 2) 14400    Service time 3 h    Integer     4   0      -      - Statistics    
+44208            15114    Service time 1 h    Integer     2   0      0  32767 Engine protect
+44209            15115    Service time 2 h    Integer     2   0      0  32767 Engine protect
+44210-44211 ( 2) 15116    Service time 3 h    Integer     4   0      -      - Engine protect
+44213            11771    CB ctrl mode        List#40     1   -   1081   1083 ProcessControl
+44332            11034    StartBlockDel  s    Unsigned    2   0      0  60000 Engine protect
+44334            14802    Sync type           List#41     1   -   1117   1118 Sync/Load ctrl
+44335            14798    Slip Frequency Hz   Integer     2   2    -50     50 Sync/Load ctrl
+44336            14799    Slip Freq Win  Hz   Integer     2   2      1     50 Sync/Load ctrl
+44337            14800    GCB Latency    ms   Unsigned    2   0     20   1000 Sync/Load ctrl
+44338            14801    MCB Latency    ms   Unsigned    2   0     20   1000 Sync/Load ctrl
+44340            14277    ImpCountDef1        Unsigned    2   0      0  65535 Basic settings
+44341            14278    ImpCountDef2        Unsigned    2   0      0  65535 Basic settings
+44342            14279    ImpCountDef3        Unsigned    2   0      0  65535 Basic settings
+44343            14280    ImpCountDef4        Unsigned    2   0      0  65535 Basic settings
+44344            15719    ImpCountDef5        Unsigned    2   0      0  65535 Basic settings
+44345            15720    ImpCountDef6        Unsigned    2   0      0  65535 Basic settings
+44346            15721    ImpCountDef7        Unsigned    2   0      0  65535 Basic settings
+44347            15722    ImpCountDef8        Unsigned    2   0      0  65535 Basic settings
+44348-44349 ( 2) 8536     Day kWhours         Integer     4   0      -      - Statistics    
+44352-44353 ( 2) 15801    ServiceTimeSd  h    Integer     4   0      -      - Engine protect
+44354-44355 ( 2) 15802    ServiceTimeSd  h    Integer     4   0      -      - Statistics    
+
+* - limit is defined by the value of the communication object of specified number
+
+
+============================================================================================
+Register         Protection#2         Protection#1
+============================================================================================
+45751            Rem Start/Stop       Emergency Stop
+45752            RFan M1-M2 On        RFanM1-M2Fault
+45753            RFan M3-M4 On        RFanM3-M4Fault
+45754            RFan M5-M6 On        Fire Alarm    
+45755            CO/CH4Lev1           CO/CH4Lev2    
+45756            RFanM5-M6Fault       RFan M7-M8 On 
+45757            RFanM7-M8Fault       RFan M9-M10 On
+45758            RFanM9-10Fault       QF 278-281 OFF
+45763            GCB Feedback         Reserve       
+45764            GCB Alarm            FaultResButton
+45765            SA102Auto Mode       SA102Test Mode
+45766            AC Pump Auto         AC Pump Manual
+45775            CDVR Alarm           CDVR Sd       
+45776            In LoversOpen        InLoversClosed
+45777            Out LoversOpen       OutLoversClose
+45778            GCB Trip             Diff Protect  
+45779            Engine SD            Engine Alarm  
+45780            BRMZ Alarm           JW Level High 
+45781            JW Level Low         AC Level High 
+45782            AC Level Low         Reserve       
+45783            Reserve              Reserve       
+45784            Prelube Auto         Prelube Manual
+45785            JW Pump Run          AC Pump Run   
+45786            QS201OFF             Prelube Run   
+45787            Crankcase Fan        QF242 OFF     
+45788            QF243 OFF            QF245 OFF     
+45789            QF246 OFF            QF244 OFF     
+45790            GCB Grounded         Line Grounded 
+45791            OutLouversAuto       OutLouversMan 
+45792            ER Heater Auto       ER Heater Man 
+45793            Gen HeaterAuto       Gen Heater Man
+45794            LouvHeaterAuto       LouvHeaterMan 
+45795            BrHeater Auto        BrHeater Man  
+45796            JW Heater Auto       JW Heater Man 
+45797            MCB f/b AUX          Crankcase Pr  
+45798            JW Pump Auto         JW Pump Manual
+45799            U Mains Enable        KM 201 ON    
+45800            KM 202 ON            QF 250 OFF    
+45801            Inlet Fans Run       Inlet FanFault
+45802            QF247-248 OFF        QF276 OFF     
+45803            QF277 OFF            SA201         
+45804            SA202 Genset         SA202 Mains   
+45805            Rad Fan Auto         Rad Fan Manual
+45806            In LouversAuto       In LouversMan 
+45823            MCB feedback         VPIO-1 2      
+45824            VPIO-1 3             VPIO-1 4      
+45825            VPIO-1 5             VPIO-1 6      
+45826            VPIO-1 7             VPIO-1 8      
+45971            JW pressure          AC pressure   
+45972            Gas Pressure         Reserve       
+45973                                 Oil Pressure  
+45974            Oil Temp             Coolant Press 
+45975            Coolant Temp                       
+45976            Detonation                         
+45977            Manifold Temp        Manifold Press
+45978            Cyl Temp 17          Cyl Temp 18   
+45979            Cyl Temp 19          Cyl Temp 20   
+45980                                               
+45981            Cyl Temp 1           Cyl Temp 2    
+45982            Cyl Temp 3           Cyl Temp 4    
+45983            Cyl Temp 5           Cyl Temp 6    
+45984            Cyl Temp 7           Cyl Temp 8    
+45985            Cyl Temp 9           Cyl Temp 10   
+45986            Cyl Temp 11          Cyl Temp 12   
+45987            Cyl Temp 13          Cyl Temp 14   
+45988            Cyl Temp 15          Cyl Temp 16   
+45989            Temp ER 1            Temp ER 2     
+45990            Temp Outside         Gas Temp      
+45991            Gen WindA            Gen WindB     
+45992            Gen WindC            Gen Bearing1  
+45993            AC 3Way Open         Reserve       
+45994            Gen Bearing2         AC Rad OutTemp
+45995            JW Rad OutTemp       AC InTemp     
+45996            AC OutTemp           JW InTemp     
+45997            Actual Timing        FValvePosition
+45998            ThrActPosition       Gas Fuel Flow 
+45999                                               
+46000            AIN-7 7              AIN-7 8       
+46306            HW Fail BIN CU       A108 BIN      
+46307            A108 BIN             A105 BIN      
+46308            A105 BIN             A106 BIN      
+46309            A106 BIN             A109 BIN      
+46310            A109 BIN             A105 BIN      
+46311            A105 BIN             A104 BIN      
+46312            A104 BIN             BIN 13        
+46313            BIN 14               BIN 15        
+46314            BIN 16               A112 AIN      
+46315            A112 AIN             A112 AIN      
+46316            A112 AIN             A110 AIN      
+46317            A111 AIN             AI(g)(7) AIN  
+46318            ANA 8                ANA 9         
+46319            ANA 10               ANA 11        
+46320            ANA 12               ANA 13        
+46321            ANA 14               ANA 15        
+46322            ANA 16               A108 BOUT     
+46323            A108 BOUT            A106 BOUT     
+46324            BOUT 4               A105 BOUT     
+46325            A104 BOUT            A108 BOUT     
+
+
+Protections
+------------------------------------------------------------------
+
+Register map:
+Bit 0-7 ................. Protection #1
+Bit 8-15  ............... Protection #2
+
+Bit 0-2 ................. Protection #1 Level 1
+Value   Meaning
+------------------------------------------------------------------
+0       Level 1 inactive
+1       N/A
+2       Level 1 active, confirmed
+3       Level 1 active, but blocked or delay still running
+4       Level 1 previously active, not confirmed yet
+5       N/A
+6       Level 1 active, not confirmed yet
+7       Level 1 active, not confirmed yet, blocked
+
+Bit 3-5 ................. Protection #1 Level 2
+Value   Meaning
+------------------------------------------------------------------
+0       Level 2 inactive
+1       N/A
+2       Level 2 active, confirmed
+3       Level 2 active, but blocked or delay still running
+4       Level 2 previously active, not confirmed yet
+5       N/A
+6       Level 2 active, not confirmed yet
+7       Level 2 active, not confirmed yet, blocked
+
+Bit 6-7 ................. Protection #1 Sensor failure
+Value   Meaning
+------------------------------------------------------------------
+0       Sensor failure not active
+1       Sensor failure active, confirmed
+2       Sensor failure previously active, not confirmed yet
+3       Sensor failure active, not confirmed yet
+
+Bit 8-10 ................. Protection #2 Level 1
+Value   Meaning
+------------------------------------------------------------------
+0       Level 1 inactive
+1       N/A
+2       Level 1 active, confirmed
+3       Level 1 active, but blocked or delay still running
+4       Level 1 previously active, not confirmed yet
+5       N/A
+6       Level 1 active, not confirmed yet
+7       Level 1 active, not confirmed yet, blocked
+
+Bit 11-13 ................. Protection #2 Level 2
+Value   Meaning
+------------------------------------------------------------------
+0       Level 2 inactive
+1       N/A
+2       Level 2 active, confirmed
+3       Level 2 active, but blocked or delay still running
+4       Level 2 previously active, not confirmed yet
+5       N/A
+6       Level 2 active, not confirmed yet
+7       Level 2 active, not confirmed yet, blocked
+
+Bit 14-15 ................. Protection #2 Sensor failure
+Value   Meaning
+------------------------------------------------------------------
+0       Sensor failure not active
+1       Sensor failure active, confirmed (or not configured as protection)
+2       Sensor failure previously active, not confirmed yet
+3       Sensor failure active, not confirmed yet
+
+----------------------------------------------------------------------------------
+
+
+======================================================================================
+List# Types Meaning
+======================================================================================
+
+--------------------------------------------------------------------------------------
+List#1
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  NONE          
+    1  J1939-DM1     
+    2  J1939-KWP     
+    3  J1587-DTC     
+    4  MODBUS        
+
+--------------------------------------------------------------------------------------
+List#2
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  Init          
+    1  Ready         
+    2  NotReady      
+    3  Prestart      
+    4  Cranking      
+    5  Pause         
+    6  Starting      
+    7  Running       
+    8  Loaded        
+    9  Soft unld     
+   10  Cooling       
+   11  Stop          
+   12  Shutdown      
+   13  Ventil        
+   14  EmergMan      
+   15  Cooldown      
+   16  Offload       
+   17  Soft load     
+   18  WaitStop      
+   19  Warming       
+   20  SDVentil      
+   21  WD test       
+   22  GasVTest      
+   23  StrtCndWai    
+
+--------------------------------------------------------------------------------------
+List#3
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  Init          
+    1  BrksOff       
+    2  IslOper       
+    3  MainsOper     
+    4  ParalOper     
+    5  RevSync       
+    6  Synchro       
+    7  MainsFlt      
+    8  ValidFlt      
+    9  MainsRet      
+   10  MultIslOp     
+   11  MultParOp     
+   12  EmergMan      
+   13  StrUpSync     
+
+--------------------------------------------------------------------------------------
+List#4
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  OFF           
+    1  MAN           
+    2  SEM           
+    3  AUT           
+
+--------------------------------------------------------------------------------------
+List#5
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  No Timer      
+    1  Prestart      
+    2  Cranking      
+    3  Idle run      
+    4  Cooling       
+    5  Stop time     
+    6  AfterCool     
+    7  Pause         
+    8  MinStabTO     
+    9  MaxStabTO     
+   10  Wait stop     
+   11  Warming       
+   12  MCB close     
+   13  FwRet brk     
+   14  SyncTOut      
+   15  BrkOvrlap     
+   16  GCB open      
+   17  SyncStart     
+   18  RetTransf     
+   19  ValidFlt      
+   20  Soft load     
+   21  Soft unld     
+   22  VentilGas     
+   23  SystStart     
+   24  SystStop      
+   25  NextStart     
+   26  NextStop      
+   27  LdShedChg     
+   28  LdRecChg      
+   29  SyncEnab      
+   30  OfL stop      
+   31  RPM winTO     
+   32  Excit del     
+   33  MainsStab     
+   34  GasVTest      
+   35  StrtCndWai    
+   36  StartBlockDel 
+
+--------------------------------------------------------------------------------------
+List#6
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  No LoadShed   
+    1  LdShed S1     
+    2  LdShed S2     
+    3  LdShed S3     
+
+--------------------------------------------------------------------------------------
+List#7
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  None          
+    1  Island        
+    2  BaseLd        
+    3  BLdExLm       
+    4  PwrI/E        
+    5  TbyPwr        
+
+--------------------------------------------------------------------------------------
+List#8
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  None          
+    1  Island        
+    2  BasePF        
+    3  PF I/E        
+    4  PF(Pm)        
+    5  BASEQ         
+    6  Q(Um)         
+    7  Q I/E         
+    8  PF I/E(Pm)    
+    9  Q I/E(Um)     
+
+--------------------------------------------------------------------------------------
+List#9
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  /5A           
+    1  /1A           
+
+--------------------------------------------------------------------------------------
+List#10
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  277 V         
+    1  120 V         
+
+--------------------------------------------------------------------------------------
+List#11
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  PHASE-NEUTRAL 
+    1  PHASE-PHASE   
+    2  BOTH + PH-N   
+    3  BOTH + PH-PH  
+
+--------------------------------------------------------------------------------------
+List#12
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  50 Hz         
+    1  60 Hz         
+
+--------------------------------------------------------------------------------------
+List#13
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  DISABLED      
+    1  ENABLED       
+
+--------------------------------------------------------------------------------------
+List#14
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  PANEL         
+    1  EXTBUTTONS    
+    2  BOTH          
+
+--------------------------------------------------------------------------------------
+List#15
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  IDLE          
+    1  NOMINAL       
+
+--------------------------------------------------------------------------------------
+List#16
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  DISABLED      
+    1  CHRGFAIL      
+    2  ENABLED       
+
+--------------------------------------------------------------------------------------
+List#17
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  STOP          
+    1  INFIN COOLING 
+
+--------------------------------------------------------------------------------------
+List#18
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  DISABLED      
+    1  ENABLED       
+
+--------------------------------------------------------------------------------------
+List#19
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  NONE          
+    1  FORWARD       
+
+--------------------------------------------------------------------------------------
+List#20
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  INTERNAL      
+    1  EXTERNAL      
+
+--------------------------------------------------------------------------------------
+List#21
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  POSITIVE      
+    1  NEGATIVE      
+
+--------------------------------------------------------------------------------------
+List#22
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  GCB OPEN      
+    1  SYNC ONLY     
+
+--------------------------------------------------------------------------------------
+List#23
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  DISABLE       
+    1  ISLAND ONLY   
+    2  ISL+TRIP PARAL
+    3  ALL THE TIME  
+
+--------------------------------------------------------------------------------------
+List#24
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  INTERNAL      
+    1  EXTERNAL      
+
+--------------------------------------------------------------------------------------
+List#25
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  DISABLED      
+    1  DATA-ANA      
+    2  DATA-GSM      
+    3  DATA-ISDN     
+    4  DATA-CDMA     
+    5  SMS-GSM       
+    6  SMS-CDMA      
+    7  IB-E-MAIL     
+    8  IB-EML-SMS    
+
+--------------------------------------------------------------------------------------
+List#26
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  OFF           
+    1  ON            
+
+--------------------------------------------------------------------------------------
+List#27
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  DISABLED      
+    1  ENGINE RUNNING
+    2  ALWAYS        
+
+--------------------------------------------------------------------------------------
+Timer-L#28
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  OFF           
+    1  ONCE          
+    2  DAILY         
+    3  WEEKLY        
+    4  MONTHLY       
+    5  MONTHLY       
+    6  PERIOD        
+    7  N/A           
+
+
+Timer Type Meaning
+
+Common part (in all modes):
+  Bits  0- 6: Year (offset from 2000 => 2000-2127)
+  Bits  7-10: Month (1-12)
+  Bits 11-15: Day (1-31)
+  Bits 16-31: Time (number of minutes from midnight => 0-1439)
+    Year,Month,Day,Time = first start of timer (N/A in OFF mode)
+  Bits 32-44: Duration (in minutes => 1-1439) (N/A in OFF mode)
+  Bits 45-47: Mode
+    0 = OFF
+    1 = Once
+    2 = Daily
+    3 = Weekly
+    4 = Monthly
+    5 = Monthly (in day of week)
+    6 = Period
+    7 = N/A (OFF)
+
+In OFF, Once, N/A mode:
+  Bits 48-63: N/A
+
+In Daily Mode:
+  Bits 48-57: Repeat period (in days => 1-1023)
+  Bits 58-59: Weekend mode:
+    0 = including weekend days
+    1 = except weekend days
+    2 = postpone weekend days (to Monday)
+    3 = N/A
+  Bits 60-63: N/A
+
+In Weekly Mode:
+  Bits 48-53: Repeat period (in weeks => 1-63)
+  Bit     54: on Monday
+  Bit     55: on Tuesday
+  Bit     56: on Wednesday
+  Bit     57: on Thursday
+  Bit     58: on Friday
+  Bit     59: on Saturday
+  Bit     60: on Sunday
+  Bits 61-63: N/A
+
+In Monthly Mode:
+  Bits 48-51: Repeat period (in months => 1-15)
+  Bits 52-56: Number of day in month (1-31)
+  Bits 57-63: N/A
+
+In Monthly (in day of week) Mode:
+  Bits 48-51: Repeat period (in months => 1-15)
+  Bits 52-54: Number of week in month (1-5)
+  Bits 55-56: N/A
+  Bit     57: on Monday
+  Bit     58: on Tuesday
+  Bit     59: on Wednesday
+  Bit     60: on Thursday
+  Bit     61: on Friday
+  Bit     62: on Saturday
+  Bit     63: on Sunday
+    Note: currently only one day of week can be selected.
+    Please refer to manual.
+
+In Period Mode:
+  Bits 48-63: Repeat period (in minutes => 1-65535)
+
+
+--------------------------------------------------------------------------------------
+List#29
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  SLAVE         
+    1  MASTER        
+
+--------------------------------------------------------------------------------------
+List#30
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  DISABLED      
+    1  WINTER        
+    2  SUMMER        
+    3  WINTER-S      
+    4  SUMMER-S      
+
+--------------------------------------------------------------------------------------
+List#31
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  BASE LOAD     
+    1  LDSHARING     
+
+--------------------------------------------------------------------------------------
+List#32
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  BASEPF        
+    1  VSHARING      
+
+--------------------------------------------------------------------------------------
+List#33
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  EACH          
+    1  COMMON        
+
+--------------------------------------------------------------------------------------
+List#34
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  ABS (kW)      
+    1  ABS (kVA)     
+    2  REL (%)       
+
+--------------------------------------------------------------------------------------
+List#35
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  DISABLED      
+    1  RUN HOURS EQU 
+    2  LD DEMAND SWAP
+    3  EFFICIENT     
+
+--------------------------------------------------------------------------------------
+List#36
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  1             
+    1  2             
+    2  1+2           
+    3  3             
+    4  1+3           
+    5  2+3           
+    6  1+2+3         
+
+--------------------------------------------------------------------------------------
+List#37
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  RISING        
+    1  FALLING       
+
+--------------------------------------------------------------------------------------
+List#38
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  RISING        
+    1  FALLING       
+
+--------------------------------------------------------------------------------------
+List#39
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  RISING        
+    1  FALLING       
+
+--------------------------------------------------------------------------------------
+List#40
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  INTERNAL      
+    1  FOLLOW        
+    2  EXTERNAL      
+
+--------------------------------------------------------------------------------------
+List#41
+
+Value  Name
+--------------------------------------------------------------------------------------
+    0  PHASE MATCH   
+    1  SLIP SYNC     
+
+
+======================================================================================
+Binary# Types Meaning
+======================================================================================
+
+--------------------------------------------------------------------------------------
+Binary#1
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  Rem Start/Stop
+  1  Emergency Stop
+  2  RFan M1-M2 On 
+  3  RFanM1-M2Fault
+  4  RFan M3-M4 On 
+  5  RFanM3-M4Fault
+  6  RFan M5-M6 On 
+  7  Fire Alarm    
+  8  CO/CH4Lev1    
+  9  CO/CH4Lev2    
+ 10  RFanM5-M6Fault
+ 11  RFan M7-M8 On 
+ 12  RFanM7-M8Fault
+ 13  RFan M9-M10 On
+ 14  RFanM9-10Fault
+ 15  QF 278-281 OFF
+
+--------------------------------------------------------------------------------------
+Binary#2
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  GCB Feedback  
+  1  Reserve       
+  2  GCB Alarm     
+  3  FaultResButton
+  4  SA102Auto Mode
+  5  SA102Test Mode
+  6  AC Pump Auto  
+  7  AC Pump Manual
+
+--------------------------------------------------------------------------------------
+Binary#3
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  CDVR Alarm    
+  1  CDVR Sd       
+  2  In LoversOpen 
+  3  InLoversClosed
+  4  Out LoversOpen
+  5  OutLoversClose
+  6  GCB Trip      
+  7  Diff Protect  
+
+--------------------------------------------------------------------------------------
+Binary#4
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  Engine SD     
+  1  Engine Alarm  
+  2  BRMZ Alarm    
+  3  JW Level High 
+  4  JW Level Low  
+  5  AC Level High 
+  6  AC Level Low  
+  7  Reserve       
+
+--------------------------------------------------------------------------------------
+Binary#5
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  Reserve       
+  1  Reserve       
+  2  Prelube Auto  
+  3  Prelube Manual
+  4  JW Pump Run   
+  5  AC Pump Run   
+  6  QS201OFF      
+  7  Prelube Run   
+
+--------------------------------------------------------------------------------------
+Binary#6
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  Crankcase Fan 
+  1  QF242 OFF     
+  2  QF243 OFF     
+  3  QF245 OFF     
+  4  QF246 OFF     
+  5  QF244 OFF     
+  6  GCB Grounded  
+  7  Line Grounded 
+
+--------------------------------------------------------------------------------------
+Binary#7
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  OutLouversAuto
+  1  OutLouversMan 
+  2  ER Heater Auto
+  3  ER Heater Man 
+  4  Gen HeaterAuto
+  5  Gen Heater Man
+  6  LouvHeaterAuto
+  7  LouvHeaterMan 
+
+--------------------------------------------------------------------------------------
+Binary#8
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  BrHeater Auto 
+  1  BrHeater Man  
+  2  JW Heater Auto
+  3  JW Heater Man 
+  4  MCB f/b AUX   
+  5  Crankcase Pr  
+  6  JW Pump Auto  
+  7  JW Pump Manual
+
+--------------------------------------------------------------------------------------
+Binary#9
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  U Mains Enable
+  1   KM 201 ON    
+  2  KM 202 ON     
+  3  QF 250 OFF    
+  4  Inlet Fans Run
+  5  Inlet FanFault
+  6  QF247-248 OFF 
+  7  QF276 OFF     
+
+--------------------------------------------------------------------------------------
+Binary#10
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  QF277 OFF     
+  1  SA201         
+  2  SA202 Genset  
+  3  SA202 Mains   
+  4  Rad Fan Auto  
+  5  Rad Fan Manual
+  6  In LouversAuto
+  7  In LouversMan 
+
+--------------------------------------------------------------------------------------
+Binary#11
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  GCB ON coil   
+  1  GCB OFF coil  
+  2  RadFan1-2Start
+  3  RadFan3-4Start
+  4  RadFan5-6Start
+  5  RadFan7-8Start
+  6  RadFan910Start
+  7  Gen Heater    
+  8  ER Heater     
+  9  Louvers Heater
+ 10  Breath Heater 
+ 11  Supply KTP on 
+ 12  Supply Mains o
+ 13  Fuel solenoid 
+ 14  Fuel solenoid 
+ 15  Coolant Heater
+
+--------------------------------------------------------------------------------------
+Binary#12
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  Starter       
+  1  Fuel solenoid 
+  2  Prestart      
+  3  Alarm         
+  4  Horn          
+  5  CommonAlLev 1 
+  6  CommonAlLev 2 
+  7  Cooling pump  
+  8  GCB close/open
+  9  GCB ON coil   
+ 10  GCB OFF coil  
+ 11  GCB UV coil   
+ 12  Reserved      
+ 13  Reserved      
+ 14  Reserved      
+ 15  Reserved      
+
+--------------------------------------------------------------------------------------
+Binary#13
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  Stop solenoid 
+  1  Stop pulse    
+  2  Syst res OK   
+  3  Syst res 1 OK 
+  4  Syst res 2 OK 
+  5  Syst res 3 OK 
+  6  Syst res 4 OK 
+  7  AllAvailGS run
+  8  Speed up      
+  9  Speed dn      
+ 10  AVR up        
+ 11  AVR dn        
+ 12  Reserved      
+ 13  Reserved      
+ 14  Reserved      
+ 15  Vgen <>       
+
+--------------------------------------------------------------------------------------
+Binary#14
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  Vbus <>       
+  1  Overcurrent   
+  2  Reserved      
+  3  Reserved      
+  4  Common Wrn    
+  5  Common Sd     
+  6  Common SdOvr  
+  7  Common Stp    
+  8  Common Fls    
+  9  Common LOP    
+ 10  Common OfL    
+ 11  Common BOC    
+ 12  Reserved      
+ 13  Common Al     
+ 14  Common Hst    
+ 15  CommonActLev 1
+
+--------------------------------------------------------------------------------------
+Binary#15
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  CommonActLev 2
+  1  Alarm flashing
+  2  Horn flashing 
+  3  T cyl differ  
+  4  Ignition      
+  5  Ventilation   
+  6  Idle/Nominal  
+  7  Prelubr pump  
+  8  FltResButnEcho
+  9  HornButnEcho  
+ 10  StartButnEcho 
+ 11  StopButnEcho  
+ 12  GCBButnEcho   
+ 13  Reserved      
+ 14  GCB status    
+ 15  MCB status    
+
+--------------------------------------------------------------------------------------
+Binary#16
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  GenParams OK  
+  1  Reserved      
+  2  BusParams OK  
+  3  kWh pulse     
+  4  In synchronism
+  5  InMainsParal  
+  6  Derating 1 act
+  7  Derating 2 act
+  8  EnginesSwapped
+  9  Neutral CB C/O
+ 10  ECU PwrRelay  
+ 11  ECU comm error
+ 12  PeriphCommErr 
+ 13  CtrlHeartBeat 
+ 14  CtrlHBeat FD  
+ 15  LdShed stage 1
+
+--------------------------------------------------------------------------------------
+Binary#17
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  LdShed stage 2
+  1  LdShed stage 3
+  2  TimerAct 1-4  
+  3  TimerAct 5-8  
+  4  TimerAct 9-12 
+  5  TimerAct 13-16
+  6  TimerActiveCom
+  7  Off mode      
+  8  Man mode      
+  9  Sem mode      
+ 10  Aut mode      
+ 11  Reserved      
+ 12  SystReady     
+ 13  Ready for load
+ 14  Reserved      
+ 15  Gen-set active
+
+--------------------------------------------------------------------------------------
+Binary#18
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  Operational   
+  1  Ready         
+  2  Not ready     
+  3  CrankProcedure
+  4  Starting      
+  5  Idle run      
+  6  Running       
+  7  ForwardSynchro
+  8  Reserved      
+  9  Warming       
+ 10  Soft load     
+ 11  Loaded        
+ 12  Soft unld     
+ 13  Cooling       
+ 14  Stopping      
+ 15  Cranking      
+
+--------------------------------------------------------------------------------------
+Binary#19
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  Logical 0     
+  1  Logical 1     
+  2  Bin selector 1
+  3  Bin selector 2
+  4  Bin selector 3
+  5  Bin selector 4
+  6  WrongPhSeq    
+  7  Reserved      
+  8  User Button 1 
+  9  User Button 2 
+ 10  User Button 3 
+ 11  User Button 4 
+ 12  User Button 5 
+ 13  User Button 6 
+ 14  User Button 7 
+ 15  User Button 8 
+
+--------------------------------------------------------------------------------------
+Binary#20
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  User Button 9 
+  1  User Button 10
+  2  User Button 11
+  3  User Button 12
+  4  User Button 13
+  5  User Button 14
+  6  User Button 15
+  7  User Button 16
+  8  Reserved      
+  9  Reserved      
+ 10  Initialized   
+ 11  Start Blocked 
+ 12  ReadyToExcite 
+ 13  AnyGCBclosed  
+ 14  SUS excitation
+ 15  Reserved      
+
+--------------------------------------------------------------------------------------
+Binary#21
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  MCB feedback  
+  1  VPIO-1 2      
+  2  VPIO-1 3      
+  3  VPIO-1 4      
+  4  VPIO-1 5      
+  5  VPIO-1 6      
+  6  VPIO-1 7      
+  7  VPIO-1 8      
+
+--------------------------------------------------------------------------------------
+Binary#22
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  RemoteControl1
+  1  RemoteControl2
+  2  RemoteControl3
+  3  RemoteControl4
+  4  RemoteControl5
+  5  RemoteControl6
+  6  RemoteControl7
+  7  RemoteControl8
+--------------------------------------------------------------------------------------
+Binary#23
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  Ready         
+  1  Running       
+  2  Loaded        
+  3  Reserved      
+  4  SoftLoad      
+  5  Reserved      
+  6  SoftUnload    
+  7  Reserved      
+  8  WaitStop      
+  9  GenParams OK  
+ 10  Warming       
+--------------------------------------------------------------------------------------
+Binary#24
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  ActAlLev1     
+  1  ActAlLev2     
+  2  NotConfirmLev1
+  3  NotConfirmLev2
+  4  Reserved      
+  5  Not ready     
+  6  Ready         
+  7  Running       
+  8  Loaded        
+  9  MCB used      
+ 10  MCB closed    
+ 11  MCB synchro   
+ 12  GCB used      
+ 13  GCB closed    
+ 14  GCB synchro   
+--------------------------------------------------------------------------------------
+Binary#25
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  ModbusSw 1    
+  1  ModbusSw 2    
+  2  ModbusSw 3    
+  3  ModbusSw 4    
+  4  ModbusSw 5    
+  5  ModbusSw 6    
+  6  ModbusSw 7    
+  7  ModbusSw 8    
+  8  ModbusSw 9    
+  9  ModbusSw 10   
+ 10  ModbusSw 11   
+ 11  ModbusSw 12   
+ 12  ModbusSw 13   
+ 13  ModbusSw 14   
+ 14  ModbusSw 15   
+ 15  ModbusSw 16   
+
+--------------------------------------------------------------------------------------
+Binary#26
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  ModbusSw 17   
+  1  ModbusSw 18   
+  2  ModbusSw 19   
+  3  ModbusSw 20   
+  4  ModbusSw 21   
+  5  ModbusSw 22   
+  6  ModbusSw 23   
+  7  ModbusSw 24   
+  8  ModbusSw 25   
+  9  ModbusSw 26   
+ 10  ModbusSw 27   
+ 11  ModbusSw 28   
+ 12  ModbusSw 29   
+ 13  ModbusSw 30   
+ 14  ModbusSw 31   
+ 15  ModbusSw 32   
+
+--------------------------------------------------------------------------------------
+Binary#27
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  PLC-BOUT 1.1  
+  1  ER Heater     
+  2  Coolant Heat  
+  3  Gen Heat      
+  4  Coolant Heater
+  5  Gen Heater    
+  6  PLC-BOUT 1.7  
+  7  L&B Heat S/S  
+
+--------------------------------------------------------------------------------------
+Binary#28
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  Louvers Heater
+  1  Breath Heater 
+  2  JWRad1-2 S/S  
+  3  ACRad1-2 S/S  
+  4  JWRad3-4 S/S  
+  5  ACRad3-4 S/S  
+  6  Running       
+  7  JWRad5-6 S/S  
+
+--------------------------------------------------------------------------------------
+Binary#29
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  ACRad5-6 S/S  
+  1  ACRad9-10 S/S 
+  2  ACRad7-8 S/S  
+  3  PLC-BOUT 3.4  
+  4  PLC-BOUT 3.5  
+  5  PLC-BOUT 3.6  
+  6  PLC-BOUT 3.7  
+  7  PLC-BOUT 3.8  
+
+--------------------------------------------------------------------------------------
+Binary#30
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  PLC-BOUT 4.1  
+  1  RadFan910Start
+  2  RadFan7-8Start
+  3  PLC-BOUT 4.4  
+  4  PLC-BOUT 4.5  
+  5  RadFan5-6Start
+  6  PLC-BOUT 4.7  
+  7  RadFan1-2Start
+
+--------------------------------------------------------------------------------------
+Binary#31
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  RadFan3-4Start
+  1  Start/Stop Eng
+  2  Engine Active 
+  3  Start Louvers 
+  4  PLC-BOUT 5.5  
+  5  TempOpenLouvrs
+  6  SupllyCDVR&ECM
+  7  Auto ECM      
+
+--------------------------------------------------------------------------------------
+Binary#32
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  PLC-BOUT 6.1  
+  1  PLC-BOUT 6.2  
+  2  Engine SD     
+  3  AutoLouverOpen
+  4  AutoLouverOpen
+  5  Driver Equipme
+  6  PLC-BOUT 6.7  
+  7  PLC-BOUT 6.8  
+
+--------------------------------------------------------------------------------------
+Binary#33
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  PLC-BOUT 7.1  
+  1  PLC-BOUT 7.2  
+  2  FaultResetECM 
+  3  PLC-BOUT 7.4  
+  4  PLC-BOUT 7.5  
+  5  PLC-BOUT 7.6  
+  6  PLC-BOUT 7.7  
+  7  PLC-BOUT 7.8  
+
+--------------------------------------------------------------------------------------
+Binary#34
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  PLC-BOUT 8.1  
+  1  PLC-BOUT 8.2  
+  2  JW Pump Start 
+  3  AC Pump Start 
+  4  CranckcaseFanS
+  5  PLC-BOUT 8.6  
+  6  PLC-BOUT 8.7  
+  7  PLC-BOUT 8.8  
+
+--------------------------------------------------------------------------------------
+Binary#35
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  PLC-BOUT 9.1  
+  1  PLC-BOUT 9.2  
+  2  Prelube Start 
+  3  PLC-BOUT 9.4  
+  4  PLC-BOUT 9.5  
+  5  PLC-BOUT 9.6  
+  6  PLC-BOUT 9.7  
+  7  PLC-BOUT 9.8  
+
+--------------------------------------------------------------------------------------
+Binary#36
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  Supply Mains o
+  1  Supply KTP on 
+  2  PLC-BOUT 10.3 
+  3  MCB feedback  
+  4  PLC-BOUT 10.5 
+  5  PLC-BOUT 10.6 
+  6  PLC-BOUT 10.7 
+  7  Vent Auto     
+
+--------------------------------------------------------------------------------------
+Binary#37
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  OutLouversOpen
+  1  In LouversOpen
+  2  CO/CH4        
+  3  PLC-BOUT 11.4 
+  4  PLC-BOUT 11.5 
+  5  CO/CH/Fire    
+  6  JW Heater Temp
+  7  PLC-BOUT 11.8 
+
+--------------------------------------------------------------------------------------
+Binary#38
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  CtrlHeartBeatF
+  1  Reserved      
+  2  Reserved      
+  3  Reserved      
+  4  Reserved      
+  5  Reserved      
+  6  Reserved      
+  7  Reserved      
+  8  Reserved      
+  9  Reserved      
+ 10  Reserved      
+ 11  Reserved      
+ 12  Reserved      
+ 13  Reserved      
+ 14  Reserved      
+ 15  Reserved      
+
+--------------------------------------------------------------------------------------
+Binary#39
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  Reserved      
+  1  Reserved      
+  2  Reserved      
+  3  Reserved      
+  4  Reserved      
+  5  Reserved      
+  6  Reserved      
+  7  Reserved      
+  8  Reserved      
+  9  Reserved      
+ 10  Reserved      
+ 11  Reserved      
+ 12  Synchronizing 
+ 13  GasVTest run  
+ 14  reserved      
+ 15  reserved      
+
+--------------------------------------------------------------------------------------
+Binary#40
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  Wrn Stop fail 
+  1  LambdaHeatedA 
+  2  AFR limA      
+  3  AFR DBA       
+  4  AFR ErrA      
+  5  MixUpA        
+  6  MixDnA        
+  7  Power1A       
+  8  Power2A       
+  9  Power3A       
+ 10  Power4A       
+ 11  Power5A       
+ 12  LambdaHeatedB 
+ 13  AFR limB      
+ 14  AFR DBB       
+ 15  AFR ErrB      
+
+--------------------------------------------------------------------------------------
+Binary#41
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  MixUpB        
+  1  MixDnB        
+  2  Power1B       
+  3  Power2B       
+  4  Power3B       
+  5  Power4B       
+  6  Power5B       
+  7  reserved      
+  8  reserved      
+  9  AnyOthGCBclose
+ 10  reserved      
+ 11  reserved      
+ 12  reserved      
+ 13  reserved      
+ 14  reserved      
+ 15  reserved      
+
+--------------------------------------------------------------------------------------
+Binary#42
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  CranckcaseFanS
+  1  Prelube Start 
+  2  Engine Alarm  
+  3  Engine SD     
+  4  BOUT-2 5      
+  5  BOUT-2 6      
+  6  BOUT-2 7      
+  7  BOUT-2 8      
+
+--------------------------------------------------------------------------------------
+Binary#43
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  Auto ECM      
+  1  Idle/Rated    
+  2  Driver Equipme
+  3  Emerg Stop Eng
+  4  BOUT-3 5      
+  5  AC Pump Start 
+  6  Oil Pressure  
+  7  JW Pump Start 
+
+--------------------------------------------------------------------------------------
+Binary#44
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  BOUT-5 1      
+  1  Excit Disable 
+  2  CDVR Reset    
+  3  SupllyCDVR&ECM
+  4  SupllyCDVR&ECM
+  5  FaultResetECM 
+  6  Start/Stop Eng
+  7  GRID          
+
+--------------------------------------------------------------------------------------
+Binary#45
+
+Bit  Name
+--------------------------------------------------------------------------------------
+  0  In LouversOpen
+  1  OutLouversOpen
+  2  Fuel solenoid 
+  3  Fuel solenoid 
+  4  Common Sd     
+  5  Gen Running   
+  6  Aut mode      
+  7  Horn          
+
+
+======================================================================================
+Table# Types Meaning
+======================================================================================
+
+
+
