@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import telebot
 import minimalmodbus 
 import time
@@ -24,7 +26,6 @@ gensets = ('ГПГУ 1', 'ГПГУ 2', 'ГПГУ 3', 'ГПГУ 4', 'ГПГУ 5')
 doc = (g1, g2, g3, g4, g5)
 
 def read_mb_register(i, reg):
-    print(f'read_mb_register({i.address}, {reg})')
     for c in range(10):
         try:
             return i.read_register(reg)
@@ -33,18 +34,15 @@ def read_mb_register(i, reg):
     return -1
 
 def get_engines_state():
-    print(f'get_engines_state()')
     engine_state_3516 = ('Init', 'Ready', 'NotReady', 'Prestart', 'Cranking', 'Pause', 'Starting', 'Running', 'Loaded', 'Soft unld', 'Cooling', 'Stop', 'Shutdown', 'Ventil', 'EmergMan', 'Cooldown', 'Offload', 'Soft load', 'WaitStop', 'Warming', 'SDVentil', None)
     engine_state_3520 = ('Init', 'Ready', 'NotReady', 'Prestart', 'Cranking', 'Pause', 'Starting', 'Running', 'Loaded', 'Soft unld', 'Cooling', 'Stop', 'Shutdown', 'Ventil', 'EmergMan', 'Cooldown', 'Offload', 'Soft load', 'WaitStop', 'Warming', 'SDVentil', 'WD test', 'GasVTest', 'StrtCndWai', None)
     return [engine_state_3516[read_mb_register(g1, 162)], engine_state_3516[read_mb_register(g2, 162)], engine_state_3520[read_mb_register(g3, 295)], engine_state_3520[read_mb_register(g4, 295)], engine_state_3520[read_mb_register(g5, 295)]]
 
 def get_breakers_state():
-    print(f'get_breakers_state()')
     breaker_state = ('Init', 'BrksOff', 'IslOper', 'MainsOper', 'ParalOper', 'RevSync', 'Synchro', 'MainsFlt', 'ValidFlt', 'MainsRet', 'MultIslOp', 'MultParOp', 'EmergMan', 'StrUpSync', None)
     return [breaker_state[read_mb_register(g1, 163)], breaker_state[read_mb_register(g2, 163)], breaker_state[read_mb_register(g3, 296)], breaker_state[read_mb_register(g4, 296)], breaker_state[read_mb_register(g5, 296)]]
 
 def get_protect(genset):
-    print(f'get_protect({genset.address})')
     level = ['inactive', 'N/A', 'active, confirmed', 'active, but blocked or delay still running', 'previously active, not confirmed yet', 'N/A','active, not confirmed yet', 'active, not confirmed yet, blocked']
     sensfail = ['Sensor failure not active', 'Sensor failure active, confirmed', 'Sensor failure previously active, not confirmed yet', 'Sensor failure active, not confirmed yet']
     
@@ -82,32 +80,49 @@ def get_protect(genset):
         
     return ret
 
+def get_gcb_state():
+    g1_bin1, g2_bin1, g3_bin2, g4_bin2, g5_bin2 = read_mb_register(g1, 2), read_mb_register(g2, 2), read_mb_register(g3, 7), read_mb_register(g4, 7), read_mb_register(g5, 7) 
+    return [(1<<2&g1_bin1)>>2, (1<<2&g2_bin1)>>2, 1&g3_bin2, 1&g4_bin2, 1&g5_bin2]
+
 es_old = get_engines_state()
 bs_old = get_breakers_state()
+gs_old = get_gcb_state()
 
 # Основной цикл
 while 1:
-    print('.', end='')
-    print(f'Начало цикла')
+    
+#     start_time = time.time()
+
     es_new = get_engines_state()
     bs_new = get_breakers_state()
+    gs_new = get_gcb_state()
+    
+#     print((f'{time.time() - start_time:.1f} seconds'))
+    
     for i in range(5):
         # Читаю состояния двигателей
         if es_new[i] == None: es_new[i] = es_old[i] 
         if es_new[i] != es_old[i]:
-            print(f'Новое значение engine status {es_new[i]}')
             es_old[i] = es_new[i]
-            tb.send_message(723253749, f'{gensets[i]}. Engine state: {es_new[i]}')
-            if es_new[i] in (2, 9, 12, 16, 20):
+            if es_new[i] in ('Init', 'Ready', 'NotReady', 'Starting', 'Soft unld', 'Stop', 'Shutdown', 'Ventil', 'EmergMan', 'Cooldown', 'Offload', 'WaitStop', 'Warming', 'SDVentil'):
+                tb.send_message(723253749, f'{gensets[i]}. Engine state: {es_new[i]}')
+            if es_new[i] in ('NotReady', 'Shutdown', 'Soft unld'):
                 msg = ''
-                for i in get_protect(doc(i)):
+                for i in get_protect(doc[i]):
                     msg += i
                 if msg: tb.send_message(723253749, msg)
-        # Читаю состояния выключателей
+        # Читаю статусы выключателей
         if bs_new[i] == None: bs_new[i] = bs_old[i] 
         if bs_new[i] != bs_old[i]:
-            print(f'Новое значение engine status {bs_new[i]}')
             bs_old[i] = bs_new[i]
-            tb.send_message(723253749, f'{gensets[i]}. Breaker state: {bs_new[i]}')
-        
+            if bs_new[i] in ('Init', 'BrksOff', 'IslOper', 'ParalOper', 'RevSync', 'MainsFlt', 'ValidFlt', 'MainsRet', 'MultIslOp', 'EmergMan', 'StrUpSync'):
+                tb.send_message(723253749, f'{gensets[i]}. Breaker state: {bs_new[i]}')
+        # Читаю состояния выключателей
+        if gs_new[i] != gs_old[i]:
+            gs_old[i] = gs_new[i]
+            if gs_new[i]:
+                tb.send_message(723253749, f'{gensets[i]}. GCB Close')
+            else:
+                tb.send_message(723253749, f'{gensets[i]}. GCB Open')
+
     time.sleep(1)

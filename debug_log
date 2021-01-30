@@ -1,0 +1,69 @@
+2021-01-29 14:04:28,074, DEBUG, get_engines_state()
+2021-01-29 14:04:29,252, DEBUG, ['Loaded', None, 'Loaded', 'NotReady', None]
+2021-01-29 14:04:29,253, DEBUG, get_breakers_state()
+2021-01-29 14:04:30,432, DEBUG, ['MultParOp', None, 'MultParOp', 'MainsOper', None]
+2021-01-29 14:04:30,433, DEBUG, get_gcb_state()
+2021-01-29 14:04:31,584, DEBUG, [1, 1, 1, 0, 1]
+2021-01-29 14:04:31,588, DEBUG, get_engines_state()
+2021-01-29 14:04:32,796, DEBUG, ['Loaded', None, 'Loaded', 'NotReady', None]
+2021-01-29 14:04:32,797, DEBUG, get_breakers_state()
+2021-01-29 14:04:34,177, DEBUG, ['MultParOp', None, 'MultParOp', 'MainsOper', None]
+2021-01-29 14:04:34,178, DEBUG, get_gcb_state()
+2021-01-29 14:04:35,346, DEBUG, [1, 1, 1, 0, 1]
+2021-01-29 14:04:36,348, DEBUG, get_engines_state()
+2021-01-29 14:04:48,965, DEBUG, get_protect(genset 1)
+2021-01-29 14:04:54,103, DEBUG, ['AC Level Low. Level 1: active, confirmed\n']
+2021-01-29 14:04:54,116, DEBUG, Starting new HTTPS connection (1): api.telegram.org:443
+2021-01-29 14:04:54,665, DEBUG, https://api.telegram.org:443 "POST /bot1325955552:AAHQJzvhu-IhcMpsVGX5dUsfXTJ7fFECoJs/sendMessage?chat_id=723253749&text=AC+Level+Low.+Level+1%3A+active%2C+confirmed%0A HTTP/1.1" 200 313
+2021-01-29 14:05:22,003, DEBUG, get_protect(genset 1)
+2021-01-29 14:05:26,991, DEBUG, ['AC Level Low. Level 1: active, confirmed\n']
+2021-01-29 14:05:32,799, DEBUG, get_protect(genset 2)
+2021-01-29 14:05:40,799, DEBUG, get_protect(genset 2)
+2021-01-29 14:05:54,559, DEBUG, get_protect(genset 3)
+2021-01-29 14:05:57,346, DEBUG, []
+2021-01-29 14:09:04,014, DEBUG, get_protect(genset 4)
+2021-01-29 14:09:07,167, DEBUG, ['Oil Pressure. Level 1: active, but blocked or delay still running\n', 'Oil Pressure. Level 2: active, but blocked or delay still running\n']
+2021-01-29 14:09:14,887, DEBUG, get_protect(genset 4)
+2021-01-29 14:09:17,700, DEBUG, ['Oil Pressure. Level 1: active, but blocked or delay still running\n', 'Oil Pressure. Level 2: active, but blocked or delay still running\n']
+2021-01-29 14:09:17,910, DEBUG, https://api.telegram.org:443 "POST /bot1325955552:AAHQJzvhu-IhcMpsVGX5dUsfXTJ7fFECoJs/sendMessage?chat_id=723253749&text=Oil+Pressure.+Level+1%3A+active%2C+but+blocked+or+delay+still+running%0AOil+Pressure.+Level+2%3A+active%2C+but+blocked+or+delay+still+running%0A HTTP/1.1" 200 405
+2021-01-29 14:10:06,782, DEBUG, get_protect(genset 3)
+2021-01-29 14:10:09,647, DEBUG, []
+2021-01-29 14:10:11,841, DEBUG, get_protect(genset 2)
+2021-01-29 14:11:39,146, DEBUG, get_engines_state()
+2021-01-29 14:11:40,465, DEBUG, ['Loaded', None, 'Loaded', 'NotReady', None]
+2021-01-29 14:11:40,466, DEBUG, get_breakers_state()
+2021-01-29 14:11:41,619, DEBUG, ['MultParOp', None, 'MultParOp', 'MainsOper', None]
+2021-01-29 14:11:41,620, DEBUG, get_gcb_state()
+2021-01-29 14:11:42,777, DEBUG, [1, 1, 1, 0, 1]
+2021-01-29 14:11:42,780, DEBUG, get_engines_state()
+2021-01-29 14:11:51,559, DEBUG, get_protect(genset 2)
+2021-01-29 14:14:35,052, DEBUG, get_protect(genset 2)
+2021-01-29 14:17:34,280, DEBUG, get_protect(genset 2)
+2021-01-29 14:23:33,315, DEBUG, get_protect(genset 2)
+2021-01-29 14:24:07,863, DEBUG, get_protect(genset 2)
+2021-01-29 14:24:28,358, DEBUG, get_protect(genset 1)
+2021-01-29 14:24:33,498, DEBUG, ['AC Level Low. Level 1: active, confirmed\n']
+2021-01-29 14:24:47,874, DEBUG, get_protect(genset 5)
+2021-01-29 14:25:40,041, DEBUG, get_protect(genset 5)
+2021-01-29 14:28:50,121, DEBUG, get_protect(genset 5)
+2021-01-29 14:29:27,626, DEBUG, []
+2021-01-29 14:34:44,166, DEBUG, get_protect(genset 1)
+2021-01-29 14:34:49,578, DEBUG, ['AC Level Low. Level 1: active, confirmed\n']
+2021-01-29 14:34:49,579, DEBUG, get_protect(genset 2)
+2021-01-29 14:35:30,807, DEBUG, get_engines_state()
+2021-01-29 14:35:31,970, DEBUG, ['Loaded', None, 'Loaded', 'NotReady', None]
+2021-01-29 14:35:31,971, DEBUG, get_breakers_state()
+2021-01-29 14:35:33,340, DEBUG, ['MultParOp', None, 'MultParOp', 'MainsOper', None]
+2021-01-29 14:35:33,341, DEBUG, get_gcb_state()
+2021-01-29 14:35:34,502, DEBUG, [1, 1, 1, 0, 1]
+2021-01-29 14:35:34,503, DEBUG, get_protect(genset 1)
+2021-01-29 14:35:48,806, DEBUG, get_protect(genset 1)
+2021-01-29 14:35:54,061, DEBUG, ['AC Level Low. Level 1: active, confirmed\n']
+2021-01-29 14:35:54,061, DEBUG, get_protect(genset 2)
+2021-01-29 14:37:03,812, DEBUG, []
+2021-01-29 14:37:03,813, DEBUG, get_protect(genset 3)
+2021-01-29 14:37:06,741, DEBUG, []
+2021-01-29 14:37:06,742, DEBUG, get_protect(genset 4)
+2021-01-29 14:37:09,612, DEBUG, ['AC pressure. Level 1: active, but blocked or delay still running\n', 'Oil Pressure. Level 1: active, but blocked or delay still running\n', 'Oil Pressure. Level 2: active, but blocked or delay still running\n']
+2021-01-29 14:37:09,613, DEBUG, get_protect(genset 5)
+2021-01-29 14:37:47,107, DEBUG, []
