@@ -1,38 +1,53 @@
 import minimalmodbus
 import config
 import logging
+import telebot
 
-logging.basicConfig(format='%(asctime)s, %(levelname)s, %(message)s', level=logging.DEBUG)
+tb = telebot.TeleBot(config.token)
+
+# logging.basicConfig(format='%(asctime)s, %(levelname)s, %(message)s', level=logging.DEBUG)
+logging.basicConfig(format='%(asctime)s, %(levelname)s, %(message)s', filename='debug_log', level=logging.DEBUG)
+# logging.disable(logging.CRITICAL)
 
 class Genset(minimalmodbus.Instrument):
     
     def __init__(self, port, slaveaddress):
         super().__init__(port=port, slaveaddress=slaveaddress)
         self.serial.baudrate = config.baudrate
-        self.engine_state = self.get_engines_state()
-        self.breaker_state = self.get_breaker_state()
-        self.gcb_state = self.get_gcb_state()
         self.chunk_intervals = self.get_chunk_intervals()
         self.protect_dict = self.get_protect_dict()
+        
+        self.engine_state = self.get_engines_state()
+        self.prev_engine_state = self.engine_state
+        
+        self.breaker_state = self.get_breaker_state()
+        self.prev_breaker_state = self.breaker_state
+        
+        self.gcb_state = self.get_gcb_state()
+        self.prev_gcb_state = self.gcb_state
+        
         self.protections = self.get_protections()
+        self.prev_protections = self.protections
+        
 #         self.power = self.read_mb_register(263)
         
     def read_mb_register(self, registeraddress, number_of_decimals=0, functioncode=3, signed=False):
-        for c in range(10):
+        
+        for c in range(15):
             try:
                 return self.read_register(registeraddress, number_of_decimals, functioncode, signed)
             except Exception as e:
-                logging.error(e)
-                continue
+                pass
+#                 logging.error(e)
         return None
 
     def read_mb_registers(self, registeraddress, number_of_registers, functioncode=3):
-        for c in range(10):
+        for c in range(15):
             try:
                 return self.read_registers(registeraddress, number_of_registers, functioncode)
             except Exception as e:
-                logging.error(e)
-                continue
+                pass
+#                 logging.error(e)
         return None
     
     def get_engines_state(self):
@@ -143,3 +158,21 @@ class Genset(minimalmodbus.Instrument):
 
         if protections_return: return protections_return
         else: return None
+
+    def updates_values(self):
+        self.prev_engine_state = self.engine_state
+        self.prev_breaker_state = self.breaker_state
+        self.prev_gcb_state = self.gcb_state
+        self.prev_protections = self.protections
+
+        self.engine_state = self.get_engines_state()
+        self.breaker_state = self.get_breaker_state()
+        self.gcb_state = self.get_gcb_state()
+        self.protections = self.get_protections()
+        
+def send_msg(chat_id, text, disable_web_page_preview=None, reply_to_message_id=None, reply_markup=None, parse_mode=None, disable_notification=None, timeout=None):
+    try:
+        tb.send_message(chat_id, text, disable_web_page_preview, reply_to_message_id, reply_markup, parse_mode, disable_notification, timeout)
+    except Exception as e:
+        logging.error(e)
+        print(e)
