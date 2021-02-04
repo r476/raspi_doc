@@ -6,33 +6,34 @@ import telebot
 tb = telebot.TeleBot(config.token)
 
 # logging.basicConfig(format='%(asctime)s, %(levelname)s, %(message)s', level=logging.DEBUG)
-logging.basicConfig(format='%(asctime)s, %(levelname)s, %(message)s', filename='debug_log', level=logging.DEBUG)
+logging.basicConfig(format='%(asctime)s, %(levelname)s, %(message)s', filename='/home/pi/Documents/PythonScripts/raspi_doc/debug_log', level=logging.DEBUG)
 # logging.disable(logging.CRITICAL)
 
 class Genset(minimalmodbus.Instrument):
-    
+
     def __init__(self, port, slaveaddress):
+        logging.debug(f'Инициализация объекта: ГПГУ{slaveaddress}')
         super().__init__(port=port, slaveaddress=slaveaddress)
         self.serial.baudrate = config.baudrate
         self.chunk_intervals = self.get_chunk_intervals()
         self.protect_dict = self.get_protect_dict()
-        
+
         self.engine_state = self.get_engines_state()
         self.prev_engine_state = self.engine_state
-        
+
         self.breaker_state = self.get_breaker_state()
         self.prev_breaker_state = self.breaker_state
-        
+
         self.gcb_state = self.get_gcb_state()
         self.prev_gcb_state = self.gcb_state
-        
+
         self.protections = self.get_protections()
         self.prev_protections = self.protections
-        
+
 #         self.power = self.read_mb_register(263)
-        
+
     def read_mb_register(self, registeraddress, number_of_decimals=0, functioncode=3, signed=False):
-        
+
         for c in range(15):
             try:
                 return self.read_register(registeraddress, number_of_decimals, functioncode, signed)
@@ -49,7 +50,7 @@ class Genset(minimalmodbus.Instrument):
                 pass
 #                 logging.error(e)
         return None
-    
+
     def get_engines_state(self):
         logging.debug('get_engines_state()')
         engine_state = ('Init', 'Ready', 'NotReady', 'Prestart', 'Cranking', 'Pause', 'Starting', 'Running', 'Loaded', 'Soft unld', 'Cooling', 'Stop', 'Shutdown', 'Ventil', 'EmergMan', 'Cooldown', 'Offload', 'Soft load', 'WaitStop', 'Warming', 'SDVentil', 'WD test', 'GasVTest', 'StrtCndWai')
@@ -80,11 +81,12 @@ class Genset(minimalmodbus.Instrument):
         return gcb_state
 
     def get_chunk_intervals(self):
+        logging.debug('get_chunk_intervals')
         if self.address in (1, 2):
-            with open('protections_3516.txt') as f:
+            with open('/home/pi/Documents/PythonScripts/raspi_doc/protections_3516.txt') as f:
                 data_lines = f.readlines()
         elif self.address in (3, 4, 5):
-            with open('protections_3520.txt') as f:
+            with open('/home/pi/Documents/PythonScripts/raspi_doc/protections_3520.txt') as f:
                 data_lines = f.readlines()
 
         adresses = [int(line[:5])-40001 for line in data_lines]
@@ -104,17 +106,18 @@ class Genset(minimalmodbus.Instrument):
                 chunk_start = adresses[a]
                 chunk_len = 0
         # [(45751, 10), (45761, 10), (45771, 2), (45774, 10), (45785, 4), (45807, 1), (45865, 10), (45875, 10), (45949, 9), (45963, 1), (45965, 10), (45975, 10), (45985, 10), (45995, 6), (46201, 10), (46211, 10), (46221, 5), (46248, 3)]
-        return chunk_requests 
+        return chunk_requests
 
     def get_protect_dict(self):
+        logging.debug('get_protect_dict')
         protect_dict = {}
         if self.address in (1, 2):
-            with open('protections_3516.txt') as f:
+            with open('/home/pi/Documents/PythonScripts/raspi_doc/protections_3516.txt') as f:
                 data_lines = f.readlines()
         elif self.address in (3, 4, 5):
-            with open('protections_3520.txt') as f:
+            with open('/home/pi/Documents/PythonScripts/raspi_doc/protections_3520.txt') as f:
                 data_lines = f.readlines()
-                
+
         for p in data_lines:
             # [6211, 'Bus V L2-L3', 'Bus V L3-L1']
             protect_dict[int(p[:5])-40001] = [p[17:37].strip(), p[37:].strip()]
@@ -127,7 +130,7 @@ class Genset(minimalmodbus.Instrument):
 
         protections = self.get_protect_dict()
         protections_return = ''
-        
+
         for interval in self.chunk_intervals:
             value = self.read_mb_registers(interval[0], interval[1])
             if not value: return None
@@ -146,12 +149,13 @@ class Genset(minimalmodbus.Instrument):
             prot2_level1 = 0b0000011100000000 & protection>>8
             prot2_level2 = (0b0011100000000000 & protection)>>11
             prot2_sens = (0b1100000000000000 & protection)>>14
-
-            if prot1_level1: protections_return += f'{protect1}. Level 1: {level[prot1_level1]}\n'
-            if prot1_level2: protections_return += f'{protect1}. Level 2: {level[prot1_level2]}\n'
+            
+            # Если уровень 'active или confirmed'.
+            if prot1_level1 in (2, 3): protections_return += f'{protect1}. Level 1: {level[prot1_level1]}\n'
+            if prot1_level2 in (2, 3): protections_return += f'{protect1}. Level 2: {level[prot1_level2]}\n'
             if prot1_sens: protections_return += f'{protect1}. Sensor failure: {sensfail[prot1_sens]}\n'
-            if prot2_level1: protections_return += f'{protect2}. Level 1: {level[prot2_level1]}\n'
-            if prot2_level2: protections_return += f'{protect2}. Level 2: {level[prot2_level2]}\n'
+            if prot2_level1 in (2, 3): protections_return += f'{protect2}. Level 1: {level[prot2_level1]}\n'
+            if prot2_level2 in (2, 3): protections_return += f'{protect2}. Level 2: {level[prot2_level2]}\n'
             if prot2_sens: protections_return += f'{protect2}. Sensor failure: {sensfail[prot2_sens]}\n'
 
         logging.debug(protections_return)
@@ -169,8 +173,9 @@ class Genset(minimalmodbus.Instrument):
         self.breaker_state = self.get_breaker_state()
         self.gcb_state = self.get_gcb_state()
         self.protections = self.get_protections()
-        
+
 def send_msg(chat_id, text, disable_web_page_preview=None, reply_to_message_id=None, reply_markup=None, parse_mode=None, disable_notification=None, timeout=None):
+    logging.debug(f'Отправка сообщения: {text}')
     try:
         tb.send_message(chat_id, text, disable_web_page_preview, reply_to_message_id, reply_markup, parse_mode, disable_notification, timeout)
     except Exception as e:
