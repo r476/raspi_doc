@@ -2,6 +2,8 @@ import minimalmodbus
 import config
 import logging
 import telebot
+import sqlite3
+import datetime
 
 tb = telebot.TeleBot(config.token)
 
@@ -9,30 +11,60 @@ tb = telebot.TeleBot(config.token)
 logging.basicConfig(format='%(asctime)s, %(levelname)s, %(message)s', filename=config.log_path, level=logging.DEBUG)
 # logging.disable(logging.CRITICAL)
 
+# Инициализация БД. При запуске
+def init_bd(doc):
+    conn = sqlite3.connect(config.raspi_bd)
+    curs = conn.cursor()
+    try:
+        ins = f'SELECT * FROM {config.table_regular_values}'
+        curs.execute(ins)
+    except Exception as e:
+        logging.info(f'Создание таблицы значений: {config.table_regular_values}')
+        ins = f'CREATE TABLE {config.table_regular_values} (date_time VARCHAR(20) PRIMARY KEY'
+        for g in doc:
+            for k, v in {k: v for k, v in g.modbus_table.items() if v['Group'] in config.regular_values}.items():
+                if v['Type'] == 'Integer' or v['Type'] == 'Unsigned':
+                    type_field = 'INT'
+                else:
+                    type_field = 'CHAR (20)'
+                ins += f", Genset{g.address}_{v['Name_in_bd']} {type_field}"
+        ins += f')'
+        curs.execute(ins)
+        conn.commit()
+        logging.info(f'Таблица {config.table_regular_values} создана.')
+        
+    curs.close()
+    conn.close()
+    
+# Запись регулярных значений в БД. В качестве аргумента - список экземпляров ГПГУ
+def regular_values_to_bd(doc):
+    data = [datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')]
+
+    ins = f'INSERT INTO {config.table_regular_values} (date_time'
+    ins_val = ' VALUES(?'
+    for g in doc:
+        for k, v in {k: v for k, v in g.modbus_table.items() if v['Group'] in config.regular_values}.items():
+            ins += f", Genset{g.address}_{v['Name_in_bd']}"
+            ins_val += ', ?'
+            data.append(v['Curr_val'])
+    ins += ') ' + ins_val + ')'
+    conn = sqlite3.connect(config.raspi_bd)
+    curs = conn.cursor()
+    curs.execute(ins, data)
+    conn.commit()
+    curs.close()
+    conn.close()
+
 class Genset(minimalmodbus.Instrument):
 
     def __init__(self, port, slaveaddress):
         logging.debug(f'Инициализация объекта: ГПГУ{slaveaddress}')
         super().__init__(port=port, slaveaddress=slaveaddress)
         self.serial.baudrate = config.baudrate
-#         self.chunk_intervals = self.get_chunk_intervals()
+        
         self.protect_dict = self.get_protect_dict()
         self.modbus_table = self.get_modbus_table()
         self.get_update()
-
-#         self.engine_state = self.get_engines_state()
-#         self.prev_engine_state = self.engine_state
-
-#         self.breaker_state = self.get_breaker_state()
-#         self.prev_breaker_state = self.breaker_state
-
-#         self.gcb_state = self.get_gcb_state()
-#         self.prev_gcb_state = self.gcb_state
-
-#         self.protections = self.get_protections()
-#         self.prev_protections = self.protections
-
-#         self.power = self.read_mb_register(263)
 
     def read_mb_register(self, registeraddress, number_of_decimals=0, functioncode=3, signed=False):
         for c in range(15):
@@ -137,6 +169,7 @@ class Genset(minimalmodbus.Instrument):
 
     
     def get_modbus_table(self):
+        logging.debug('get_modbus_table()')
         if self.address in (1, 2):
             with open(config.mb_table_3516, encoding='cp1252') as f:
                 data_lines = f.readlines()
@@ -154,6 +187,7 @@ class Genset(minimalmodbus.Instrument):
                 if line[9] in (config.values_if_changed + config.regular_values) and line[2] not in (config.val_ignore_list):
                     data_dict[line[0]] = {
                         'Name': line[2],
+                        'Name_in_bd': line[2].replace(' ', '_').replace('-', '_').replace('+', '_plus_').replace('<', '_down_').replace('>', '_up_'),
                         'Dim': line[3],
                         'Type': line[4],
                         'Len': line[5],
@@ -181,7 +215,11 @@ class Genset(minimalmodbus.Instrument):
         return reg
     
     def get_update(self):
+        logging.debug(f'Entering in get_update()')
         if not self.read_mb_register(5):
+            for v in self.modbus_table.values():
+                v['Curr_val'] = None
+            logging.debug(f'get_update() - None')
             return None
         chank_arr = self.get_chunk_intervals(list(self.modbus_table.keys()))
         for chank in chank_arr:
@@ -191,6 +229,7 @@ class Genset(minimalmodbus.Instrument):
                     adr = chank[0] + c
                     self.modbus_table[adr]['Prev_val'] = self.modbus_table[adr]['Curr_val']
                     self.modbus_table[adr]['Curr_val'] = self._formating_register(adr, regs[c])
+        logging.debug(f'ГПГУ{self.address}. get_update() - успешно')
         return None
     
     
@@ -242,17 +281,6 @@ class Genset(minimalmodbus.Instrument):
 
         if protections_return: return protections_return
         else: return None
-
-    def updates_values(self):
-        self.prev_engine_state = self.engine_state
-        self.prev_breaker_state = self.breaker_state
-        self.prev_gcb_state = self.gcb_state
-        self.prev_protections = self.protections
-
-        self.engine_state = self.get_engines_state()
-        self.breaker_state = self.get_breaker_state()
-        self.gcb_state = self.get_gcb_state()
-        self.protections = self.get_protections()
 
 def send_msg(chat_id, text, disable_web_page_preview=None, reply_to_message_id=None, reply_markup=None, parse_mode=None, disable_notification=None, timeout=None):
     logging.debug(f'Отправка сообщения: {text}')
