@@ -32,10 +32,10 @@ def init_bd(doc):
         curs.execute(ins)
         conn.commit()
         logging.info(f'Таблица {config.table_regular_values} создана.')
-        
+
     curs.close()
     conn.close()
-    
+
 # Запись регулярных значений в БД. В качестве аргумента - список экземпляров ГПГУ
 def regular_values_to_bd(doc):
     data = [datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')]
@@ -61,7 +61,6 @@ class Genset(minimalmodbus.Instrument):
         logging.debug(f'Инициализация объекта: ГПГУ{slaveaddress}')
         super().__init__(port=port, slaveaddress=slaveaddress)
         self.serial.baudrate = config.baudrate
-        
         self.protect_dict = self.get_protect_dict()
         self.modbus_table = self.get_modbus_table()
         self.get_update()
@@ -89,6 +88,7 @@ class Genset(minimalmodbus.Instrument):
             except Exception as e:
                 pass
         return None
+
 
     def get_engines_state(self):
         logging.debug('get_engines_state()')
@@ -199,7 +199,7 @@ class Genset(minimalmodbus.Instrument):
                         'Curr_val': None
                     }
         return data_dict
-    
+
     # Функция форматирования регистров
     def _formating_register(self, adr, reg):
         # Если бинарное число, то возвращаю в двоичном виде
@@ -213,7 +213,7 @@ class Genset(minimalmodbus.Instrument):
         if dec!='-':
             reg = reg/10**int(dec)
         return reg
-    
+
     def get_update(self):
         logging.debug(f'Entering in get_update()')
         if not self.read_mb_register(5):
@@ -231,7 +231,7 @@ class Genset(minimalmodbus.Instrument):
                     self.modbus_table[adr]['Curr_val'] = self._formating_register(adr, regs[c])
         logging.debug(f'ГПГУ{self.address}. get_update() - успешно')
         return None
-    
+
     
     def get_protections(self):
         logging.debug(f'get_protect(genset {self.address})')
@@ -262,11 +262,6 @@ class Genset(minimalmodbus.Instrument):
             protection = v[2]
             if not protection: continue
 
-            prot1_level1 = 0b0000000000000111 & protection
-            prot1_level2 = (0b0000000000111000 & protection)>>3
-            prot1_sens = (0b0000000011000000 & protection)>>6
-            prot2_level1 = 0b0000011100000000 & protection>>8
-            prot2_level2 = (0b0011100000000000 & protection)>>11
             prot2_sens = (0b1100000000000000 & protection)>>14
 
             # Если уровень 'active или confirmed'.

@@ -15,11 +15,11 @@ doc = (g1, g2, g3, g4, g5)
 doc_objects.init_bd(doc)
 
 while 1:
-    start_time = time.time()
-    
-    for g in doc: 
+    # start_time = time.time()
+
+    for g in doc:
         g.get_update()
-        
+
     doc_objects.regular_values_to_bd(doc)
-    
-    print((f'{time.time() - start_time:.1f} seconds'))
+
+    # print((f'{time.time() - start_time:.1f} seconds'))

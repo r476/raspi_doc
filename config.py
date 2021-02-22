@@ -1,10 +1,11 @@
 baudrate = 19200
 token = '1325955552:AAHQJzvhu-IhcMpsVGX5dUsfXTJ7fFECoJs'
 
-# Путь к логу
-log_path = '/home/pi/Documents/PythonScripts/raspi_doc/debug_log'
-# Путь в БД
-raspi_bd = '/home/pi/Documents/PythonScripts/raspi_doc/raspi_doc.db'
+# Путь к логу, пишется на HDD
+log_path = '/home/pi/hdd_drive/pavlovsk_doc/debug/debug_log'
+# Путь в БД, пишется на HDD
+
+raspi_bd = '/home/pi/hdd_drive/pavlovsk_doc/bd/raspi_doc.db'
 table_regular_values = 'g_val' # Имя таблицы для быстрых значений
 
 
