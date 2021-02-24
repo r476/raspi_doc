@@ -1,5 +1,5 @@
 baudrate = 19200
-token = '1325955552:AAHQJzvhu-IhcMpsVGX5dUsfXTJ7fFECoJs'
+token = '1325955552:AAF40qxDw0lJ1v_EdUumEBnXZ4mKyE5s8Nk'
 
 # Путь к логу, пишется на HDD
 log_path = '/home/pi/hdd_drive/pavlovsk_doc/debug/debug_log'
@@ -7,6 +7,7 @@ log_path = '/home/pi/hdd_drive/pavlovsk_doc/debug/debug_log'
 
 raspi_bd = '/home/pi/hdd_drive/pavlovsk_doc/bd/raspi_doc.db'
 table_regular_values = 'g_val' # Имя таблицы для быстрых значений
+db_interval = 60 # Интервал записей в БД
 
 
 # Расположение таблиц ModBus
@@ -39,15 +40,16 @@ regular_values = (
 'AnalogInputs 5',
 'Bus values',
 'Engine values',
-'Gener values',
-'Bin inputs CU',
-'Bin outputs CU',
-'Binary Inputs',
-'Binary Outputs'
+'Gener values'
 )
 
 # Группы переменных для опроса и записи в БД при изменении
 values_if_changed = (
+'Binary Inputs',
+'Binary Outputs',
+'VPIO',
+'Bin inputs CU',
+'Bin outputs CU',
 'Analog protect',
 'Basic settings',
 'Comms settings',
@@ -358,7 +360,10 @@ val_ignore_list = (
 'ECU Diag',
 'Pwr management',
 'Priority ctrl',
-'Sync type'
+'Sync type',
+'AIN-4 2',
+'Reserve',
+'Angle'
 )
 
 # Перечень параметров для чтения функцией read_long()

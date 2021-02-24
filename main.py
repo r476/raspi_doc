@@ -14,12 +14,29 @@ g5 = doc_objects.Genset('/dev/ttyS0', 5)
 doc = (g1, g2, g3, g4, g5)
 doc_objects.init_bd(doc)
 
+start_interval = time.time()
+
 while 1:
-    # start_time = time.time()
+    # Если прошел интервал, то обновляем все параметры и пишем в БД, иначе просто проверяем события.
+    if (time.time()-start_interval) > doc_objects.config.db_interval:
+        for g in doc:
+            g.get_update()
+        doc_objects.regular_values_to_bd(doc)
+        start_interval = time.time()
+    else:
+        for g in doc:
+            g.update_events()
+            if g.protects['current_protects'] != g.protects['prev_protects']:
+                doc_objects.send_msg(723253749, f"ГПГУ{g.address}. protects: {g.protects['current_protects']}")
 
-    for g in doc:
-        g.get_update()
+            if g.gcb_state['current_gcb_state'] != g.gcb_state['prev_gcb_state']:
+                doc_objects.send_msg(723253749, f"ГПГУ{g.address}. gcb_state: {'замкнут' if g.gcb_state['current_gcb_state'] else 'разомкнут'}")
 
-    doc_objects.regular_values_to_bd(doc)
+            if g.mcb_state['current_mcb_state'] != g.mcb_state['prev_mcb_state']:
+                doc_objects.send_msg(723253749, f"ГПГУ{g.address}. mcb_state: {'замкнут' if g.mcb_state['current_mcb_state'] else 'разомкнут'}")
 
-    # print((f'{time.time() - start_time:.1f} seconds'))
+            if g.engine_state['current_engine_state'] != g.engine_state['prev_engine_state']:
+                doc_objects.send_msg(723253749, f"ГПГУ{g.address}. engine_state: {g.engine_state['current_engine_state']}")
+
+        print((f'{time.time() - start_interval:.1f} seconds'))
+    

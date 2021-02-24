@@ -63,6 +63,14 @@ class Genset(minimalmodbus.Instrument):
         self.serial.baudrate = config.baudrate
         self.protect_dict = self.get_protect_dict()
         self.modbus_table = self.get_modbus_table()
+        self.protects = {'prev_protects': None, 
+                         'current_protects': self.get_protections()}
+        self.gcb_state = {'prev_gcb_state': None, 
+                         'current_gcb_state': self.get_gcb_state()}
+        self.mcb_state = {'prev_mcb_state': None, 
+                         'current_mcb_state': self.get_mcb_state()}
+        self.engine_state = {'prev_engine_state': None, 
+                         'current_engine_state': self.get_engine_state()}
         self.get_update()
 
     def read_mb_register(self, registeraddress, number_of_decimals=0, functioncode=3, signed=False):
@@ -90,7 +98,7 @@ class Genset(minimalmodbus.Instrument):
         return None
 
 
-    def get_engines_state(self):
+    def get_engine_state(self):
         logging.debug('get_engines_state()')
         engine_state = config.engine_states
         registeraddress = 162 if self.address in (1, 2) else 295
@@ -100,24 +108,24 @@ class Genset(minimalmodbus.Instrument):
         logging.debug(engine_state_return)
         return engine_state_return
 
-    def get_breaker_state(self):
-        logging.debug('get_breakers_state()')
-        breaker_state = config.breaker_states
-        registeraddress = 163 if self.address in (1, 2) else 296
-        value = self.read_mb_register(registeraddress)
-        if not value: return None
-        breaker_state_return = breaker_state[value]
-        logging.debug(breaker_state_return)
-        return breaker_state_return
+#     def get_breaker_state(self):
+#         logging.debug('get_breakers_state()')
+#         breaker_state = config.breaker_states
+#         registeraddress = 163 if self.address in (1, 2) else 296
+#         value = self.read_mb_register(registeraddress)
+#         if not value: return None
+#         breaker_state_return = breaker_state[value]
+#         logging.debug(breaker_state_return)
+#         return breaker_state_return
 
-    def get_gcb_state(self):
-        logging.debug('get_gcb_state()')
-        registeraddress = 2 if self.address in (1, 2) else 7
-        value = self.read_mb_register(registeraddress)
-        if not value: return None
-        gcb_state = (1<<2&value)>>2 if self.address in (1, 2) else 1&value
-        logging.debug(gcb_state)
-        return gcb_state
+#     def get_gcb_state(self):
+#         logging.debug('get_gcb_state()')
+#         registeraddress = 2 if self.address in (1, 2) else 7
+#         value = self.read_mb_register(registeraddress)
+#         if not value: return None
+#         gcb_state = (1<<2&value)>>2 if self.address in (1, 2) else 1&value
+#         logging.debug(gcb_state)
+#         return gcb_state
 
     def get_chunk_intervals(self, adresses):
         logging.debug('get_chunk_intervals')
@@ -183,7 +191,9 @@ class Genset(minimalmodbus.Instrument):
             if i[0] == '\n': # Если пустая строка, то заканчиваем опрос
                 break
             elif i[0] == '4': # Если начинается с 4-х, то
+                # парсим, получается: (40027, 9166, Manifold Temp, °C, Integer, 2, 0, 0, 150, AnalogInputs 1)
                 line = self.parse_data_line(i)
+                # если группа есть в values_if_changed и regular_values и нет в val_ignore_list
                 if line[9] in (config.values_if_changed + config.regular_values) and line[2] not in (config.val_ignore_list):
                     data_dict[line[0]] = {
                         'Name': line[2],
@@ -198,6 +208,7 @@ class Genset(minimalmodbus.Instrument):
                         'Prev_val': None,
                         'Curr_val': None
                     }
+        # словарь вида: {..., 2: {'Name': 'BIN', 'Name_in_bd': 'BIN', 'Dim': '','Type': 'Binary#1', 'Len': 2, 'Dec': '-', 'Min': '-', 'Max': '-', 'Group': 'Bin inputs CU', 'Prev_val': None, 'Curr_val': None}, ...}
         return data_dict
 
     # Функция форматирования регистров
@@ -205,7 +216,7 @@ class Genset(minimalmodbus.Instrument):
         # Если бинарное число, то возвращаю в двоичном виде
         if self.modbus_table[adr]['Type'].lower()[:3] == 'bin':
             return format(reg, '#016b')
-        # Отрицательное число определяю по косвенным признакам
+        # Отрицательное число определяю по косвенным признакам и списку исключений
         elif (not self.modbus_table[adr]['Min'].isdigit()) and len(self.modbus_table[adr]['Min'])-1 and self.modbus_table[adr]['Min'][-1]!='*' and reg&0b1000000000000000:
             reg = reg - 65535
         # Десятичная точка
@@ -216,7 +227,7 @@ class Genset(minimalmodbus.Instrument):
 
     def get_update(self):
         logging.debug(f'Entering in get_update()')
-        if not self.read_mb_register(5):
+        if not self.read_mb_register(5): # проверка узла на доступность
             for v in self.modbus_table.values():
                 v['Curr_val'] = None
             logging.debug(f'get_update() - None')
@@ -229,15 +240,19 @@ class Genset(minimalmodbus.Instrument):
                     adr = chank[0] + c
                     self.modbus_table[adr]['Prev_val'] = self.modbus_table[adr]['Curr_val']
                     self.modbus_table[adr]['Curr_val'] = self._formating_register(adr, regs[c])
+
+        # Освежаю защиты и статусы
+        self.update_events()
+
         logging.debug(f'ГПГУ{self.address}. get_update() - успешно')
         return None
 
-    
+
     def get_protections(self):
         logging.debug(f'get_protect(genset {self.address})')
         level = config.protect_levels
         sensfail = config.sensfails
-        
+
         if self.address in (1, 2):
             with open(config.protections_3516) as f:
                 data_lines = f.readlines()
@@ -257,14 +272,19 @@ class Genset(minimalmodbus.Instrument):
                  protections[interval[0]+i].append(value[i])
 
         for k, v in protections.items():
-            # (5750, ['Rem Start/Stop', 'Emergency Stop', 2])
-            addr, protect2, protect1 = k, v[0], v[1]
-            protection = v[2]
+            # (749, ['Rem Start/Stop', 'Emergency Stop', 2])
+            addr, protect2, protect1, protection = k, v[0], v[1], v[2]
+
             if not protection: continue
 
+            prot1_level1 = 0b0000000000000111 & protection
+            prot1_level2 = (0b0000000000111000 & protection)>>3
+            prot1_sens = (0b0000000011000000 & protection)>>6
+            prot2_level1 = 0b0000011100000000 & protection>>8
+            prot2_level2 = (0b0011100000000000 & protection)>>11
             prot2_sens = (0b1100000000000000 & protection)>>14
 
-            # Если уровень 'active или confirmed'.
+            # Если уровень active или confirmed.
             if prot1_level1 in (2,): protections_return += f'{protect1}. Level 1: {level[prot1_level1]}\n'
             if prot1_level2 in (2,): protections_return += f'{protect1}. Level 2: {level[prot1_level2]}\n'
             if prot1_sens: protections_return += f'{protect1}. Sensor failure: {sensfail[prot1_sens]}\n'
@@ -276,6 +296,39 @@ class Genset(minimalmodbus.Instrument):
 
         if protections_return: return protections_return
         else: return None
+
+    def get_gcb_state(self):
+        if self.address in (1, 2):
+            gcb = self.read_mb_register(2)
+            return (gcb&4)>>2 if gcb else None
+
+        elif self.address in (3, 4, 5):
+            gcb = self.read_mb_register(7)
+            return gcb&1 if gcb else None
+
+
+    def get_mcb_state(self):
+        if self.address in (1, 2):
+            mcb = self.read_mb_register(136)
+            return mcb&1 if mcb else None
+
+        elif self.address in (3, 4, 5):
+            mcb = self.read_mb_register(230)
+            return mcb&1 if mcb else None
+
+    def update_events(self):
+        self.protects['prev_protects'] = self.protects['current_protects']
+        self.protects['current_protects'] =  self.get_protections()
+
+        self.gcb_state['prev_gcb_state'] =  self.gcb_state['current_gcb_state']
+        self.gcb_state['current_gcb_state'] =  self.get_gcb_state()
+
+        self.mcb_state['prev_mcb_state'] =  self.mcb_state['current_mcb_state']
+        self.mcb_state['current_mcb_state'] =  self.get_mcb_state()
+
+        self.engine_state['prev_engine_state'] =  self.engine_state['current_engine_state']
+        self.engine_state['current_engine_state'] =  self.get_engine_state()
+
 
 def send_msg(chat_id, text, disable_web_page_preview=None, reply_to_message_id=None, reply_markup=None, parse_mode=None, disable_notification=None, timeout=None):
     logging.debug(f'Отправка сообщения: {text}')
