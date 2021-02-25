@@ -1,4 +1,4 @@
-baudrate = 19200
+baudrate = 57600
 token = '1325955552:AAF40qxDw0lJ1v_EdUumEBnXZ4mKyE5s8Nk'
 
 # Путь к логу, пишется на HDD
@@ -7,7 +7,7 @@ log_path = '/home/pi/hdd_drive/pavlovsk_doc/debug/debug_log'
 
 raspi_bd = '/home/pi/hdd_drive/pavlovsk_doc/bd/raspi_doc.db'
 table_regular_values = 'g_val' # Имя таблицы для быстрых значений
-db_interval = 60 # Интервал записей в БД
+db_interval = 300 # Интервал записей в БД
 
 
 # Расположение таблиц ModBus
@@ -368,11 +368,8 @@ val_ignore_list = (
 
 # Перечень параметров для чтения функцией read_long()
 var_long_list = (
-'Gas Meter',
 'Run hours',
 'TotRunPact P',
 'TotRunPact Q',
-'kVAhours',
-'kVArhours',
 'kWhours'
 )

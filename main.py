@@ -19,10 +19,10 @@ start_interval = time.time()
 while 1:
     # Если прошел интервал, то обновляем все параметры и пишем в БД, иначе просто проверяем события.
     if (time.time()-start_interval) > doc_objects.config.db_interval:
+        start_interval = time.time()
         for g in doc:
             g.get_update()
         doc_objects.regular_values_to_bd(doc)
-        start_interval = time.time()
     else:
         for g in doc:
             g.update_events()
@@ -36,7 +36,7 @@ while 1:
                 doc_objects.send_msg(723253749, f"ГПГУ{g.address}. mcb_state: {'замкнут' if g.mcb_state['current_mcb_state'] else 'разомкнут'}")
 
             if g.engine_state['current_engine_state'] != g.engine_state['prev_engine_state']:
-                doc_objects.send_msg(723253749, f"ГПГУ{g.address}. engine_state: {g.engine_state['current_engine_state']}")
+                if g.engine_state['current_engine_state'] in ('Shutdown', ):
+                    doc_objects.send_msg(723253749, f"ГПГУ{g.address}. engine_state: {g.engine_state['current_engine_state']}")
 
         print((f'{time.time() - start_interval:.1f} seconds'))
-    

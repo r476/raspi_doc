@@ -4,6 +4,7 @@ import logging
 import telebot
 import sqlite3
 import datetime
+import requests
 
 tb = telebot.TeleBot(config.token)
 
@@ -20,7 +21,7 @@ def init_bd(doc):
         curs.execute(ins)
     except Exception as e:
         logging.info(f'Создание таблицы значений: {config.table_regular_values}')
-        ins = f'CREATE TABLE {config.table_regular_values} (date_time VARCHAR(20) PRIMARY KEY'
+        ins = f'CREATE TABLE {config.table_regular_values} (date_time VARCHAR(20) PRIMARY KEY, ambient_temp INT'
         for g in doc:
             for k, v in {k: v for k, v in g.modbus_table.items() if v['Group'] in config.regular_values}.items():
                 if v['Type'] == 'Integer' or v['Type'] == 'Unsigned':
@@ -28,25 +29,60 @@ def init_bd(doc):
                 else:
                     type_field = 'CHAR (20)'
                 ins += f", Genset{g.address}_{v['Name_in_bd']} {type_field}"
-        ins += f')'
+            ins += f", Genset{g.address}_run_hours INT"
+            ins += f", Genset{g.address}_totRunPact_P INT"
+            ins += f", Genset{g.address}_totRunPact_Q INT"
+            ins += f", Genset{g.address}_kWhours INT"
+        ins += ')'
         curs.execute(ins)
         conn.commit()
         logging.info(f'Таблица {config.table_regular_values} создана.')
 
     curs.close()
     conn.close()
+    
+def get_temperature():
+    s_city = 'Pavlovsk'
+    city_id = '1495448'
+    appid = '98e48d2bb43dafe8eb6d7383c37b9647'
+    try:
+        res = requests.get('http://api.openweathermap.org/data/2.5/weather', params={'id': city_id, 'units': 'metric', 'APPID': appid})
+        data = res.json()
+        city_temp = data['main']['temp']
+        return city_temp
+    except Exception as e:
+        logging.debug(f'Ошибка запроса температуры: {e}')
+        return None    
 
 # Запись регулярных значений в БД. В качестве аргумента - список экземпляров ГПГУ
 def regular_values_to_bd(doc):
-    data = [datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')]
+    temp = get_temperature()
+    data = [datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), temp]
 
-    ins = f'INSERT INTO {config.table_regular_values} (date_time'
-    ins_val = ' VALUES(?'
+    ins = f'INSERT INTO {config.table_regular_values} (date_time, ambient_temp'
+    ins_val = ' VALUES(?, ?'
     for g in doc:
         for k, v in {k: v for k, v in g.modbus_table.items() if v['Group'] in config.regular_values}.items():
             ins += f", Genset{g.address}_{v['Name_in_bd']}"
             ins_val += ', ?'
             data.append(v['Curr_val'])
+            
+        ins += f", Genset{g.address}_run_hours"
+        ins_val += ', ?'
+        data.append(g.run_hours)
+        
+        ins += f", Genset{g.address}_totRunPact_P"
+        ins_val += ', ?'
+        data.append(g.totRunPact_P)
+        
+        ins += f", Genset{g.address}_totRunPact_Q"
+        ins_val += ', ?'
+        data.append(g.totRunPact_Q)
+        
+        ins += f", Genset{g.address}_kWhours"
+        ins_val += ', ?'
+        data.append(g.kWhours)
+        
     ins += ') ' + ins_val + ')'
     conn = sqlite3.connect(config.raspi_bd)
     curs = conn.cursor()
@@ -71,8 +107,14 @@ class Genset(minimalmodbus.Instrument):
                          'current_mcb_state': self.get_mcb_state()}
         self.engine_state = {'prev_engine_state': None, 
                          'current_engine_state': self.get_engine_state()}
-        self.get_update()
+        # Длинные параметры добавляю отдельно, этот вариант кажется оптимальным
+        self.run_hours = self.get_run_hours()
+        self.totRunPact_P = self.get_totRunPact_P()
+        self.totRunPact_Q = self.get_totRunPact_Q()
+        self.kWhours = self.get_kWhours()
 
+        self.get_update()
+        
     def read_mb_register(self, registeraddress, number_of_decimals=0, functioncode=3, signed=False):
         for c in range(15):
             try:
@@ -97,6 +139,17 @@ class Genset(minimalmodbus.Instrument):
                 pass
         return None
 
+    def get_run_hours(self):
+        return self.read_mb_long(3586) if self.address in (1, 2) else self.read_mb_long(3821)
+
+    def get_totRunPact_P(self):
+        return self.read_mb_long(336) if self.address in (1, 2) else self.read_mb_long(541)
+
+    def get_totRunPact_Q(self):
+        return self.read_mb_long(334) if self.address in (1, 2) else self.read_mb_long(539)
+
+    def get_kWhours(self):
+        return self.read_mb_long(3594) if self.address in (1, 2) else self.read_mb_long(3829)
 
     def get_engine_state(self):
         logging.debug('get_engines_state()')
@@ -243,6 +296,11 @@ class Genset(minimalmodbus.Instrument):
 
         # Освежаю защиты и статусы
         self.update_events()
+        # Обновляю длинные регистры
+        self.run_hours = self.get_run_hours()
+        self.totRunPact_P = self.get_totRunPact_P()
+        self.totRunPact_Q = self.get_totRunPact_Q()
+        self.kWhours = self.get_kWhours()
 
         logging.debug(f'ГПГУ{self.address}. get_update() - успешно')
         return None
@@ -329,7 +387,6 @@ class Genset(minimalmodbus.Instrument):
         self.engine_state['prev_engine_state'] =  self.engine_state['current_engine_state']
         self.engine_state['current_engine_state'] =  self.get_engine_state()
 
-
 def send_msg(chat_id, text, disable_web_page_preview=None, reply_to_message_id=None, reply_markup=None, parse_mode=None, disable_notification=None, timeout=None):
     logging.debug(f'Отправка сообщения: {text}')
     try:
@@ -337,3 +394,4 @@ def send_msg(chat_id, text, disable_web_page_preview=None, reply_to_message_id=N
     except Exception as e:
         logging.error(e)
         print(e)
+        
