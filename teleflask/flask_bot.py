@@ -11,18 +11,19 @@ WEBHOOK_HOST = '217.8.228.231'
 WEBHOOK_PORT = 8443  # 443, 80, 88 or 8443 (port need to be 'open')
 WEBHOOK_LISTEN = '0.0.0.0'  # In some VPS you may need to put here the IP addr
 
-WEBHOOK_SSL_CERT = 'webhook_cert.pem'  # Path to the ssl certificate
-WEBHOOK_SSL_PRIV = 'webhook_pkey.pem'  # Path to the ssl private key
+WEBHOOK_SSL_CERT = '/home/pi/Documents/PythonScripts/raspi_doc/teleflask/webhook_cert.pem'  # Path to the ssl certificate
+WEBHOOK_SSL_PRIV = '/home/pi/Documents/PythonScripts/raspi_doc/teleflask/webhook_pkey.pem'  # Path to the ssl private key
 
 WEBHOOK_URL_BASE = "https://%s:%s" % (WEBHOOK_HOST, WEBHOOK_PORT)
 WEBHOOK_URL_PATH = "/%s/" % (API_TOKEN)
 
-bot = telebot.TeleBot(API_TOKEN)
+bot = telebot.TeleBot(API_TOKEN, parse_mode='Markdown')
+bot.send_message(723253749, 'сервер запущен')
 
 app = flask.Flask(__name__)
 
 # Empty webserver index, return nothing, just http 200
-@app.route('/', methods=['GET', 'HEAD'])
+@app.route('/')
 def index():
     return ''
 
@@ -42,22 +43,8 @@ def webhook():
 
 
 # Handle '/start' and '/help'
-# @bot.message_handler(commands=['/mh'])
-# def send_mh(message):
-#     conn = sqlite3.connect('/home/pi/hdd_drive/pavlovsk_doc/bd/raspi_doc.db')
-#     df = pd.read_sql('SELECT * FROM g_val WHERE date_time=(SELECT max(date_time) FROM g_val)', conn)
-#     conn.close()
-    
-#     resp = f"""Наработка ГПГУ1: {df['Genset1_run_hours']}
-#     Наработка ГПГУ2: {df['Genset2_run_hours']}
-#     Наработка ГПГУ3: {df['Genset3_run_hours']}
-#     Наработка ГПГУ4: {df['Genset4_run_hours']}
-#     Наработка ГПГУ5: {df['Genset5_run_hours']}"""
-#     bot.send_message(message.chat.id, resp)
-
-# Handle all other messages
-@bot.message_handler(func=lambda message: True, commands=['mh'])
-def echo_message(message):
+@bot.message_handler(commands=['mh'])
+def send_mh(message):
     conn = sqlite3.connect('/home/pi/hdd_drive/pavlovsk_doc/bd/raspi_doc.db')
     cur = conn.cursor()
     ins = 'SELECT Genset1_run_hours as G1, Genset2_run_hours as G2, Genset3_run_hours as G3, Genset4_run_hours as G4, Genset5_run_hours as G5 FROM g_val WHERE date_time=(SELECT max(date_time) FROM g_val)'
@@ -66,8 +53,22 @@ def echo_message(message):
     cur.close()
     conn.close()
     
-    resp = f"Наработка, мч\nГПГУ1: {hrs[0]}\nГПГУ2: {hrs[1]}\nГПГУ3: {hrs[2]}\nГПГУ4: {hrs[3]}\nГПГУ5: {hrs[4]}"
+    resp = f"*Наработка, мч*\n*ГПГУ1:* {hrs[0]}\n*ГПГУ2:* {hrs[1]}\n*ГПГУ3:* {hrs[2]}\n*ГПГУ4:* {hrs[3]}\n*ГПГУ5:* {hrs[4]}"
     bot.reply_to(message, resp)
+
+# Handle all other messages
+# @bot.message_handler(func=lambda message: True, commands=['mh'])
+# def echo_message(message):
+#     conn = sqlite3.connect('/home/pi/hdd_drive/pavlovsk_doc/bd/raspi_doc.db')
+#     cur = conn.cursor()
+#     ins = 'SELECT Genset1_run_hours as G1, Genset2_run_hours as G2, Genset3_run_hours as G3, Genset4_run_hours as G4, Genset5_run_hours as G5 FROM g_val WHERE date_time=(SELECT max(date_time) FROM g_val)'
+#     cur.execute(ins)
+#     hrs = cur.fetchone()
+#     cur.close()
+#     conn.close()
+    
+#     resp = f"Наработка, мч\nГПГУ1: {hrs[0]}\nГПГУ2: {hrs[1]}\nГПГУ3: {hrs[2]}\nГПГУ4: {hrs[3]}\nГПГУ5: {hrs[4]}"
+#     bot.reply_to(message, resp)
 
 # Remove webhook, it fails sometimes the set if there is a previous webhook
 bot.remove_webhook()
@@ -82,4 +83,4 @@ bot.set_webhook(url=WEBHOOK_URL_BASE+WEBHOOK_URL_PATH,
 app.run(host=WEBHOOK_LISTEN,
         port=WEBHOOK_PORT,
         ssl_context=(WEBHOOK_SSL_CERT, WEBHOOK_SSL_PRIV),
-        debug=False)
+        debug=True)
