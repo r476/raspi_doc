@@ -1,5 +1,9 @@
+my_telegram_id = 723253749
+
+ess_hostname = '192.168.127.12'
+
 baudrate = 57600
-token = '1325955552:AAF40qxDw0lJ1v_EdUumEBnXZ4mKyE5s8Nk'
+token = '1325955552:AAHf1qupEZbM4Ik79VRpVLDaLCXI596P3IY'
 
 # Путь к логу, пишется на HDD
 log_path = '/home/pi/hdd_drive/pavlovsk_doc/debug/debug_log'
@@ -9,17 +13,19 @@ raspi_bd = '/home/pi/hdd_drive/pavlovsk_doc/bd/raspi_doc.db'
 table_regular_values = 'g_val' # Имя таблицы для быстрых значений
 db_interval = 300 # Интервал записей в БД
 
+# Путь к папке с таблицами excel
+xlsx_path = '/home/pi/Documents/PythonScripts/raspi_doc/xlsx/'
 
 # Расположение таблиц ModBus
 mb_table_3516 = '/home/pi/Documents/PythonScripts/raspi_doc/mb_table/doc_3516_mb.txt'
 mb_table_3520 = '/home/pi/Documents/PythonScripts/raspi_doc/mb_table/doc_3520_mb.txt'
 
 # Отсюда берутся регистры с состояниями защит
-protections_3516 = '/home/pi/Documents/PythonScripts/raspi_doc/protections_3516.txt'
-protections_3520 = '/home/pi/Documents/PythonScripts/raspi_doc/protections_3520.txt'
+protections_3516 = '/home/pi/Documents/PythonScripts/raspi_doc/mb_table/protections_3516.txt'
+protections_3520 = '/home/pi/Documents/PythonScripts/raspi_doc/mb_table/protections_3520.txt'
 
 # Состояния двигателя
-engine_states = ('Init', 'Ready', 'NotReady', 'Prestart', 'Cranking', 'Pause', 'Starting', 'Running', 'Loaded', 'Soft unld', 'Cooling', 'Stop', 'Shutdown', 'Ventil', 'EmergMan', 'Cooldown', 'Offload', 'Soft load', 'WaitStop', 'Warming', 'SDVentil', 'WD test', 'GasVTest', 'StrtCndWai')
+engine_states = ('Init', 'Ready', 'NotReady', 'Prestart', 'Cranking', 'Pause', 'Starting', 'Running', 'Loaded', 'Soft unld', 'Cooling', 'Stop', 'Аварийная остановка', 'Ventil', 'EmergMan', 'Cooldown', 'Offload', 'Soft load', 'WaitStop', 'Warming', 'SDVentil', 'WD test', 'GasVTest', 'StrtCndWai')
 
 # Состояния АВГ
 breaker_states = ('Init', 'BrksOff', 'IslOper', 'MainsOper', 'ParalOper', 'RevSync', 'Synchro', 'MainsFlt', 'ValidFlt', 'MainsRet', 'MultIslOp', 'MultParOp', 'EmergMan', 'StrUpSync', None)

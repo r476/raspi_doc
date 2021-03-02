@@ -5,6 +5,9 @@ import telebot
 import sqlite3
 import datetime
 import requests
+from modbus.client import *
+import pandas as pd
+import time
 
 tb = telebot.TeleBot(config.token)
 
@@ -375,8 +378,8 @@ class Genset(minimalmodbus.Instrument):
             return mcb&1 if mcb else None
 
     def update_events(self):
-        self.protects['prev_protects'] = self.protects['current_protects']
-        self.protects['current_protects'] =  self.get_protections()
+#         self.protects['prev_protects'] = self.protects['current_protects']
+#         self.protects['current_protects'] =  self.get_protections()
 
         self.gcb_state['prev_gcb_state'] =  self.gcb_state['current_gcb_state']
         self.gcb_state['current_gcb_state'] =  self.get_gcb_state()
@@ -395,3 +398,54 @@ def send_msg(chat_id, text, disable_web_page_preview=None, reply_to_message_id=N
         logging.error(e)
         print(e)
         
+def mcb_open_record(g1, g2, g3, g4, g5):
+    conn = sqlite3.connect(config.xlsx_path + 'mcb_open_log.db')
+    cur = conn.cursor()
+    # очищаю таблицу
+    try:
+        cur.execute('DELETE FROM mcb_open_log_table')
+    # иначе создаю новую
+    except:
+        cur.execute('CREATE TABLE mcb_open_log_table (date_time VARCHAR(20) PRIMARY KEY, flex_gen INT, genset_1 INT, genset_2 INT, genset_3 INT, genset_4 INT, genset_5 INT)')
+    conn.commit()
+    cur.close()
+    conn.close()
+
+    ess = client(host=config.ess_hostname)
+
+    start_time = time.time()
+    xlsx_name = datetime.datetime.now().strftime('%Y-%m-%d_%H:%M:%S.xlsx')
+
+    while 1:
+        date = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S,%f')
+        ess_active_power = ess.read(FC=4, ADR=36, LEN=1)[0]
+        g1_active_power = g1.read_mb_register(263)
+        g2_active_power = g2.read_mb_register(263)
+        g3_active_power = g3.read_mb_register(463)
+        g4_active_power = g4.read_mb_register(463)
+        g5_active_power = g5.read_mb_register(463)
+        mcb_state = g1.get_mcb_state() # Смотрю MCB по 1-й машине
+        
+        conn = sqlite3.connect(config.xlsx_path + 'mcb_open_log.db')
+        cur = conn.cursor()
+        ins = f'INSERT INTO mcb_open_log_table (date_time, flex_gen, genset_1, genset_2, genset_3, genset_4, genset_5) VALUES (?, ?, ?, ?, ?, ?, ?)'
+        data = (date, ess_active_power, g1_active_power, g2_active_power, g3_active_power, g4_active_power, g5_active_power)
+        cur.execute(ins, data)
+        conn.commit()
+        cur.close()
+        conn.close()
+        if not mcb_state or mcb_state == None: break
+        # Пока спрыгиваю по таймеру
+#         if (time.time()-start_time)>10: break
+
+    conn = sqlite3.connect(config.xlsx_path + 'mcb_open_log.db')
+    df = pd.read_sql('SELECT * FROM mcb_open_log_table', conn)
+    conn.close()
+
+    writer = pd.ExcelWriter(config.xlsx_path + xlsx_name, engine='xlsxwriter')
+    df.to_excel(writer, 'Sheet1')
+    writer.save()
+
+    # Скидываю таблицу, пока только себе
+    doc = open(config.xlsx_path + xlsx_name, 'rb')
+    tb.send_document(config.my_telegram_id, doc)

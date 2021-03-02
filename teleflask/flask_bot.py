@@ -1,11 +1,12 @@
 #!/usr/bin/python3
+
 import telebot
 import flask
 import sqlite3
 import time
 
 # API_TOKEN = '1622722309:AAG6S1-b-mgob0RVRtC2uWuH9wOaUa7cxTY' #webhookbot
-API_TOKEN = '1325955552:AAF40qxDw0lJ1v_EdUumEBnXZ4mKyE5s8Nk' # bot_for_debug
+API_TOKEN = '1325955552:AAHf1qupEZbM4Ik79VRpVLDaLCXI596P3IY' # bot_for_debug
 
 WEBHOOK_HOST = '217.8.228.231'
 WEBHOOK_PORT = 8443  # 443, 80, 88 or 8443 (port need to be 'open')
@@ -42,7 +43,6 @@ def webhook():
         flask.abort(403)
 
 
-# Handle '/start' and '/help'
 @bot.message_handler(commands=['mh'])
 def send_mh(message):
     conn = sqlite3.connect('/home/pi/hdd_drive/pavlovsk_doc/bd/raspi_doc.db')
@@ -53,8 +53,25 @@ def send_mh(message):
     cur.close()
     conn.close()
     
-    resp = f"*Наработка, мч*\n*ГПГУ1:* {hrs[0]}\n*ГПГУ2:* {hrs[1]}\n*ГПГУ3:* {hrs[2]}\n*ГПГУ4:* {hrs[3]}\n*ГПГУ5:* {hrs[4]}"
+    resp = f"*Наработка, мч*\n*ГПГУ1:* {hrs[0]}. ТО250 через {250-hrs[0]%250} мч\n*ГПГУ2:* {hrs[1]}. ТО250 через {250-hrs[1]%250} мч\n*ГПГУ3:* {hrs[2]}. ТО250 через {250-hrs[2]%250} мч\n*ГПГУ4:* {hrs[3]}. ТО250 через {250-hrs[3]%250} мч\n*ГПГУ5:* {hrs[4]}. ТО250 через {250-hrs[4]%250} мч"
     bot.reply_to(message, resp)
+
+@bot.message_handler(commands=['mw'])
+def send_mh(message):
+    conn = sqlite3.connect('/home/pi/hdd_drive/pavlovsk_doc/bd/raspi_doc.db')
+    cur = conn.cursor()
+    ins = 'SELECT Genset1_Act_power as G1, Genset2_Act_power as G2, Genset3_Act_power as G3, Genset4_Act_power as G4, Genset5_Act_power as G5 FROM g_val WHERE date_time=(SELECT max(date_time) FROM g_val)'
+    cur.execute(ins)
+    hrs = cur.fetchone()
+    cur.close()
+    conn.close()
+    
+    resp = f"*Мощность*\n*ГПГУ1:* {hrs[0]} кВт\n*ГПГУ2:* {hrs[1]} кВт\n*ГПГУ3:* {hrs[2]} кВт\n*ГПГУ4:* {hrs[3]} кВт\n*ГПГУ5:* {hrs[4]} кВт\n-------------------------------------------------------\n*ПОЛНАЯ МОЩНОСТЬ:* {hrs[0]+hrs[1]+hrs[2]+hrs[3]+hrs[4]} кВт"
+    bot.reply_to(message, resp)
+
+@bot.message_handler(content_types=['text'])
+def send_response(message):
+    bot.send_message(message.from_user.id, str(message.from_user.json))
 
 # Handle all other messages
 # @bot.message_handler(func=lambda message: True, commands=['mh'])
