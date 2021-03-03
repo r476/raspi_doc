@@ -19,6 +19,18 @@ logging.basicConfig(format='%(asctime)s, %(levelname)s, %(message)s', filename=c
 def init_bd(doc):
     conn = sqlite3.connect(config.raspi_bd)
     curs = conn.cursor()
+    
+    # Таблица быстрых значений мощностей
+    try:
+        ins = f'DELETE FROM {config.fast_power_values}'
+        curs.execute(ins)
+    except Exception as e:
+        logging.info(f'Создание таблицы значений: {config.fast_power_values}')
+        ins = f'CREATE TABLE {config.fast_power_values} (date_time VARCHAR(20) PRIMARY KEY, ESS_Power INT, Genset1_Act_power INT, Genset2_Act_power INT, Genset3_Act_power INT, Genset4_Act_power INT, Genset5_Act_power INT)'
+        curs.execute(ins)
+        conn.commit()
+
+    # Большая таблица регулярных параметров
     try:
         ins = f'SELECT * FROM {config.table_regular_values}'
         curs.execute(ins)
@@ -381,6 +393,10 @@ class Genset(minimalmodbus.Instrument):
 #         self.protects['prev_protects'] = self.protects['current_protects']
 #         self.protects['current_protects'] =  self.get_protections()
 
+        # Значения для запроса бота
+        adr = 263 if self.address in (1, 2) else 463
+        self.modbus_table[adr]['Fast_value'] = self.read_mb_register(adr)
+
         self.gcb_state['prev_gcb_state'] =  self.gcb_state['current_gcb_state']
         self.gcb_state['current_gcb_state'] =  self.get_gcb_state()
 
@@ -399,7 +415,7 @@ def send_msg(chat_id, text, disable_web_page_preview=None, reply_to_message_id=N
         print(e)
         
 def mcb_open_record(g1, g2, g3, g4, g5):
-    conn = sqlite3.connect(config.xlsx_path + 'mcb_open_log.db')
+    conn = sqlite3.connect(config.raspi_bd)
     cur = conn.cursor()
     # очищаю таблицу
     try:
@@ -426,9 +442,9 @@ def mcb_open_record(g1, g2, g3, g4, g5):
         g5_active_power = g5.read_mb_register(463)
         mcb_state = g1.get_mcb_state() # Смотрю MCB по 1-й машине
         
-        conn = sqlite3.connect(config.xlsx_path + 'mcb_open_log.db')
+        conn = sqlite3.connect(config.raspi_bd)
         cur = conn.cursor()
-        ins = f'INSERT INTO mcb_open_log_table (date_time, flex_gen, genset_1, genset_2, genset_3, genset_4, genset_5) VALUES (?, ?, ?, ?, ?, ?, ?)'
+        ins = f'INSERT INTO mcb_open_log_table VALUES (?, ?, ?, ?, ?, ?, ?)'
         data = (date, ess_active_power, g1_active_power, g2_active_power, g3_active_power, g4_active_power, g5_active_power)
         cur.execute(ins, data)
         conn.commit()
@@ -438,7 +454,7 @@ def mcb_open_record(g1, g2, g3, g4, g5):
         # Пока спрыгиваю по таймеру
 #         if (time.time()-start_time)>10: break
 
-    conn = sqlite3.connect(config.xlsx_path + 'mcb_open_log.db')
+    conn = sqlite3.connect(config.raspi_bd)
     df = pd.read_sql('SELECT * FROM mcb_open_log_table', conn)
     conn.close()
 
@@ -449,3 +465,24 @@ def mcb_open_record(g1, g2, g3, g4, g5):
     # Скидываю таблицу, пока только себе
     doc = open(config.xlsx_path + xlsx_name, 'rb')
     tb.send_document(config.my_telegram_id, doc)
+
+def fast_power_values_to_db(pwrs):
+    pwrs = pwrs
+    ess = client(host=config.ess_hostname)
+    dt = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    ess_active_power = ess.read(FC=4, ADR=36, LEN=1)[0]
+    pwrs.insert(0, dt)
+    pwrs.insert(1, ess_active_power)
+
+    conn = sqlite3.connect(config.raspi_bd)
+    curs = conn.cursor()
+    ins = f'DELETE FROM {config.fast_power_values}'
+    curs.execute(ins)
+    conn.commit()
+
+    ins = f'INSERT INTO {config.fast_power_values} (date_time, ESS_Power, Genset1_Act_power, Genset2_Act_power, Genset3_Act_power, Genset4_Act_power, Genset5_Act_power) VALUES (?, ?, ?, ?, ?, ?, ?)'
+    curs.execute(ins, pwrs)
+    conn.commit()
+
+    curs.close()
+    conn.close()

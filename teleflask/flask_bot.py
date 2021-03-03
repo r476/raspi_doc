@@ -60,13 +60,13 @@ def send_mh(message):
 def send_mh(message):
     conn = sqlite3.connect('/home/pi/hdd_drive/pavlovsk_doc/bd/raspi_doc.db')
     cur = conn.cursor()
-    ins = 'SELECT Genset1_Act_power as G1, Genset2_Act_power as G2, Genset3_Act_power as G3, Genset4_Act_power as G4, Genset5_Act_power as G5 FROM g_val WHERE date_time=(SELECT max(date_time) FROM g_val)'
+    ins = 'SELECT * FROM fast_power_values'
     cur.execute(ins)
-    hrs = cur.fetchone()
+    dt, ess, g1, g2, g3, g4, g5 = cur.fetchone()
     cur.close()
     conn.close()
     
-    resp = f"*Мощность*\n*ГПГУ1:* {hrs[0]} кВт\n*ГПГУ2:* {hrs[1]} кВт\n*ГПГУ3:* {hrs[2]} кВт\n*ГПГУ4:* {hrs[3]} кВт\n*ГПГУ5:* {hrs[4]} кВт\n-------------------------------------------------------\n*ПОЛНАЯ МОЩНОСТЬ:* {hrs[0]+hrs[1]+hrs[2]+hrs[3]+hrs[4]} кВт"
+    resp = f"*Мощность*\n*ГПГУ1:* {g1} кВт\n*ГПГУ2:* {g2} кВт\n*ГПГУ3:* {g3} кВт\n*ГПГУ4:* {g4} кВт\n*ГПГУ5:* {g5} кВт\n-------------------------------------------------------\n*ПОЛНАЯ МОЩНОСТЬ:* {g1+g2+g3+g4+g5} кВт\n\n*ESS:* {ess} кВт"
     bot.reply_to(message, resp)
 
 @bot.message_handler(content_types=['text'])

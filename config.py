@@ -10,7 +10,9 @@ log_path = '/home/pi/hdd_drive/pavlovsk_doc/debug/debug_log'
 # Путь в БД, пишется на HDD
 
 raspi_bd = '/home/pi/hdd_drive/pavlovsk_doc/bd/raspi_doc.db'
-table_regular_values = 'g_val' # Имя таблицы для быстрых значений
+table_regular_values = 'g_val' # Имя таблицы для регулярных значений (большая таблица)
+fast_power_values = 'fast_power_values' # Имя таблицы для быстрых значений
+
 db_interval = 300 # Интервал записей в БД
 
 # Путь к папке с таблицами excel
