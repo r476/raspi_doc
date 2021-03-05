@@ -4,9 +4,13 @@ import telebot
 import flask
 import sqlite3
 import time
+import datetime
 
+my_telegram_id = 723253749
+db_path = '/home/pi/hdd_drive/pavlovsk_doc/bd/raspi_doc.db'
 # API_TOKEN = '1622722309:AAG6S1-b-mgob0RVRtC2uWuH9wOaUa7cxTY' #webhookbot
-API_TOKEN = '1325955552:AAHf1qupEZbM4Ik79VRpVLDaLCXI596P3IY' # bot_for_debug
+API_TOKEN = '1325955552:AAHeu0PBF9AK9SUs0Nh5T4oJjqQAf-u2yD8' # bot_for_debug
+auth_pass = '22309:AAG6S1-b-m'
 
 WEBHOOK_HOST = '217.8.228.231'
 WEBHOOK_PORT = 8443  # 443, 80, 88 or 8443 (port need to be 'open')
@@ -22,6 +26,26 @@ bot = telebot.TeleBot(API_TOKEN, parse_mode='Markdown')
 bot.send_message(723253749, 'сервер запущен')
 
 app = flask.Flask(__name__)
+
+# Декоратор для логгирования и уведомления о входящих сообщений
+
+def notification_by_msg(f):
+    def wrapped(message):
+        conn = sqlite3.connect(db_path)
+        curs = conn.cursor()
+        date_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        data = [date_time, message.from_user.username, message.from_user.id, message.text]
+        ins = 'INSERT INTO msg_log (date_time, user_name, user_id, msg_text) VALUES (?, ?, ?, ?)'
+        curs.execute(ins, data)
+        conn.commit()
+        curs.close()
+        conn.close()
+
+        if message.from_user.id != my_telegram_id:
+            bot.reply_to(message, f'Cообщение от пользователя {message.from_user.username}')
+        response = f(message)
+        return response
+    return wrapped
 
 # Empty webserver index, return nothing, just http 200
 @app.route('/')
@@ -43,9 +67,22 @@ def webhook():
         flask.abort(403)
 
 
+@bot.message_handler(commands=['start'])
+@notification_by_msg
+def start(message):
+    bot.reply_to(message, 'Для начала работы с ботом, отправьте пароль, ответным сообщением')
+    
+@bot.message_handler(commands=['help'])
+@notification_by_msg
+def start(message):
+    bot.reply_to(message, '''/delme - отписка от рассылки бота,
+/mw или /wtf - состояние комплекса в данный момент,
+/mh - наработка ГПГУ, в моточасах''')
+
 @bot.message_handler(commands=['mh'])
+@notification_by_msg
 def send_mh(message):
-    conn = sqlite3.connect('/home/pi/hdd_drive/pavlovsk_doc/bd/raspi_doc.db')
+    conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     ins = 'SELECT Genset1_run_hours as G1, Genset2_run_hours as G2, Genset3_run_hours as G3, Genset4_run_hours as G4, Genset5_run_hours as G5 FROM g_val WHERE date_time=(SELECT max(date_time) FROM g_val)'
     cur.execute(ins)
@@ -56,9 +93,10 @@ def send_mh(message):
     resp = f"*Наработка, мч*\n*ГПГУ1:* {hrs[0]}. ТО250 через {250-hrs[0]%250} мч\n*ГПГУ2:* {hrs[1]}. ТО250 через {250-hrs[1]%250} мч\n*ГПГУ3:* {hrs[2]}. ТО250 через {250-hrs[2]%250} мч\n*ГПГУ4:* {hrs[3]}. ТО250 через {250-hrs[3]%250} мч\n*ГПГУ5:* {hrs[4]}. ТО250 через {250-hrs[4]%250} мч"
     bot.reply_to(message, resp)
 
-@bot.message_handler(commands=['mw'])
-def send_mh(message):
-    conn = sqlite3.connect('/home/pi/hdd_drive/pavlovsk_doc/bd/raspi_doc.db')
+@bot.message_handler(commands=['mw', 'wtf'])
+@notification_by_msg
+def send_mw(message):
+    conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     ins = 'SELECT * FROM fast_power_values'
     cur.execute(ins)
@@ -69,23 +107,31 @@ def send_mh(message):
     resp = f"*Мощность*\n*ГПГУ1:* {g1} кВт\n*ГПГУ2:* {g2} кВт\n*ГПГУ3:* {g3} кВт\n*ГПГУ4:* {g4} кВт\n*ГПГУ5:* {g5} кВт\n-------------------------------------------------------\n*ПОЛНАЯ МОЩНОСТЬ:* {g1+g2+g3+g4+g5} кВт\n\n*ESS:* {ess} кВт"
     bot.reply_to(message, resp)
 
+# Авторизация
 @bot.message_handler(content_types=['text'])
+@notification_by_msg
 def send_response(message):
-    bot.send_message(message.from_user.id, str(message.from_user.json))
+    # Если пришел код авторизации
+    if message.text == auth_pass:
+        conn = sqlite3.connect(db_path)
+        cur = conn.cursor()
+        ins = 'SELECT user_id FROM broadcast_user_list'
+        cur.execute(ins)
+        user_id_list = [d[0] for d in cur.fetchall()]
+        bot.send_message(message.from_user.id, f'{message.from_user.id}, {str(cur.fetchall())}')
+        if not(message.from_user.id in user_id_list):
+            bot.send_message(message.from_user.id, 'Авторизация прошла успешно. Чтобы отказаться от рассылки бота, отправьте ему команду: /delme. Для ознакомления с командами и функционалом, отправьте боту команду: /helpme')
+            usr_data = [message.from_user.id, message.from_user.username]
+            ins = f'INSERT INTO broadcast_user_list (user_id, user_name) VALUES (?, ?)'
+            cur.execute(ins, usr_data)
+        else:
+            bot.send_message(message.from_user.id, 'Вы уже есть в списке рассылки')
+        conn.commit()
+        cur.close()
+        conn.close()
+    else:
+        bot.send_message(message.from_user.id, message.text)
 
-# Handle all other messages
-# @bot.message_handler(func=lambda message: True, commands=['mh'])
-# def echo_message(message):
-#     conn = sqlite3.connect('/home/pi/hdd_drive/pavlovsk_doc/bd/raspi_doc.db')
-#     cur = conn.cursor()
-#     ins = 'SELECT Genset1_run_hours as G1, Genset2_run_hours as G2, Genset3_run_hours as G3, Genset4_run_hours as G4, Genset5_run_hours as G5 FROM g_val WHERE date_time=(SELECT max(date_time) FROM g_val)'
-#     cur.execute(ins)
-#     hrs = cur.fetchone()
-#     cur.close()
-#     conn.close()
-    
-#     resp = f"Наработка, мч\nГПГУ1: {hrs[0]}\nГПГУ2: {hrs[1]}\nГПГУ3: {hrs[2]}\nГПГУ4: {hrs[3]}\nГПГУ5: {hrs[4]}"
-#     bot.reply_to(message, resp)
 
 # Remove webhook, it fails sometimes the set if there is a previous webhook
 bot.remove_webhook()

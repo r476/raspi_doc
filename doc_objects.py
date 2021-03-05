@@ -32,7 +32,7 @@ def init_bd(doc):
 
     # Большая таблица регулярных параметров
     try:
-        ins = f'SELECT * FROM {config.table_regular_values}'
+        ins = f'SELECT MAX(date_time) FROM {config.table_regular_values}'
         curs.execute(ins)
     except Exception as e:
         logging.info(f'Создание таблицы значений: {config.table_regular_values}')
@@ -52,6 +52,36 @@ def init_bd(doc):
         curs.execute(ins)
         conn.commit()
         logging.info(f'Таблица {config.table_regular_values} создана.')
+        
+    # Полная таблица засветившихся пользователей
+    try:
+        ins = f'SELECT * FROM {config.all_users}'
+        curs.execute(ins)
+    except Exception as e:
+        logging.info(f'Создание таблицы значений: {config.all_users}')
+        ins = f'CREATE TABLE {config.all_users} (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, user_id INTEGER , user_name VARCHAR(20))'
+        curs.execute(ins)
+        conn.commit()
+
+    # Tаблица пользователей для рассылки
+    try:
+        ins = f'SELECT * FROM {config.broadcast_user_list}'
+        curs.execute(ins)
+    except Exception as e:
+        logging.info(f'Создание таблицы значений: {config.broadcast_user_list}')
+        ins = f'CREATE TABLE {config.broadcast_user_list} (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, user_id INTEGER, user_name VARCHAR(20))'
+        curs.execute(ins)
+        conn.commit()
+
+    # Tаблица лог сообщений
+    try:
+        ins = f'SELECT * FROM {config.msg_log}'
+        curs.execute(ins)
+    except Exception as e:
+        logging.info(f'Создание таблицы значений: {config.msg_log}')
+        ins = f'CREATE TABLE {config.msg_log} (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, date_time VARCHAR(20), user_name VARCHAR(20), user_id INTEGER, msg_text VARCHAR(250))'
+        curs.execute(ins)
+        conn.commit()
 
     curs.close()
     conn.close()
@@ -476,6 +506,7 @@ def fast_power_values_to_db(pwrs):
 
     conn = sqlite3.connect(config.raspi_bd)
     curs = conn.cursor()
+    # удаление нужно будет потом открутить
     ins = f'DELETE FROM {config.fast_power_values}'
     curs.execute(ins)
     conn.commit()
@@ -486,3 +517,13 @@ def fast_power_values_to_db(pwrs):
 
     curs.close()
     conn.close()
+
+def trim_fast_power_values_to_db():
+    conn = sqlite3.connect(config.raspi_bd)
+    curs = conn.cursor()
+    ins = f'SELECT date_time FROM {config.fast_power_values}'
+    cur.execute(ins)
+    data = cur.fetchall()
+    if len(data)>86400:
+        pass
+        # Тут нужно обрезать БД до нужного размера
