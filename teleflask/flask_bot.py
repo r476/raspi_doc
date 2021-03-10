@@ -9,7 +9,7 @@ import datetime
 my_telegram_id = 723253749
 db_path = '/home/pi/hdd_drive/pavlovsk_doc/bd/raspi_doc.db'
 # API_TOKEN = '1622722309:AAG6S1-b-mgob0RVRtC2uWuH9wOaUa7cxTY' #webhookbot
-API_TOKEN = '1325955552:AAHeu0PBF9AK9SUs0Nh5T4oJjqQAf-u2yD8' # bot_for_debug
+API_TOKEN = '1325955552:AAGBn2LQoXItTlagfRV5EcrMpue-OsIliEg'# bot_for_debug
 auth_pass = '22309:AAG6S1-b-m'
 
 WEBHOOK_HOST = '217.8.228.231'
@@ -33,11 +33,24 @@ def notification_by_msg(f):
     def wrapped(message):
         conn = sqlite3.connect(db_path)
         curs = conn.cursor()
+        
+        # добавляю сообщение в лог ---------------------------------------
         date_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         data = [date_time, message.from_user.username, message.from_user.id, message.text]
         ins = 'INSERT INTO msg_log (date_time, user_name, user_id, msg_text) VALUES (?, ?, ?, ?)'
         curs.execute(ins, data)
         conn.commit()
+        
+        # если пользователя нет в таблице all_users, то добавляю его туда
+        ins = 'SELECT user_id FROM all_users'
+        curs.execute(ins)
+        usr_list = [i[0] for i in curs.fetchall()]
+        if not (message.from_user.id in usr_list):
+            ins = 'INSERT INTO all_users (user_id, user_name) VALUES (?, ?)'
+            data = (message.from_user.id, message.from_user.username)
+            curs.execute(ins, data)
+            conn.commit()
+            
         curs.close()
         conn.close()
 
@@ -84,13 +97,14 @@ def start(message):
 def send_mh(message):
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
-    ins = 'SELECT Genset1_run_hours as G1, Genset2_run_hours as G2, Genset3_run_hours as G3, Genset4_run_hours as G4, Genset5_run_hours as G5 FROM g_val WHERE date_time=(SELECT max(date_time) FROM g_val)'
+    ins = 'SELECT date_time, Genset1_run_hours, Genset2_run_hours, Genset3_run_hours, Genset4_run_hours, Genset5_run_hours FROM g_val WHERE date_time=(SELECT max(date_time) FROM g_val)'
     cur.execute(ins)
-    hrs = cur.fetchone()
+    dt, g1, g2, g3, g4, g5 = cur.fetchone()
+    date_time = datetime.datetime.strptime(dt, '%Y-%m-%d %H:%M:%S').strftime('%d.%m.%Y %H:%M')
     cur.close()
     conn.close()
     
-    resp = f"*Наработка, мч*\n*ГПГУ1:* {hrs[0]}. ТО250 через {250-hrs[0]%250} мч\n*ГПГУ2:* {hrs[1]}. ТО250 через {250-hrs[1]%250} мч\n*ГПГУ3:* {hrs[2]}. ТО250 через {250-hrs[2]%250} мч\n*ГПГУ4:* {hrs[3]}. ТО250 через {250-hrs[3]%250} мч\n*ГПГУ5:* {hrs[4]}. ТО250 через {250-hrs[4]%250} мч"
+    resp = f"*Наработка, мч*\n*ГПГУ1:* {g1}. ТО250 через {250-g1%250} мч\n*ГПГУ2:* {g2}. ТО250 через {250-g2%250} мч\n*ГПГУ3:* {g3}. ТО250 через {250-g3%250} мч\n*ГПГУ4:* {g4}. ТО250 через {250-g4%250} мч\n*ГПГУ5:* {g5}. ТО250 через {250-g5%250} мч\n\n{date_time}"
     bot.reply_to(message, resp)
 
 @bot.message_handler(commands=['mw', 'wtf'])
@@ -103,8 +117,9 @@ def send_mw(message):
     dt, ess, g1, g2, g3, g4, g5 = cur.fetchone()
     cur.close()
     conn.close()
+    date_time = datetime.datetime.strptime(dt, '%Y-%m-%d %H:%M:%S').strftime('%d.%m.%Y %H:%M')
     
-    resp = f"*Мощность*\n*ГПГУ1:* {g1} кВт\n*ГПГУ2:* {g2} кВт\n*ГПГУ3:* {g3} кВт\n*ГПГУ4:* {g4} кВт\n*ГПГУ5:* {g5} кВт\n-------------------------------------------------------\n*ПОЛНАЯ МОЩНОСТЬ:* {g1+g2+g3+g4+g5} кВт\n\n*ESS:* {ess} кВт"
+    resp = f"*Мощность*\n*ГПГУ1:* {g1} кВт\n*ГПГУ2:* {g2} кВт\n*ГПГУ3:* {g3} кВт\n*ГПГУ4:* {g4} кВт\n*ГПГУ5:* {g5} кВт\n-------------------------------------------------------\n*ПОЛНАЯ МОЩНОСТЬ:* {g1+g2+g3+g4+g5} кВт\n\n*ESS:* {ess} кВт\n-------------------------------------------------------\n{date_time}"
     bot.reply_to(message, resp)
 
 # Авторизация

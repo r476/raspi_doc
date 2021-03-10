@@ -3,7 +3,7 @@ my_telegram_id = 723253749
 ess_hostname = '192.168.127.12'
 
 baudrate = 57600
-token = '1325955552:AAHeu0PBF9AK9SUs0Nh5T4oJjqQAf-u2yD8'
+token = '1325955552:AAGBn2LQoXItTlagfRV5EcrMpue-OsIliEg' 
 
 # Путь к логу, пишется на HDD
 log_path = '/home/pi/hdd_drive/pavlovsk_doc/debug/debug_log'

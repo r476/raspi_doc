@@ -19,7 +19,7 @@ logging.basicConfig(format='%(asctime)s, %(levelname)s, %(message)s', filename=c
 def init_bd(doc):
     conn = sqlite3.connect(config.raspi_bd)
     curs = conn.cursor()
-    
+
     # Таблица быстрых значений мощностей
     try:
         ins = f'DELETE FROM {config.fast_power_values}'
@@ -498,11 +498,14 @@ def mcb_open_record(g1, g2, g3, g4, g5):
 
 def fast_power_values_to_db(pwrs):
     pwrs = pwrs
-    ess = client(host=config.ess_hostname)
     dt = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    ess_active_power = ess.read(FC=4, ADR=36, LEN=1)[0]
     pwrs.insert(0, dt)
-    pwrs.insert(1, ess_active_power)
+    try:
+        ess = client(host=config.ess_hostname)
+        ess_active_power = ess.read(FC=4, ADR=36, LEN=1)[0]
+        pwrs.insert(1, ess_active_power)
+    except:
+        logging.debug('fast_power_values_to_db(), ошибка опроса СНЭ')
 
     conn = sqlite3.connect(config.raspi_bd)
     curs = conn.cursor()
